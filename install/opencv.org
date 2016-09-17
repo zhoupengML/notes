@@ -1,0 +1,47 @@
+<2016-09-17 Sat>
+
+* install opencv
+
+** Required Packages
+#+BEGIN_SRC sh
+ [compiler] sudo apt-get install build-essential
+ [required] sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
+ [optional] sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev
+#+END_SRC
+
+** Getting the Cutting-edge OpenCV from the Git Repository
+#+BEGIN_SRC sh
+ cd ~/<my_working_directory>
+ git clone https://github.com/opencv/opencv.git
+ git clone https://github.com/opencv/opencv_contrib.git
+#+END_SRC
+
+** Building OpenCV from Source Using CMake
+#+BEGIN_SRC sh
+ cd ~/opencv
+ mkdir build
+ cd build
+#+END_SRC
+#+BEGIN_SRC sh
+cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local ..
+make -j7 # runs 7 jobs in parallel
+#+END_SRC
+
+*** Description of some parameters
+    - build type: CMAKE_BUILD_TYPE=Release\Debug
+    - to build with modules from opencv_contrib set *OPENCV_EXTRA_MODULES_PATH* to <path to opencv_contrib/modules/>
+    - set BUILD_DOCS for building documents
+    - set BUILD_EXAMPLES to build all examples
+
+*** Running tests
+
+Get the required test data from OpenCV extra repository.
+#+BEGIN_SRC sh
+git clone https://github.com/opencv/opencv_extra.git
+#+END_SRC
+- set *OPENCV_TEST_DATA_PATH* environment variable to <path to opencv_extra/testdata>.
+- execute tests from build directory.
+#+BEGIN_SRC sh
+./build/bin/opencv_test_core
+#+END_SRC
+
