@@ -1,0 +1,5 @@
+* emacs 常用命令
+** 插入时间
+#+BEGIN_SRC 
+C-u M-! date
+#+END_SRC
