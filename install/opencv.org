@@ -23,7 +23,7 @@
  cd build
 #+END_SRC
 #+BEGIN_SRC sh
-cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local ..
+cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/home/shhs/env/opencv3_1 -D WITH_CUDA=OFF -D BUILD_PYTHON_SUPPORT=ON -D BUILD_EXAMPLES=ON ..
 make -j7 # runs 7 jobs in parallel
 #+END_SRC
 

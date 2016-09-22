@@ -1,7 +1,13 @@
-* Tasks
+* tasks
 ** TODO read mxnet code <2016-09-20 Tue>
+** TODO 高中同学聚会 <2016-09-20 Tue>
+** TODO 矩阵理论作业 <2016-09-21 Wed>
+** TODO 最优化方法作业 <2016-09-21 Wed>
+** TODO 培养方案提交 <2016-09-21 Wed>
+** TODO 招商银行卡更改号码 <2016-09-22 Thu>
 * Book
 * Project
 * Calender
-** 成电聚会 <2016-09-20 Tue>
-2016年 09月 20日 星期二 12:21:43 CST
+** 成电聚会 <2016-09-24 Sat 18:00>
+
+
