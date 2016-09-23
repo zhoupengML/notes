@@ -6,9 +6,9 @@ Code: [[https://github.com/rbgirshick/fast-rcnn][Fast R-CNN's code]]
 
 * Paper notes
 * Contents
-  1. #<<Fast R-CNN architecture>> [[Fast R-CNN architecture]]
+  1.  [[Fast R-CNN architecture]]
 
-** Fast R-CNN architecture 
+** #<<Fast R-CNN architecture>>
 
    [[./pic_fast_rcnn/1.png]]
 
