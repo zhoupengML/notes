@@ -3,3 +3,11 @@
 #+BEGIN_SRC 
 C-u M-! date
 #+END_SRC
+** 显示图片
+#+BEGIN_SRC 
+C-c C-x C-v
+#+END_SRC
+** 打开当前链接
+#+BEGIN_SRC 
+C-c C-o
+#+END_SRC
