@@ -4,7 +4,6 @@
 Paper: [[http://arxiv.org/abs/1504.08083][Fast R-CNN]]
 Code: [[https://github.com/rbgirshick/fast-rcnn][Fast R-CNN's code]]
 
-* Paper notes
 * Contents
   1.  [[Fast R-CNN architecture]]
 
