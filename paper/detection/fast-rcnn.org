@@ -21,7 +21,7 @@ Code: [[https://github.com/rbgirshick/fast-rcnn][Fast R-CNN's code]]
      *one* that produces softmax probability estimates over K object classes
      plus a catch-all "background" class and *another layer* that outputs 
      four real-valued numbers for each of the K object classes.
-     ? 2. /Each set of 4 values encodes refined bounding-box positions for one of
+   - [ ] ? 2. /Each set of 4 values encodes refined bounding-box positions for one of
            the K classes./
 
 
