@@ -1,0 +1,4 @@
+
+* Web sites related to detection
+
+[[https://github.com/rbgirshick/fast-rcnn][Ross Girshick/fast-rcnn]]

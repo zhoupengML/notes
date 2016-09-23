@@ -1,0 +1,25 @@
+
+* Fast R-CNN --Ross Girshick
+
+Paper: [[http://arxiv.org/abs/1504.08083][Fast R-CNN]]
+Code: [[https://github.com/rbgirshick/fast-rcnn][Fast R-CNN's code]]
+
+* Paper notes
+
+** Fast R-CNN architecture 
+
+   [[./pic_fast_rcnn/1.png]]
+
+   - inputs: *an entire image*, *a set of object proposals*
+   - several convolutional and max pooling layers -> produce a conv feature map
+   - for each object proposal: a RoI(region of interest) pooling layer extracts a 
+     fixed-length feature vector from the feature map
+   - each feature vector is fed into a sequence of fully connected(fc) layers 
+     that finally branch into two sibling(兄弟，姐妹，同属) output layers:
+     *one* that produces softmax probability estimates over K object classes
+     plus a catch-all "background" class and *another layer* that outputs 
+     four real-valued numbers for each of the K object classes.
+     ? 2. /Each set of 4 values encodes refined bounding-box positions for one of
+           the K classes./
+
+
