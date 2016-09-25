@@ -11,3 +11,6 @@ C-c C-x C-v
 #+BEGIN_SRC 
 C-c C-o
 #+END_SRC
+* reference 
+
+[[http://blog.csdn.net/lishuo_os_ds/article/details/8069484][GTD(getting things down)]]

@@ -1,0 +1,47 @@
+
+* Auctex install
+
+** Install tex system
+#+BEGIN_SRC sh
+sudo apt-get install texlive-full 
+#+END_SRC
+
+** Install emacs' LaTeX plugin of auctex
+#+BEGIN_SRC sh
+sudo apt-get install auctex
+#+END_SRC
+   - You can also install the auctex plugin by source code.[[http://www.gnu.org/software/auctex/][auctex]]
+     #+BEGIN_SRC sh
+     ./configure --with-emacs
+     make && make install
+     #+END_SRC
+
+** Let emacs Load auctex
+#+BEGIN_SRC lisp
+(load "auctex.el" nil t t)
+(load "preview-latex.el" nil t t)
+(setq TeX-auto-save t)
+(setq TeX-parse-self t)
+(setq-default TeX-master nil)
+#+END_SRC
+   - If auctex was installed successfully, the menu bar will be added  three menu items including Preview, LaTeX, and Command 
+     when open a .tex file.
+
+** Define shortcut keys
+*** C-c C-c *compile tex file*  default command: xelatex
+#+BEGIN_SRC lisp
+(add-hook 'LaTeX-mode-hook
+(lambda()
+(add-to-list 'TeX-command-list '("XeLaTeX" "%`xelatex%(mode)%' %t" TeX-run-TeX nil t))
+(setq TeX-command-default "XeLaTeX")))
+#+END_SRC
+*** C-c C-v *open generated pdf file*  default command: evince
+#+BEGIN_SRC lisp
+(setq TeX-output-view-style (quote (("^pdf$" "." "evince %o %(outpage)"))))
+#+END_SRC
+
+** Reference
+[[http://www.gnu.org/software/auctex/]]
+
+* Emacs + LaTex quick start
+
