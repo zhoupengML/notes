@@ -45,3 +45,5 @@ sudo apt-get install auctex
 
 * Emacs + LaTex quick start
 
+** Reference 
+[[http://cs2.swfc.edu.cn/~wx672/lecture_notes/linux/latex/latex_tutorial.html?utm_source=tuicool&utm_medium=referral#sec-2-2]]
