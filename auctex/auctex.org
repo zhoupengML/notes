@@ -44,8 +44,10 @@ sudo apt-get install auctex
 [[http://www.gnu.org/software/auctex/]]
 
 * Emacs + LaTex quick start
+** Reference 
+   [[http://cs2.swfc.edu.cn/~wx672/lecture_notes/linux/latex/latex_tutorial.html?utm_source=tuicool&utm_medium=referral#sec-2-2]]
 
-** command
+** Command
 
 [[./picture/1.png]]
 [[./picture/2.png]]
@@ -78,7 +80,7 @@ sudo apt-get install auctex
    - Locate in a single line
      $$formula$$ e.t. $$c^2=a^2+b^2$$
    - Add number for the formula
-     \begin{equation}
+     \begin{equation} \n
        \label{eq:1}
        c^{2}=a^{2}+b^{2}
      \end{equation}
@@ -96,5 +98,3 @@ sudo apt-get install auctex
      apt-get install texlive-doc-en
      texdoc lshort
      #+END_SRC
-** Reference 
-[[http://cs2.swfc.edu.cn/~wx672/lecture_notes/linux/latex/latex_tutorial.html?utm_source=tuicool&utm_medium=referral#sec-2-2]]
