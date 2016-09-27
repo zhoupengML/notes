@@ -46,6 +46,7 @@ sudo apt-get install auctex
 * Emacs + LaTex quick start
 
 ** command
+
 [[./picture/1.png]]
 [[./picture/2.png]]
    - 插入宏 C-c C-m
@@ -65,6 +66,35 @@ sudo apt-get install auctex
    - Bibliography :
      C-c C-e thebibliography
      
+** Insert formula
+   
+   - menual
+     - lshort, chapter 3
+     #+BEGIN_SRC sh
+     texdoc lshort
+     #+END_SRC
+     - The LaTeX companion, chapter 8
+   - $formula$ e.t. $c^2=a^2+b^2$
+   - Locate in a single line
+     $$formula$$ e.t. $$c^2=a^2+b^2$$
+   - Add number for the formula
+     \begin{equation}
+       \label{eq:1}
+       c^{2}=a^{2}+b^{2}
+     \end{equation}
 
+** Use the menual 
+
+   - Consult AucTeX menual
+     #+BEGIN_SRC sh
+     C-h i
+     m
+     auctex     
+     #+END_SRC
+   - Read lshort
+     #+BEGIN_SRC sh
+     apt-get install texlive-doc-en
+     texdoc lshort
+     #+END_SRC
 ** Reference 
 [[http://cs2.swfc.edu.cn/~wx672/lecture_notes/linux/latex/latex_tutorial.html?utm_source=tuicool&utm_medium=referral#sec-2-2]]
