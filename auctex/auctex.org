@@ -80,10 +80,12 @@ sudo apt-get install auctex
    - Locate in a single line
      $$formula$$ e.t. $$c^2=a^2+b^2$$
    - Add number for the formula
-     \begin{equation} \n
+     #+BEGIN_SRC 
+     \begin{equation} 
        \label{eq:1}
        c^{2}=a^{2}+b^{2}
-     \end{equation}
+     \end{equation}     
+     #+END_SRC
 
 ** Use the menual 
 
