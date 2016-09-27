@@ -45,5 +45,26 @@ sudo apt-get install auctex
 
 * Emacs + LaTex quick start
 
+** command
+[[./picture/1.png]]
+[[./picture/2.png]]
+   - 插入宏 C-c C-m
+   - 插入节 C-c C-s : section, subsection
+   - \emph{} : emphasize
+   - C-c C-e itemize : the list without number
+   - \verb| | : verbatim
+   - Insert table :
+     \begin{center}
+       \begin{tabular}{|l|l|}  l:left c:center r:right
+       \hline
+       Col1 & Col2 \\ \hline
+       \verb| | & xx \\
+       \hline
+       \end{tabular}
+     \end{center}
+   - Bibliography :
+     C-c C-e thebibliography
+     
+
 ** Reference 
 [[http://cs2.swfc.edu.cn/~wx672/lecture_notes/linux/latex/latex_tutorial.html?utm_source=tuicool&utm_medium=referral#sec-2-2]]
