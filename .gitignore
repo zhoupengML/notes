@@ -1,2 +1,3 @@
 auctex/example/*
+paper/detection/ltxpng
 !/auctex/example/simple.tex
