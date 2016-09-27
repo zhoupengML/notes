@@ -63,3 +63,4 @@ Code: [[https://github.com/rbgirshick/fast-rcnn][Fast R-CNN's code]]
 
      - A Fast R-CNN network has two sibling output layers.
        1. The first outputs a discrete probability distribution(per RoI), 
+          a_{1}

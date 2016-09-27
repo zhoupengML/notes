@@ -1,11 +1,10 @@
 * tasks
 ** TODO read mxnet code <2016-09-20 Tue>
 ** TODO 高中同学聚会 <2016-09-20 Tue>
-** TODO 矩阵理论作业 <2016-09-27 Tue>
-** TODO 最优化方法作业 <2016-09-21 Wed>
-** TODO 培养方案提交 <2016-09-21 Wed>
+** TODO 矩阵理论作业 <2016-10-11 Tue>
+** DONE 培养方案提交 <2016-09-21 Wed>
+   CLOSED: [2016-09-27 Tue 22:52]
 ** TODO 招商银行卡更改号码 <2016-09-26 Mon 14:00>
-** TODO 提交团员信息表 <2016-09-25 Sun 19:00>
 * Book
 * Project
 * Calender
