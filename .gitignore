@@ -1,4 +1,5 @@
 auctex/example/*
 paper/detection/ltxpng
 auto/
+*.pdf
 !/auctex/example/simple.tex
