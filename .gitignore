@@ -3,3 +3,4 @@ paper/detection/ltxpng
 auto/
 *.pdf
 !/auctex/example/simple.tex
+!/auctex/example/slides.tex
