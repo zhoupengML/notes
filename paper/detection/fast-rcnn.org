@@ -64,18 +64,7 @@ Code: [[https://github.com/rbgirshick/fast-rcnn][Fast R-CNN's code]]
           a_{1}
 
 
-            \(\sum\limits_{i=1}^n(a_i*w_i)\)
 
-
-          \begin{equation}
-            \frac{1^p+2^p+\cdot\cdot\cdot+n^p}{n^{1+p}}
-          \end{equation}
-          
-          \begin{equation}
-            \stackrel{abc}{\longrightarrow}
-          \end{equation}
-
-          I am $op_1\stackrel{abc}{\longrightarrow}op_2$ 
 
 
           
