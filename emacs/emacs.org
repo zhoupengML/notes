@@ -1,4 +1,7 @@
 * emacs 常用命令
+** Insert footnote [fn:1]
+   - C-c C-x f
+   - C-c C-c : jump to the footnote location
 ** 插入时间
 #+BEGIN_SRC 
 C-u M-! date
@@ -24,3 +27,8 @@ C-c C-o
 * reference 
 
 [[http://blog.csdn.net/lishuo_os_ds/article/details/8069484][GTD(getting things down)]]
+
+* Footnotes
+
+[fn:1] https://my.oschina.net/klauszl/blog/261701
+
