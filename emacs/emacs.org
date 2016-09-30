@@ -1,4 +1,15 @@
 * emacs 常用命令
+** Insert piecewise function
+#+BEGIN_SRC 
+\begin{equation}
+ P_{r-j}=
+ \begin{cases}
+ 0 &\mbox{if $r-j$ is odd}\\
+ r!\,(-1)^{(r-j)/2} &\mbox{if $r-j$ is even}
+ \end{cases}
+\end{equation}
+#+END_SRC
+
 ** Insert footnote [fn:1]
    - C-c C-x f
    - C-c C-c : jump to the footnote location

@@ -68,24 +68,78 @@ Code: [[https://github.com/rbgirshick/fast-rcnn][Fast R-CNN's code]]
        3. [ ] We use the parameterization for $t^k$ given in [fn:1], in which t^k specifies a
           scale-invariant translation and log-space height/width shift relative to an object 
           proposal.
-     - Each trainging RoI is labeled with a ground-truth class u and a ground-truth bounding-box
+     - *Each trainging RoI* is labeled with a ground-truth class u and a ground-truth bounding-box
        regression target v. We use a multi-task loss L on each labeled RoI to jointly train for
        classification and bounding-box regression:
-       $$L(p, u, t^u, v) = L_{cls}(p, u) + \lambda[u\ge1]L_{loc}(t^u, v)$$
+       \begin{equation}
+         L(p, u, t^u, v) = L_{cls}(p, u) + \lambda[u\ge1]L_{loc}(t^u, v)         
+       \end{equation}
        in which $L_{cls}(p, u)  = -logp_u$ is log loss for true class u.
      - The second task loss , $L_loc$, is defined over a tuple of true bounding-box regression 
        targets for class u. The Iverson bracket indicator function $[u\ge1]$ evaluates to 1 when 
        $u>1$ and 0 otherwise.For background RoIs there is no notion of a ground-truth bounding box
        and hence $L_{loc}$ is ignored. For bounding-box regression, we use the loss
-       $$L_{loc}(t^u, v) = \sum_{i\in{x, y, w, h}} smooth_{L_1}(t_i^u - v_i)$$
+       \begin{equation}
+         L_{loc}(t^u, v) = \sum_{i\in{x, y, w, h}} smooth_{L_1}(t_i^u - v_i)         
+       \end{equation}
        in which 
-       $$smooth_{L_1}(x) = 
-       
+       \begin{equation}
+         smooth_{L_1}(x) = 
+       \begin{cases}
+       {0.5x^2} &\mbox{if |x| < 1}\\
+       {|x| - 0.5} &\mbox{otherwise}
+       \end{cases}
+       \end{equation}
+       is a robust $L_1$ loss that is less sensitive to outliers than the $L_2$ loss used in 
+       R-CNN and SPPnet.
+       - When the regression targets are unbounded, training with $L_2$ loss can require careful
+         tuning of learning rates in order to prevent exploding gradients. Eq.3 eliminates this
+         sensitivity.
+     - We normalize the ground-truth regression targets $v_i$ to have zero mean and unit variance.
+       All experiments use $\lambda = 1$.
+     - [fn:2] uses a related loss to train a class agnostic object proposal network. [fn:2] advocates
+       for a two-network system that separates localization and classification.
+     - OverFeat[fn:3], R-CNN[fn:1], and SPPnet[fn:5] alse train classifiers and bounding-box 
+       localizers, however these methods use stage-wise training, which we show is suboptimal
+       for Fast R-CNN.
+
+**** Mini-batch sampling
+
+     1. During fine-tuning, each SGD mini-batch is constructed from N = 2 images, chosen uniformly
+        at random. We use mini-batches of size R = 128, sampling 64 RoIs from each images.
+     2. As in [fn:1], we take 25% of the RoIs from object proposals that have intersection over
+        union(IoU) overlap with a ground-truth bounding box of at least 0.5. These RoIs comprise
+        the examples labeled with a foreground object class, i.e. $u \ge 1$.
+     3. The remaining RoIs are sampled from object proposals that have a maximum IoU with ground truth
+        in the interval [0.1, 0.5), following [fn:5].
+        1) These are the background examples and are labeled with u = 0.
+        2) The lower threshold of 0.1 appears to act as a heuristic for hard example mining [fn:4].
+     4. During traing, images are horizontally flipped with probability 0.5. No other data 
+        augmentation is used.
+
+**** Back-propagation through RoI pooling layers
+
+     1. 
 
 * Footnotes
 
 [fn:1] R. Girshick, J. Donahue, T. Darrell, and J. Malik.  
   Rich feature hierarchies for accurate object detection and semantic segmentation. In CVPR, 2014.
+
+[fn:2] D. Erhan, C. Szegedy, A. Toshev, and D. Anguelov. 
+Scalable object detection using deep neural networks. In CVPR, 2014.
+
+[fn:3] P. Sermanet,  D. Eigen,  X. Zhang,  M. Mathieu,  R. Fergus,and Y. LeCun.  
+OverFeat: Integrated Recognition, Localization and Detection using Convolutional Networks.  
+In ICLR,2014.
+
+[fn:5] K. He, X. Zhang, S. Ren, and J. Sun. 
+Spatial pyramid pooling in  deep  convolutional  networks  for  visual  recognition.   
+In ECCV, 2014. 
+
+[fn:4] P.  Felzenszwalb,  R.  Girshick,  D.  McAllester,  and  D.  Ramanan.   
+Object detection with discriminatively trained part based models.
+TPAMI, 2010.
 
 
 
