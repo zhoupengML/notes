@@ -2,5 +2,6 @@ auctex/example/*
 paper/detection/ltxpng
 auto/
 *.pdf
+emacs/presentation.tex
 !/auctex/example/simple.tex
 !/auctex/example/slides.tex
