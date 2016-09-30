@@ -1,4 +1,16 @@
 * emacs 常用命令
+
+** Org-mode uses latex [[http://blog.csdn.net/csfreebird/article/details/43636615]]
+
+   - Look up entities : M-x org-entities-help
+   - Preview formula : C-c C-x C-l
+   - Set the size of previewing formula
+     #+BEGIN_SRC 
+     (require 'org)  
+     (setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))  
+     #+END_SRC
+
+
 ** Insert piecewise function
 #+BEGIN_SRC 
 \begin{equation}
