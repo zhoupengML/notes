@@ -43,6 +43,6 @@ git push origin master
 
 
 * reference
-  -[[ http://blog.csdn.net/small_rice_/article/details/45095323]]
-  -[[http://yuyang0.github.io/notes/git.html][ blog site]]
-  -[[http://yuyang0.github.io/]]
+  - [[http://blog.csdn.net/small_rice_/article/details/45095323]]
+  - [[http://yuyang0.github.io/notes/git.html]]
+  - [[http://yuyang0.github.io/]]
