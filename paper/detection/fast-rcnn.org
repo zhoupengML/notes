@@ -5,7 +5,7 @@ Paper: [[http://arxiv.org/abs/1504.08083][Fast R-CNN]]
 Code: [[https://github.com/rbgirshick/fast-rcnn][Fast R-CNN's code]]
 
 
-** Fast R-CNN architecture
+** Fast R-CNN architecture and training 
 
    [[./pic_fast_rcnn/1.png]]
    - inputs: *an entire image*, *a set of object proposals*
@@ -119,7 +119,47 @@ Code: [[https://github.com/rbgirshick/fast-rcnn][Fast R-CNN's code]]
 
 **** Back-propagation through RoI pooling layers
 
-     1. 
+     1. The RoI pooling layer's backwards function computes partial derivative of the loss
+        function with respect to each input variable $x_i$ by following the argmax switches:
+        \begin{equation}
+          \frac{\partial{L}}{\partial{x_i}} = \sum_r\sum_j[i = i*(r,j)]\frac{\partial{L}}{\partial{y_{rj}}}
+        \end{equation}
+        - where $x_i\in{R}$ be the i-th activation input into the RoI pooling layer and 
+        $y_{rj}$ be the layer's j-th output from the r-th RoI.
+        - The RoI pooling layer computes $y_{rj}=x_{i*(r,j)}$, in which $i*(r,j)=argmax_{i^{'}\in{R(r,j)}}x_{i^{'}}$. 
+        $R(r,j)$ is the index set of inputs in the sub-window over which the output unit $y_{rj}$ 
+        max pools.
+
+**** SGD hyper-parameters
+
+     - The fully connected layers used for softmax classification and bounding-box regression
+       are initialized from $N(0,0.01^2)$ and $N(0,0.001^2)$. Biases are initialized to 0.
+     - All layers use a pre-layer learning rate of 1 for weights and 2 for biases and a global
+       learning rate of 0.001.
+     - When training on VOC07 or VOC12 trainval we run SGD for 30k mini-batch iterations, and
+       then lower the learning rate to 0.0001 and train for another 10k iterations.
+     - Momentum : 0.9 , Parameter decay : 0.0005(on weights and biases)
+
+       
+
+
+*** Scale invariance
+
+    1. We explore two ways of achieving scale invariant object detection:
+       1) via "brute force"
+       2) by using image pyramids
+    2. These strategies follow the two approaches in [fn:5].
+    3. Brute-force approach
+       - Each image is processed at a pre-defined pixel size during both training and testing.
+       - The network must directly learn scale-invariant object detection from the training data.
+    4. Multi-scale approach
+       - Provides approximate scale-invariance to the network through an image pyramid.
+       - At test-time, the image pyramid is used to approximately scale-normalize each object 
+         proposal.
+       - During multi-scale training, we randomly sample a pyramid scale each time an image is
+         sampled, following [fn:5], as a form of data augmentation.
+    5. We experiment with multi-scale training for smaller networks only, due to GPU memory limits.
+          
 
 * Footnotes
 
@@ -133,14 +173,13 @@ Scalable object detection using deep neural networks. In CVPR, 2014.
 OverFeat: Integrated Recognition, Localization and Detection using Convolutional Networks.  
 In ICLR,2014.
 
-[fn:5] K. He, X. Zhang, S. Ren, and J. Sun. 
-Spatial pyramid pooling in  deep  convolutional  networks  for  visual  recognition.   
-In ECCV, 2014. 
-
 [fn:4] P.  Felzenszwalb,  R.  Girshick,  D.  McAllester,  and  D.  Ramanan.   
 Object detection with discriminatively trained part based models.
 TPAMI, 2010.
 
+[fn:5] K. He, X. Zhang, S. Ren, and J. Sun. 
+Spatial pyramid pooling in  deep  convolutional  networks  for  visual  recognition.   
+In ECCV, 2014. 
 
 
 
