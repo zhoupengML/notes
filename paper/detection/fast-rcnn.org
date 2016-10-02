@@ -140,9 +140,6 @@ Code: [[https://github.com/rbgirshick/fast-rcnn][Fast R-CNN's code]]
        then lower the learning rate to 0.0001 and train for another 10k iterations.
      - Momentum : 0.9 , Parameter decay : 0.0005(on weights and biases)
 
-       
-
-
 *** Scale invariance
 
     1. We explore two ways of achieving scale invariant object detection:
@@ -160,7 +157,153 @@ Code: [[https://github.com/rbgirshick/fast-rcnn][Fast R-CNN's code]]
          sampled, following [fn:5], as a form of data augmentation.
     5. We experiment with multi-scale training for smaller networks only, due to GPU memory limits.
           
+** Fast R-CNN detection
 
+   - The network takes as input an image(or an image pyramid, encoded as a list of images) and a list
+     of R object proposals to score. At test-time, R is typically around 2000, although we will 
+     consider cases in which it is larger($\approx45k$).
+   - When using an image pyramid, each RoI is assigned to the scale such that the scaled RoI is
+     closest to $224^2$ pixels in area [fn:5].
+   - For each test RoI r, the forward pass outputs a class posterior probability distribution p and
+     a set of predicted bounding-box offsets relative to r(each of the K classes gets its own refined
+     bounding-box prediction).
+   - We assign a detection confidence to r for each object class k using the estimated probability 
+     $P_r(class=k|r)=p_k$.
+   - We then perform non-maximum suppression independently for each class using the algorithm and 
+     settings from R-CNN[fn:1].
+
+*** Truncated SVD for faster detection
+
+   [[./pic_fast_rcnn/2.png]]
+   - For whole-image classification, the time spent computing the fully connected layers is small 
+     compared to the conv layers. On the contrary, for detection the number of RoIs to process is
+     large and nearly half of the forward pass time is spent computing the fully connected layers.
+   - Large fully connected layers are easily accelerated by compressing them with truncated 
+     SVD[fn:6][fn:7].
+   - In this technique, a layer parameterized by the $u\times{v}$ weight matrix W is approximately 
+     factorized as
+     \begin{equation}
+       W\approx{U\sum_tV^T}
+     \end{equation}
+     In this factorization, U is a $u\times{t}$ matrix comprising the first t left-singular vectors
+     of W, $\sum_t$ is a $t\times{t}$ diagonal matrix containing the top t singular values of W,
+     and V is $v\times{t}$ matrix comprising the first t right-singular vectors of W.
+   - Truncated SVD reduces the parameter count from $uv$ to $t(u+v)$, which can be 
+     significant if t is much smaller than min(u,v).
+   - To compress a network, the single fully connected layer corresponding to W is replaced
+     by two fully connected layers, without a non-linearity between them.
+     1) The first of these layers uses the weight matrix $\sum_tV^T$ (and no biases).
+     2) The second uses $U$ (with the original biases associated with $W$).
+   - This simple compression method gives good speedups when the number of RoIs is large.
+     
+** Main results
+
+   - Three main results support this paper's contributions:
+     1) State-of-the-art mAP on VOC07, 2010, and 2012
+     2) Fast training and testing compared to R-CNN, SPPnet
+     3) Fine-tuning conv layers in VGG16 improves mAP
+*** Experimental setup
+    - Our experiments use three pre-trained ImageNet models that are available online[fn:8].
+      1) The first is the CaffeNet(essentially AlexNet[fn:9]) from R-CNN[fn:1]. We alternatively
+         refer to this CaffeNet as model $S$, for "small".
+      2) The second network is VGG_CNN_M_1024 from [fn:10], which has the same depth as $S$,
+         but is wider. We call this network model $M$, for "medium".
+      3) The final network is the very deep VGG16 model from [fn:11]. We call  it model $L$.
+    - In this section, all experiments use single-scale training and testing(s=600).
+
+*** VOC 2010 and 2012 results
+    
+*** VOC 2007 results
+
+*** Training and testing time
+
+    - Fast training  and testing times are our second main result.
+
+      [[./pic_fast_rcnn/table4.png]]
+
+**** Truncated SVD
+
+     - Truncated SVD can reduce detection time by more than 30% with only a small drop 
+       in mAP and without needing to perform additional fine-tuning after model compression.
+     - Using the top 1024 singular values from the $25088\times{4096}$ matrix in VGG16's fc6 layer
+       and the top 256 singular values from the $4096\times{4096}$ fc7 layer reduces runtime
+       with little loss in mAP.
+
+       [[./pic_fast_rcnn/2.png]]
+
+
+*** Which layers to fine-tune?
+
+    - Our hypothesis: training through the RoI pooling layer is important for very deep nets.
+
+      [[./pic_fast_rcnn/table5.png]]
+
+    - Does this mean that all conv layers should be fine-tuned?
+      In short, no.
+      1) In the smaller networks $S$ and $M$ , we find that conv1 is generic and task 
+         independent(a well-known fact)[fn:12]. Allowing conv1 to learn, or not, has no
+         meaningful effect on mAP.
+      2) For VGG16, we found it only necessary to update layers from conv3_1 and up(9 of the 13
+         conv layers).
+      3) This observation is pragmatic:
+         1. updating from conv2_1 slows trainging by 1.3x (12.5 vs. 9.5 hours) compared to 
+            learning from conv3_1
+         2. Updating from conv1_1 over-runs GPU memory
+      4) All Fast R-CNN results in this paper using VGG16 fine-tune layers conv3_1 and up;
+         all experiments with models $S$ and $M$ fine-tune layers conv3 and up.
+         
+** Design evaluation
+
+   - We conducted experiments to understand how Fast R-CNN compares to R-CNN and SPPnet, as well 
+     as to evaluate design decisions.
+   
+*** Does multi-task training help?
+
+    - We observe that multi-task training improves pure classification accuracy relative to
+      training for classification alone.
+    - Stage-wise training improves mAP over column one, but underperforms multi-task training.
+    
+      [[./pic_fast_rcnn/table6.png]]
+
+*** Scale invariance : to brute force or finesse?
+
+    - We compare two strategies for achieving scale-invariant object detection:
+      brute-force learning(single scale) and image pyramids(multi-scale). In either
+      case, we define the scale s of an image to be the length of its shortest side.
+    - All single-scale experiments use s = 600 pixels.
+    - In the multi-scale setting, we use the same five scales specified in [fn:5]
+      $s\in{{480,576,688,864,1200}}$ to facilitate comparison with SPPnet.
+      [[./pic_fast_rcnn/table7.png]]
+    - Deep ConvNets are adept at directly learning scale invariance.
+    - The multi-scale approach offers only a small increase in mAP at a large cost
+      in compute time.
+
+*** Do we need more training data?
+
+*** Do SVMs outperform softmax?
+
+    - Fast R-CNN uses the softmax classifier learnt during fine-tuning instead of
+      training one-vs-rest linear SVMs post-hoc, as was done in R-CNN and SPPnet.
+      [[./pic_fast_rcnn/table8.png]]
+    - Softmax slightly outperforming SVM for all three networks.
+    - This effect is small, but it demonstrates that "one-shot" fine-tuning is sufficient
+      compared to previous multi-stage training approaches.
+    - We note that softmax, unlike one-vs-rest SVMs, introduces competition between classes
+      when scoring a RoI.
+
+*** Are more proposals always better?
+
+    - There are two types of object detectors : those that use a sparse set of object 
+      proposals[fn:13] and those that use a dense set DPM[fn:14].
+
+*** Preliminary MS COCO results
+
+** Conclusion 
+
+   - This paper proposes Fast R-CNN, a clean and fast update to R-CNN and SPPnet.
+   - Of particular note, sparse object proposals appear to improve detector quality.
+   - There may exist yet undiscovered techniques that allow dense boxes to perform 
+     as well as sparse proposals.
 * Footnotes
 
 [fn:1] R. Girshick, J. Donahue, T. Darrell, and J. Malik.  
@@ -180,6 +323,40 @@ TPAMI, 2010.
 [fn:5] K. He, X. Zhang, S. Ren, and J. Sun. 
 Spatial pyramid pooling in  deep  convolutional  networks  for  visual  recognition.   
 In ECCV, 2014. 
+
+[fn:6] E. Denton, W. Zaremba, J. Bruna, Y. LeCun, and R. Fergus.
+Exploiting linear structure within convolutional networks for efficient evaluation. 
+InNIPS, 2014.
+
+[fn:7] J.  Xue,  J.  Li,  and  Y.  Gong.   
+Restructuring  of  deep  neural network acoustic models with singular value decomposition.
+In Interspeech, 2013.
+
+[fn:8] https://github.com/BVLC/caffe/wiki/Model-Zoo
+
+[fn:9] A. Krizhevsky, I. Sutskever, and G. Hinton.  
+ImageNet classification with deep convolutional neural networks. 
+In NIPS,2012.
+
+[fn:10] K. Chatfield, K. Simonyan, A. Vedaldi, and A. Zisserman.
+Return of the devil in the details:  Delving deep into convolutional nets. 
+In BMVC, 2014.
+
+[fn:11] K.  Simonyan  and  A.  Zisserman.   
+Very  deep  convolutional networks for large-scale image recognition.  
+In ICLR, 2015.
+
+[fn:12] A. Krizhevsky, I. Sutskever, and G. Hinton.  
+ImageNet classification with deep convolutional neural networks. 
+In NIPS,2012.
+
+[fn:13] J. Uijlings, K. van de Sande, T. Gevers, and A. Smeulders.
+Selective search for object recognition.
+IJCV, 2013.
+
+[fn:14] P.  Felzenszwalb,  R.  Girshick,  D.  McAllester,  and  D.  Ramanan.   
+Object detection with discriminatively trained part based models.
+TPAMI, 2010.
 
 
 
