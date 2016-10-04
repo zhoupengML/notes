@@ -4,7 +4,36 @@
   - Paper:[[https://arxiv.org/abs/1506.01497]]
   - Code:[[https://github.com/ShaoqingRen/faster_rcnn][matlab code]]
 
-**  
+** Abstract 
 
+  1. State-of-the-art object detection networks depend on *region proposal algorithms* to hypothesize
+     object locations.
+  2. We introduce a Region Proposal Network *(RPN)* that shares full-image convolutional features with 
+     the detection network, thus enabling nearly cost-free region proposals.
+     - An RPN is a fully convolutional network that simultaneously predicts object bounds and objectness 
+       scores at each position.
+     - The RPN is traied end-to-end to generate high-quality region proposals, which are used by Fast 
+       R-CNN for detection.
+  3. We further merge RPN and Fast R-CNN into a single network by sharing their convolutional features
+     --using the recently popular terminology of neural networks with "attention" mechanisms, the RPN
+     component tells the unified network where to look.
+  4. For the very deep VGG-16 model, our detection system has a frame rate of 5fps on a GPU, while 
+     achieving state-of-the-art object detection accuracy on PASCAL VOC 2007, 2012, and MS COCO 
+     datasets with only 300 proposals per image.
 
+** Introduction
+   
+   - Recent advances in object detection are driven by the success of region proposal methods[fn:1]
+     and region-based convolutional neural networks(R-CNNs)[fn:2].
+   - 
+
+* Footnotes
+
+[fn:1] J. R. Uijlings, K. E. van de Sande, T. Gevers, and A. W. Smeulders,  
+“Selective  search  for  object  recognition,”
+International Journal of Computer Vision (IJCV), 2013.
+
+[fn:2] R. Girshick, J. Donahue, T. Darrell, and J. Malik, 
+“Rich feature hierarchies  for  accurate  object  detection  and  semantic  segmentation,” 
+in IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2014.
 
