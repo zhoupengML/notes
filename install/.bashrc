@@ -110,6 +110,9 @@ export PYTHONPATH="/home/shhs/usr/mxnet/python:/home/shhs/env/opencv2_4_10/lib/p
 
 export PKG_CONFIG_PATH="/home/shhs/env/opencv2_4_10/lib/pkgconfig"
 
+# enable Chinese input for emacs
+export LC_CTYPE=zh_CN.UTF-8
+
 
 export opencv=`pkg-config opencv --libs --cflags opencv`
 
