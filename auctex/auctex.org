@@ -23,6 +23,8 @@ sudo apt-get install auctex
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
 (setq-default TeX-master nil)
+(require 'org)
+(setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))  
 #+END_SRC
    - If auctex was installed successfully, the menu bar will be added  three menu items including Preview, LaTeX, and Command 
      when open a .tex file.

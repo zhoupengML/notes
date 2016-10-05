@@ -1,5 +1,9 @@
 * emacs 常用命令
-
+  
+** Move forward/backward at the same level
+     #+BEGIN_SRC 
+     M-} or M-{
+     #+END_SRC
 ** Org-mode uses latex [[http://blog.csdn.net/csfreebird/article/details/43636615]]
 
    - Look up entities : M-x org-entities-help

@@ -27,6 +27,8 @@
      and region-based convolutional neural networks(R-CNNs)[fn:2].
    - 
 
+* $\sum_{i=0}^n$
+
 * Footnotes
 
 [fn:1] J. R. Uijlings, K. E. van de Sande, T. Gevers, and A. W. Smeulders,  
