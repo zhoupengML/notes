@@ -40,8 +40,15 @@ git remote add origin git@github.com:zhoupengML/repository.git
 git push origin master 
 #+END_SRC
 
-
-
+** Create branch
+   
+   #+BEGIN_SRC sh
+   git branch branch-name
+   #+END_SRC
+** Switch branch
+   #+BEGIN_SRC sh
+   git checkout branch-name
+   #+END_SRC
 * reference
   - [[http://blog.csdn.net/small_rice_/article/details/45095323]]
   - [[http://yuyang0.github.io/notes/git.html]]
