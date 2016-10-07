@@ -46,6 +46,7 @@ git push origin [local branch]
 ** Create branch
    
    #+BEGIN_SRC sh
+   git checkout -b gh-pages origin/gh-pages
    git branch branch-name
    #+END_SRC
 ** Switch branch
