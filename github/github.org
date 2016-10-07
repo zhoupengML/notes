@@ -54,6 +54,14 @@ git push origin master
    git reflog : look up records of commit
    git reset --hard 33(id) : roll back to one version
    #+END_SRC
+** Delete remote branch
+   #+BEGIN_SRC sh
+   git push origin :remote-branch
+   #+END_SRC
+   咚！服务器上的分支没了。你最好特别留心这一页，因为你一定会用到那个命令，而且你很可能会忘掉它的
+语法。有种方便记忆这条命令的方法：记住我们不久前见过的 git push [远程名] [本地分支]:[远程分支] 语法，如
+果省略 [本地分支]，那就等于是在说“在这里提取空白然后把它变成[远程分支]”。
+
 * reference
   - [[http://blog.csdn.net/small_rice_/article/details/45095323]]
   - [[http://yuyang0.github.io/notes/git.html]]
