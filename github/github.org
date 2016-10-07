@@ -37,9 +37,12 @@ git remote add origin git@github.com:zhoupengML/repository.git
 #+END_SRC
 ** 提交代码
 #+BEGIN_SRC sh
-git push origin master(local branch)
+git push origin [local branch]
 #+END_SRC
-
+** Fetch remote refs
+   #+BEGIN_EXAMPLE
+   git pull origin [local branch]
+   #+END_EXAMPLE
 ** Create branch
    
    #+BEGIN_SRC sh
