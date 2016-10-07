@@ -1,3 +1,4 @@
+*.html
 auctex/example/*
 paper/detection/ltxpng
 auto/
