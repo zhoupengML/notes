@@ -2,7 +2,7 @@
 * Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks
 
   - Paper:[[https://arxiv.org/abs/1506.01497]]
-  - Code:[[https://github.com/ShaoqingRen/faster_rcnn][matlab code]]
+  - Code:[[https://github.com/ShaoqingRen/faster_rcnn][matlab code]]    [[https://github.com/rbgirshick/py-faster-rcnn][python code]]
 
 ** Abstract 
 
@@ -27,8 +27,12 @@
      and region-based convolutional neural networks(R-CNNs)[fn:2].
    - 
 
-* $\sum_{i=0}^n$
+* Faster R-CNN Python Code
 
+  - Includes approximate *joint training* that is 1.5x faster than alternating 
+    optimization(for VGG16) --see these [[https://www.dropbox.com/s/xtr4yd4i5e0vw8g/iccv15_tutorial_training_rbg.pdf?dl=0][slides]] for more information.
+
+* 
 * Footnotes
 
 [fn:1] J. R. Uijlings, K. E. van de Sande, T. Gevers, and A. W. Smeulders,  
