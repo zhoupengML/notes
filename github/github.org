@@ -49,6 +49,11 @@ git push origin master
    #+BEGIN_SRC sh
    git checkout branch-name
    #+END_SRC
+** Roll back
+   #+BEGIN_SRC sh
+   git reflog : look up records of commit
+   git reset --hard 33(id) : roll back to one version
+   #+END_SRC
 * reference
   - [[http://blog.csdn.net/small_rice_/article/details/45095323]]
   - [[http://yuyang0.github.io/notes/git.html]]
