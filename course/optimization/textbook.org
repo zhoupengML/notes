@@ -4,13 +4,69 @@
 * Chapter 1
 
 ** 凸函数的判别
-
+#+BEGIN_EXAMPLE
    - 设$f:R^n\to{R}$ , 且二阶连续可微， 则下列命题等价
+
      1) $f$ 是凸函数
+
      2) 对 $\forall{x, y} \in{R^n}$ , 有 $f(y)\ge{f(x)+\nabla{f(x)^T}(y-x)}$
+
      3) 梯度函数 $\nabla{f(x)}$ 单调
+
 	$$[\nabla{f(y)}-\nabla{f(x)}]^T(y-x)\ge{0}$$
-     4) $\forall{x}\in{R^n} , Hesse$ 矩阵 $\nabla^2{f(x)}$ 半正定
 
+     4) $\forall{x}\in{R^n} , Hesse$ 矩阵 $\nabla^2{f(x)}$ 半正定 (正定矩阵: positive definite matrix)
+#+END_EXAMPLE
 
+*** 正定二次型的定义 [[http://wenku.baidu.com/link?url=J912nnUKjFJYkRt-w89TPkotscm0SnFl4XwYXHSrxOEDau0TLibvB9J3K81hKOyH-B3K3JWS2_hE9lW6eFj7S1GhD8wDhOg7nqpU2QQ7oLO][ref]]
 
+    * 定义
+      在实二次型 $f(x_1,x_2,...,x_n)$ 中, 若对于任意一组不全为 $0$ 的实数 $c_1,c_2,...,c_n$ ,
+      都有 $f(x_1,x_2,...,x_n)>0$ , 则称该二次型为正定的; 
+      若 $f(x_1,x_2,...,x_n)\ge{0}$ , 则称 $f$ 为半正定二次型; 
+      若 $f(x_1,x_2,...,x_n)<0$ , 则称 $f$ 为负定二次型; 
+      若 $f(x_1,x_2,...,x_n)\le{0}$ , 则称 $f$ 为半负定二次型;
+      若实二次型既不是半正定又不是半负定的则称为不定二次型.
+      
+*** 正定矩阵的定义 [[http://wenku.baidu.com/link?url=J912nnUKjFJYkRt-w89TPkotscm0SnFl4XwYXHSrxOEDau0TLibvB9J3K81hKOyH-B3K3JWS2_hE9lW6eFj7S1GhD8wDhOg7nqpU2QQ7oLO][ref]]
+
+    * 定义
+      若实二次型 $f(x_1,x_2,...,x_n)=X^TAX$ 正定, 则称实对称矩阵 $A$ 正定;
+      若实二次型 $f(x_1,x_2,...,x_n)=X^TAX$ 半正定, 则称实对称矩阵 $A$ 半正定;
+      若实二次型 $f(x_1,x_2,...,x_n)=X^TAX$ 负定, 则称实对称矩阵 $A$ 负定;
+      若实二次型 $f(x_1,x_2,...,x_n)=X^TAX$ 半负定, 则称实对称矩阵 $A$ 半负定;
+      若实二次型 $f(x_1,x_2,...,x_n)=X^TAX$ 不定, 则称实对称矩阵 $A$ 不定.
+
+*** 正定矩阵的判定
+
+**** 正定矩阵判定定理
+
+     1. $n$ 元实二次型 $f(x_1,x_2,...,x_n)=X^TAX$ 是正定的充要条件是:
+	它的标准型的系数全为正.
+	
+	+ 用合同变换法化二次型为标准型 [[http://wenku.baidu.com/link?url=1M3RiheBvR4d7sHe1S4htMZzH902EgWo0APzOax7F5oREnwilnTwWQI-F0Els_uinKhevcOL9lPRQnM6-PFL34kUTC96jdC4bwwQRsMDsNS][ref]]
+
+	  1) 写出二次型的矩阵 $A$
+
+	  2) 作 $(A E)\xrightarrow[elementary\ row\ operation\ of\ E]{congruent\ transformation\ of\ A}(\land{P^T},)$ , 求出 $P^T$
+
+	  3) 作非退化的线性变换 $X=PY$ , 将二次型化为标准型
+      
+*** 矩阵的等价, 相似, 合同 [[http://wenku.baidu.com/link?url=QRehRaAsSmbyVxbYFkyJQRkXw5y-KmKN0eSoFwW7sU--566tbOd3m5NEtCHw8s6LEN4Y_RGH3nMugFTvABikDMFrcjf3ZbOQMVBNR9ZrFI_][ref]]
+
+**** 矩阵等价的定义
+
+     如果矩阵 $A$ 可以经过一系列初等变换变成 $B$ , 则 $A$ 与 $B$ 等价,
+     记为 $A\cong{B}$ .
+
+**** 矩阵相似的定义
+     
+     设 $A,B$ 是数域 $F$ 上的 $n$ 阶方阵, 如果存在数域 $F$ 上的 $n$ 阶
+     可逆矩阵 $P$ , 使得 $B=P^{-1}AP$ , 则称 $A$ 与 $B$ 相似,
+     记为 $A\sim{B}$ .
+
+**** 矩阵合同的定义
+     
+     设 $A,B$ 是数域 $F$ 上的 $n$ 阶方阵, 如果存在数域 $F$ 上的 $n$ 阶
+     可逆矩阵 $P$ , 使得 $P^{T}AP=B$ , 则称在数域 $F$ 上 $A$ 与 $B$ 合同.
+     

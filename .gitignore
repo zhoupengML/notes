@@ -1,4 +1,7 @@
+*~
+auctex/ltxpng/
 course/optimization/ltxpng/
+course/optimization/textbook.tex
 *.html
 auctex/example/*
 paper/detection/ltxpng

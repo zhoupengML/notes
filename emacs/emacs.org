@@ -4,15 +4,6 @@
      #+BEGIN_SRC 
      M-} or M-{
      #+END_SRC
-** Org-mode uses latex [[http://blog.csdn.net/csfreebird/article/details/43636615]]
-
-   - Look up entities : M-x org-entities-help
-   - Preview formula : C-c C-x C-l
-   - Set the size of previewing formula
-     #+BEGIN_SRC 
-     (require 'org)  
-     (setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))  
-     #+END_SRC
 
 ** Insert piecewise function
 #+BEGIN_SRC 
@@ -41,6 +32,16 @@ C-c C-x C-v
 C-c C-o
 #+END_SRC
 * org-mode
+
+** Org-mode uses latex [[http://blog.csdn.net/csfreebird/article/details/43636615]]
+
+   - Look up entities : M-x org-entities-help
+   - Preview formula : C-c C-x C-l
+   - Set the size of previewing formula
+     #+BEGIN_SRC 
+     (require 'org)  
+     (setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))  
+     #+END_SRC
 
 ** Insert formula
    - [[http://forum.ubuntu.org.cn/viewtopic.php?p=2465090]]

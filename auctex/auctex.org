@@ -72,36 +72,42 @@ sudo apt-get install auctex
      
 ** Insert formula
    
-   - menual
-     - lshort, chapter 3
-     #+BEGIN_SRC sh
-     texdoc lshort
-     #+END_SRC
-     - The LaTeX companion, chapter 8
-   - $formula$ e.t. $c^2=a^2+b^2$
-   - Locate in a single line
-     $$formula$$ e.t. $$c^2=a^2+b^2$$
-   - Add number for the formula
-     #+BEGIN_SRC 
-     \begin{equation} 
-       \label{eq:1}
-       c^{2}=a^{2}+b^{2}
-     \end{equation}     
-     #+END_SRC
-     - Formula
-       #+BEGIN_SRC 
-          $\sum\limits_{i=1}^n(a_i*w_i)$
+   1. Arrow with up and down text
+      #+BEGIN_EXAMPLE
+      $\xrightarrow[down]{up}$
 
-          \begin{equation}
-            \frac{1^p+2^p+\cdot\cdot\cdot+n^p}{n^{1+p}}
-          \end{equation}
+      $\xleftarrow[down]{up}$
+      #+END_EXAMPLE
+   2. menual
+      - lshort, chapter 3
+      #+BEGIN_SRC sh
+      texdoc lshort
+      #+END_SRC
+      - The LaTeX companion, chapter 8
+   3. $formula$ e.t. $c^2=a^2+b^2$
+   4. Locate in a single line
+      $$formula$$ e.t. $$c^2=a^2+b^2$$
+   5. Add number for the formula
+      #+BEGIN_SRC 
+      \begin{equation} 
+	\label{eq:1}
+	c^{2}=a^{2}+b^{2}
+      \end{equation}     
+      #+END_SRC
+      - Formula
+	#+BEGIN_SRC 
+           $\sum\limits_{i=1}^n(a_i*w_i)$
+
+           \begin{equation}
+             \frac{1^p+2^p+\cdot\cdot\cdot+n^p}{n^{1+p}}
+           \end{equation}
           
-          \begin{equation}
-            \stackrel{abc}{\longrightarrow}
-          \end{equation}
+           \begin{equation}
+             \stackrel{abc}{\longrightarrow}
+           \end{equation}
 
-          I am $op_1\stackrel{abc}{\longrightarrow}op_2$ 
-       #+END_SRC
+           I am $op_1\stackrel{abc}{\longrightarrow}op_2$ 
+	#+END_SRC
        
 ** Use the menual 
 
