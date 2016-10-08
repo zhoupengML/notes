@@ -5,7 +5,11 @@
 ** DONE 培养方案提交 <2016-09-21 Wed>
    CLOSED: [2016-09-27 Tue 22:52]
 ** TODO 招商银行卡更改号码 <2016-09-30 Fri 14:00>
-** TODO Homework of optimization <2016-10-08 六 08:00>
+** TODO Homework of optimization <2016-10-13 四 08:00>
+** TODO Lecture 东上院500  <2016-10-19 三>
+** TODO Lecture 东上院500  <2016-11-02 三>
+** TODO Lecture 东上院500  <2016-11-30 三>
+** TODO Lecture 东上院500  <2016-12-14 三>
 * Book
 ** [[https://bbs.sjtu.edu.cn/frame2.html][饮水思源bbs]] <2016-10-06 四>
 * Project

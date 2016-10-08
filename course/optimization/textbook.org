@@ -1,0 +1,16 @@
+
+
+
+* Chapter 1
+
+** 凸函数的判别
+
+   - 设$f:R^n\to{R}$ , 且二阶连续可微， 则下列命题等价
+     1) $f$ 是凸函数
+     2) 对 $\forall{x, y} \in{R^n}$ , 有 $f(y)\ge{f(x)+\nabla{f(x)^T}(y-x)}$
+     3) 梯度函数 $\nabla{f(x)}$ 单调
+	$$[\nabla{f(y)}-\nabla{f(x)}]^T(y-x)\ge{0}$$
+     4) $\forall{x}\in{R^n} , Hesse$ 矩阵 $\nabla^2{f(x)}$ 半正定
+
+
+
