@@ -2,15 +2,20 @@
 ** TODO read mxnet code <2016-09-20 Tue>
 ** TODO 高中同学聚会 <2016-09-20 Tue>
 ** TODO 矩阵理论作业 <2016-10-11 Tue>
-** DONE 培养方案提交 <2016-09-21 Wed>
-   CLOSED: [2016-09-27 Tue 22:52]
 ** TODO 招商银行卡更改号码 <2016-09-30 Fri 14:00>
 ** TODO Homework of optimization <2016-10-13 四 08:00>
 ** TODO Lecture 东上院500  <2016-10-19 三>
 ** TODO Lecture 东上院500  <2016-11-02 三>
 ** TODO Lecture 东上院500  <2016-11-30 三>
 ** TODO Lecture 东上院500  <2016-12-14 三>
+** TODO Project 1 of DIP (DFT/DCT) <2016-10-25 二>
 * Book
 ** [[https://bbs.sjtu.edu.cn/frame2.html][饮水思源bbs]] <2016-10-06 四>
+** English Learning <2016-10-11 二>
+   [[http://mp.weixin.qq.com/s?__biz=MjM5MjA4MjA4MA==&mid=210379138&idx=5&sn=d3ef8b76ddd680e22f0997cd511fc3c3&scene=23&srcid=1003SFZwvQQi6IMVnkx5YB4p#rd][习近平的首席翻译官,怎样炼成? ]]
+** Emacs
+   [[http://www.zhihu.com/question/27478438/answer/37035381]]
+** Blog <2016-10-11 二>
+   [[http://forrestchang.github.io/]]
 * Project
 * Calender

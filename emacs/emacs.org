@@ -1,3 +1,6 @@
+#+TITLE: Emacs Notes
+#+AUTHOR: Peng Zhou
+
 * emacs 常用命令
   
 ** Move forward/backward at the same level
@@ -33,6 +36,15 @@ C-c C-o
 #+END_SRC
 * org-mode
 
+** Add Title , Author Info
+
+   #+BEGIN_EXAMPLE
+   #+TITLE:
+   #+AUTHOR:
+   #+OPTIONS: toc: 3 # Set the index's level
+   #+LATEX_CLASS: book
+   #+END_EXAMPLE
+
 ** Org-mode uses latex [[http://blog.csdn.net/csfreebird/article/details/43636615]]
 
    - Look up entities : M-x org-entities-help
@@ -51,10 +63,14 @@ C-c C-o
      #+BEGIN_SRC 
      
      #+END_SRC
+* GTD
+ [[http://blog.csdn.net/lishuo_os_ds/article/details/8069484][GTD(getting things down)]]
+** Refile finished task
+#+BEGIN_SRC lisp
+C-c C-w
+#+END_SRC
+
 * reference 
-
-[[http://blog.csdn.net/lishuo_os_ds/article/details/8069484][GTD(getting things down)]]
-
 * Footnotes
 
 [fn:1] https://my.oschina.net/klauszl/blog/261701
