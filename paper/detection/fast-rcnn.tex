@@ -1,5 +1,5 @@
-% Created 2016-10-08 六 23:08
-\documentclass[11pt]{article}
+% Created 2016-10-11 二 23:23
+\documentclass[11pt]{book}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{fixltx2e}
@@ -17,8 +17,8 @@
 \tolerance=1000
 \providecommand{\alert}[1]{\textbf{#1}}
 
-\title{fast-rcnn}
-\author{shhs}
+\title{Fast R-CNN Notes}
+\author{Peng Zhou 周鹏}
 \date{\today}
 \hypersetup{
   pdfkeywords={},
@@ -33,13 +33,13 @@
 \tableofcontents
 \vspace*{1cm}
 
-\section{Fast R-CNN --Ross Girshick}
+\part{Fast R-CNN --Ross Girshick}
 \label{sec-1}
 
  
 Paper: \href{http://arxiv.org/abs/1504.08083}{Fast R-CNN}
 Code: \href{https://github.com/rbgirshick/fast-rcnn}{Fast R-CNN's code}
-\subsection{Fast R-CNN architecture and training}
+\chapter{Fast R-CNN architecture and training}
 \label{sec-1-1}
 
 
@@ -56,7 +56,7 @@ Code: \href{https://github.com/rbgirshick/fast-rcnn}{Fast R-CNN's code}
      four real-valued numbers for each of the K object classes.
 \item $\Box$ ? 2. \emph{Each set of 4 values encodes refined bounding-box positions for one of            the K classes.}
 \end{itemize}
-\subsubsection{The RoI pooling layer}
+\section{The RoI pooling layer}
 \label{sec-1-1-1}
 
 \begin{itemize}
@@ -71,7 +71,7 @@ Code: \href{https://github.com/rbgirshick/fast-rcnn}{Fast R-CNN's code}
       approximate size h/H x w/W and then max-pooling the values in each sub-window into 
       the corresponding output grid cell.
 \end{itemize}
-\subsubsection{Initializing from pre-trained networks}
+\section{Initializing from pre-trained networks}
 \label{sec-1-1-2}
 
 
@@ -89,7 +89,7 @@ Code: \href{https://github.com/rbgirshick/fast-rcnn}{Fast R-CNN's code}
          RoIs in those images.
 \end{enumerate}
 \end{itemize}
-\subsubsection{Fine-tuning for detection}
+\section{Fine-tuning for detection}
 \label{sec-1-1-3}
 
 
@@ -227,7 +227,7 @@ $R(r,j)$ is the index set of inputs in the sub-window over which the output unit
 \end{itemize}
 
 \end{itemize} % ends low level
-\subsubsection{Scale invariance}
+\section{Scale invariance}
 \label{sec-1-1-4}
 
 
@@ -254,7 +254,7 @@ $R(r,j)$ is the index set of inputs in the sub-window over which the output unit
 \item We experiment with multi-scale training for smaller networks only, due to GPU memory limits.
 \end{enumerate}
           
-\subsection{Fast R-CNN detection}
+\chapter{Fast R-CNN detection}
 \label{sec-1-2}
 
 
@@ -272,7 +272,7 @@ $R(r,j)$ is the index set of inputs in the sub-window over which the output unit
 \item We then perform non-maximum suppression independently for each class using the algorithm and 
      settings from R-CNN\footnotemark[1].
 \end{itemize}
-\subsubsection{Truncated SVD for faster detection}
+\section{Truncated SVD for faster detection}
 \label{sec-1-2-1}
 
 
@@ -308,7 +308,7 @@ In Interspeech, 2013.
 \item This simple compression method gives good speedups when the number of RoIs is large.
 \end{itemize}
      
-\subsection{Main results}
+\chapter{Main results}
 \label{sec-1-3}
 
 
@@ -320,7 +320,7 @@ In Interspeech, 2013.
 \item Fine-tuning conv layers in VGG16 improves mAP
 \end{enumerate}
 \end{itemize}
-\subsubsection{Experimental setup}
+\section{Experimental setup}
 \label{sec-1-3-1}
 
 \begin{itemize}
@@ -344,13 +344,13 @@ In ICLR, 2015.
 \end{enumerate}
 \item In this section, all experiments use single-scale training and testing(s=600).
 \end{itemize}
-\subsubsection{VOC 2010 and 2012 results}
+\section{VOC 2010 and 2012 results}
 \label{sec-1-3-2}
 
     
-\subsubsection{VOC 2007 results}
+\section{VOC 2007 results}
 \label{sec-1-3-3}
-\subsubsection{Training and testing time}
+\section{Training and testing time}
 \label{sec-1-3-4}
 
 
@@ -375,7 +375,7 @@ In ICLR, 2015.
 
 
 \end{itemize} % ends low level
-\subsubsection{Which layers to fine-tune?}
+\section{Which layers to fine-tune?}
 \label{sec-1-3-5}
 
 
@@ -405,7 +405,7 @@ In NIPS,2012.
 \end{enumerate}
 \end{itemize}
          
-\subsection{Design evaluation}
+\chapter{Design evaluation}
 \label{sec-1-4}
 
 
@@ -414,7 +414,7 @@ In NIPS,2012.
      as to evaluate design decisions.
 \end{itemize}
    
-\subsubsection{Does multi-task training help?}
+\section{Does multi-task training help?}
 \label{sec-1-4-1}
 
 
@@ -425,7 +425,7 @@ In NIPS,2012.
     
       \includegraphics[width=.9\linewidth]{./pic_fast_rcnn/table6.png}
 \end{itemize}
-\subsubsection{Scale invariance : to brute force or finesse?}
+\section{Scale invariance : to brute force or finesse?}
 \label{sec-1-4-2}
 
 
@@ -441,9 +441,9 @@ In NIPS,2012.
 \item The multi-scale approach offers only a small increase in mAP at a large cost
       in compute time.
 \end{itemize}
-\subsubsection{Do we need more training data?}
+\section{Do we need more training data?}
 \label{sec-1-4-3}
-\subsubsection{Do SVMs outperform softmax?}
+\section{Do SVMs outperform softmax?}
 \label{sec-1-4-4}
 
 
@@ -457,7 +457,7 @@ In NIPS,2012.
 \item We note that softmax, unlike one-vs-rest SVMs, introduces competition between classes
       when scoring a RoI.
 \end{itemize}
-\subsubsection{Are more proposals always better?}
+\section{Are more proposals always better?}
 \label{sec-1-4-5}
 
 
@@ -471,9 +471,9 @@ Object detection with discriminatively trained part based models.
 TPAMI, 2010.
  }.
 \end{itemize}
-\subsubsection{Preliminary MS COCO results}
+\section{Preliminary MS COCO results}
 \label{sec-1-4-6}
-\subsection{Conclusion}
+\chapter{Conclusion}
 \label{sec-1-5}
 
 
