@@ -1,5 +1,17 @@
 * emacs 常用命令
   
+** List matching lines in current buffer
+   #+BEGIN_SRC lisp
+   list-matching-lines
+   M-s o (occur)
+   #+END_SRC
+** Insert-buffer
+
+** Round paste
+#+BEGIN_SRC lisp
+Precious contents were saved in kill-ring
+C-y , M-y (previous content)
+#+END_SRC
 ** Move forward/backward at the same level
      #+BEGIN_SRC 
      M-} or M-{

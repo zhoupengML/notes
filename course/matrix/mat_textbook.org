@@ -1,0 +1,17 @@
+
+
+* Chapter 1 线性代数概要与提高
+
+** 满秩分解 (Non-uniqueness)
+   (*rank decomposition* or *rank factorization*)
+
+定义: 设 $A\ne{0 }$ , 如果列满秩矩阵 $L$ 与行满秩矩阵 $R$ 使得 $A=LR$ , 则称 $A=LR$
+      是 $A$ 的一个满秩分解. (P9)
+
+求解: 首先化为 Hermite 标准型 , 再取对应的列构成 $L$      
+      #+BEGIN_SRC matlab
+      L = orth(A)
+      R = L'*A
+      #+END_SRC
+
+
