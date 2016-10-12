@@ -1,4 +1,9 @@
-* linux sed 批量替换多个文件中的字符串
-#+BEGIN_SRC sh
-sed -i "s/oldstring/newstring/g" `grep oldstring -rl yourdir`
-#+END_SRC
+* Shell Command
+** linux sed 批量替换多个文件中的字符串
+   #+BEGIN_SRC sh
+   sed -i "s/oldstring/newstring/g" `grep oldstring -rl yourdir`
+   #+END_SRC
+** Grep in specified file
+   #+BEGIN_SRC sh
+   find . -name '*.h' | xargs grep 'string'
+   #+END_SRC

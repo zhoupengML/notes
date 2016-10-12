@@ -1,10 +1,12 @@
 
+#+TITLE: 最优化
+#+AUTHOR: Peng Zhou
 
 
 * Chapter 1
 
 ** 凸函数的判别
-#+BEGIN_SRC latex
+
    - 设$f:R^n\to{R}$ , 且二阶连续可微， 则下列命题等价
 
      1) $f$ 是凸函数
@@ -16,8 +18,6 @@
 	$$[\nabla{f(y)}-\nabla{f(x)}]^T(y-x)\ge{0}$$
 
      4) $\forall{x}\in{R^n} , Hesse$ 矩阵 $\nabla^2{f(x)}$ 半正定 (正定矩阵: positive definite matrix)
-#+END_SRC
-
 
 *** 正定二次型的定义 [[http://wenku.baidu.com/link?url=J912nnUKjFJYkRt-w89TPkotscm0SnFl4XwYXHSrxOEDau0TLibvB9J3K81hKOyH-B3K3JWS2_hE9lW6eFj7S1GhD8wDhOg7nqpU2QQ7oLO][ref]]
 
@@ -49,7 +49,7 @@
 
 	  1) 写出二次型的矩阵 $A$
 
-	  2) 作 $(A E)\xrightarrow[elementary\ row\ operation\ of\ E]{congruent\ transformation\ of\ A}(\land{P^T},)$ , 求出 $P^T$
+	  2) 作 $(A\ E)\xrightarrow[elementary\ row\ operation\ of\ E]{congruent\ transformation\ of\ A}(\land{\ P^T})$ , 求出 $P^T$
 
 	  3) 作非退化的线性变换 $X=PY$ , 将二次型化为标准型
       

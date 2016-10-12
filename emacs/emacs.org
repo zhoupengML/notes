@@ -3,6 +3,11 @@
 
 * emacs 常用命令
   
+** Reload file in disk
+   #+BEGIN_SRC lisp
+   revert-buffer
+   #+END_SRC
+
 ** List matching lines in current buffer
    #+BEGIN_SRC lisp
    list-matching-lines
