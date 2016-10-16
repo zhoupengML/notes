@@ -2,22 +2,42 @@
 * Auctex install
 
 ** Install tex system
-#+BEGIN_SRC sh
+*** Linux
+   #+BEGIN_SRC sh
 sudo apt-get install texlive-full 
-#+END_SRC
+
+   #+END_SRC
+*** Mac
+    #+BEGIN_SRC sh
+brew install mactex 
+    #+END_SRC
 
 ** Install emacs' LaTeX plugin of auctex
-#+BEGIN_SRC sh
+*** Linux
+   #+BEGIN_SRC sh
 sudo apt-get install auctex
-#+END_SRC
-   - You can also install the auctex plugin by source code.[[http://www.gnu.org/software/auctex/][auctex]]
+   #+END_SRC
+*** Mac
+    - Before installing auctex, please set env PATH. Otherwise can't compile auctex
+      #+BEGIN_EXAMPLE
+      PATH=/usr/local/texlive/2015/bin/x86_64-darwin:$PATH;export PATH
+      MANPATH=/usr/local/texlive/2015/texmf-dist/doc/man:$MANPATH;export MANPATH
+      INFOPATH=/usr/local/texlive/2015/texmf-dist/doc/info:$INFOPATH;export INFOPATH
+      #+END_EXAMPLE
+    #+BEGIN_SRC sh
+    brew install auctex
+    #+END_SRC
+
+*** Source code    
+ - You can also install the auctex plugin by source code.[[http://www.gnu.org/software/auctex/][auctex]]
      #+BEGIN_SRC sh
      ./configure --with-emacs
      make && make install
      #+END_SRC
-
+     
 ** Let emacs Load auctex
-#+BEGIN_SRC lisp
+*** Linux
+    #+BEGIN_SRC lisp
 (load "auctex.el" nil t t)
 (load "preview-latex.el" nil t t)
 (setq TeX-auto-save t)
@@ -25,10 +45,36 @@ sudo apt-get install auctex
 (setq-default TeX-master nil)
 (require 'org)
 (setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))  
-#+END_SRC
+    #+END_SRC
+*** Mac
+    #+BEGIN_SRC lisp
+    (setenv "PATH" (concat "/usr/texbin:/usr/local/bin:" (getenv "PATH")))
+(setq exec-path (append '("/usr/texbin" "/usr/local/bin") exec-path))
+(load "auctex.el" nil t t)
+(load "preview-latex.el" nil t t)
+
+(require-package 'auctex)
+
+(add-hook 'LaTeX-mode-hook 
+          (lambda () 
+	    (LaTeX-mod t)
+            (turn-on-reftex) 
+            (setq reftex-plug-into-AUCTeX t))) 
+(setq TeX-PDF-mode t) 
+(setq TeX-view-program-selection 
+      '(((output-dvi style-pstricks) 
+         "dvips and PDF Viewer") 
+        (output-dvi "PDF Viewer") 
+        (output-pdf "PDF Viewer") 
+        (output-html "Safari"))) 
+(setq TeX-view-program-list 
+      '(("dvips and PDF Viewer" "%(o?)dvips %d -o && open %f") 
+        ("PDF Viewer" "open %o") 
+        ("Safari" "open %o"))) 
+    #+END_SRC
    - If auctex was installed successfully, the menu bar will be added  three menu items including Preview, LaTeX, and Command 
      when open a .tex file.
-
+     
 ** Define shortcut keys
 *** C-c C-c *compile tex file*  default command: xelatex
 #+BEGIN_SRC lisp

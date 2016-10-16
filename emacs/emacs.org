@@ -80,6 +80,13 @@ C-c C-o
      #+BEGIN_SRC 
      
      #+END_SRC
+* YCMD
+  [[https://github.com/Valloric/ycmd][ycmd]]
+  #+BEGIN_SRC sh
+  git clone ...
+  git submodule update --init --recursive
+  #+END_SRC
+
 * GTD
  [[http://blog.csdn.net/lishuo_os_ds/article/details/8069484][GTD(getting things down)]]
 ** Refile finished task
