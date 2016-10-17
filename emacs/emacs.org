@@ -53,6 +53,15 @@ C-c C-o
 #+END_SRC
 * org-mode
 
+** Support Chinese
+   #+BEGIN_EXAMPLE
+   (setq org-latex-to-pdf-process '("xelatex -interaction nonstopmode %f"
+"xelatex -interaction nonstopmode %f"))
+(setq org-latex-default-packages-alist
+(remove '("AUTO" "inputenc" t) org-latex-default-packages-alist))
+   
+(add-to-list 'org-latex-packages-alist '("UTF8" "ctex"))
+   #+END_EXAMPLE
 ** Add Title , Author Info
 
    #+BEGIN_EXAMPLE
