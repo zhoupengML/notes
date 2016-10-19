@@ -1,8 +1,9 @@
+#+OPTIONS: tex:t
 #+TITLE: 最优化
 #+AUTHOR: Peng Zhou
 
 
-* Chapter 1
+* Chapter 1 凸集与凸函数
 
 ** 凸函数的判别
 
@@ -69,4 +70,70 @@
      
      设 $A,B$ 是数域 $F$ 上的 $n$ 阶方阵, 如果存在数域 $F$ 上的 $n$ 阶
      可逆矩阵 $P$ , 使得 $P^{T}AP=B$ , 则称在数域 $F$ 上 $A$ 与 $B$ 合同.
-     
+
+
+*  Chapter 2 线性规划的基本性质
+
+** 线性规划标准形式
+   \begin{eqnarray}
+    \min{}&\ &\sum_{j=1}^{n}{c_jx_j}\\
+    s.t.\ \ \sum_{j=1}^{n}\alpha_{ij}x_j&=&b_i, i=1,...,m\nonumber\\
+    x_j&\ge&{0}, j=1,...,n\nonumber
+   \end{eqnarray}
+
+矩阵形式:
+
+   \begin{eqnarray}
+    \label{eq:2}
+    \min&{c^Tx}&\\
+    s.t.\ \ Ax&=&b\nonumber\\
+    x&\ge&{0}\nonumber
+   \end{eqnarray}
+
+**  可行域
+    1. 在线性规划中,约束条件均为线性等式及不等式,满足这些条件的点的集合是凸集
+    2. 线性规划的可行域是凸集
+
+** 最优极点							    :Theorem:
+   1.线性规划如果存在最优解,那么最优值一定能在某极点上达到
+
+   2.设可行域的极点为 $x^{(1)},x^{(2)},...,x^{(k)}$, 极方向为 $d^{(1)},d^{(2)},...,d^{(l)}$, 根据定理[p12],
+      任何可行点 $x$ 可以表示为
+
+      \begin{eqnarray}
+      x=\sum_{j=1}^k\lambda_jx^{(j)}&+&\sum_{j=1}^l\mu_jd^{(j)}\\
+      \sum_{j=1}^k\lambda_j&=&1\nonumber\\
+      \lambda_j&\ge&{0},\ j=1,...,k\nonumber\\
+      \mu_j&\ge&0,\ j=1,...,l
+      \end{eqnarray}
+
+   - 定理2.2.2 设线性规划的可行域非空,则
+     1) 线性规划存在有限最优解的充要条件是所有 $c^Td^{(j)}$  为非负数.
+     2) 若线性规划存在有限最优解,则目标函数的最优值可在某个极点上达到.
+
+**  最优基本可行解						    :Theorem:
+    1. 对于线性规划,基本可行解与可行域的极点之间总存在着对应关系.
+       
+    2. 定理2.2.3 
+       令 $K=\{x|Ax=b,x\ge{0}\},A$ 是 $m\times{n}$ 矩阵, $A$  的秩为 $m$, 则 $K$
+        的极点集与 $Ax=b,x\ge{0}$ 的基本可行解集等价.
+
+    3.  线性规划问题的求解,可归结为求最优基本可行解.
+
+** 基本可行解的存在问题						    :Theorem:
+   1. 定理1.4.1 [p12]
+       若多面集 $S=\{x|Ax=b,x\ge{0}\}$ 非空,则存在有限个极点(有限个基本可行解).
+   2. 定理2.2.4 [p34]
+      如果 $Ax=b,x\ge{0}$  有可行解,则一定存在基本可行解.其中 $A$ 是 $m\times{n}$ 矩阵,
+      $A$ 的秩为 $m$.
+
+** Practice								:Def:
+   1. 定义2.2.1 基本解 [p30]
+      
+      \begin{equation}
+      x=\begin{bmatrix}x_B\\x_N\end{bmatrix}
+      =\begin{bmatrix}B^{-1}b\\0\end{bmatrix}
+      \end{equation}
+      
+       称为方程组 $Ax=b$  的一个基本解. 矩阵 $A$ 的秩为 $m$, $A=[B,N]$, $B$  是 $m$ 阶
+       可逆矩阵.

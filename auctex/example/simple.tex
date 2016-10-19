@@ -12,7 +12,32 @@
 This is a simple math exmaple: $$c^2=a^2+b^2$$
 \begin{equation}
   \label{eq:1}
-  c^2=a^{10} + b^{10}
+  c^2=a^{10} + b^{10}\\
+  a^2=c^2-b^2
+\end{equation}
+
+\begin{eqnarray}
+  \label{eq:2}
+  c^2=a^{10} + b^{10}\nonumber\\
+  a^2=c^2-b^2
+\end{eqnarray}
+
+it will be aligned by the \& \& \\
+The * makes it not have an equation number
+\begin{eqnarray*}
+    x &=& blah blah blah \\ 
+      & & more blah blah blah \\
+      & & even more blah blah
+\end{eqnarray*}
+
+matrix
+\begin{equation}       %开始数学环境
+\left(                 %左括号
+  \begin{array}{ccc}   %该矩阵一共3列，每一列都居中放置
+    a11 & a12 & a13\\  %第一行元素
+    a21 & a22 & a23\\  %第二行元素
+  \end{array}
+\right)                 %右括号
 \end{equation}
 
    In this article, I shall discuss some of the fundamental topics in

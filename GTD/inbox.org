@@ -11,7 +11,7 @@
 ** TODO Return books <2016-10-12 三>
 ** TODO Project 1 of DIP (DFT/DCT) <2016-10-25 二>
 ** TODO DIP Proj (lu-ht) <2016-10-19 Wed>
-
+** TODO  体育课 <2016-10-26 Wed 08:00>
 * Book
 ** [[https://bbs.sjtu.edu.cn/frame2.html][饮水思源bbs]] <2016-10-06 四>
 ** English Learning <2016-10-11 二>

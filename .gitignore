@@ -1,3 +1,6 @@
+paper/detection/slides/
+!/paper/detection/slides/det_slide.tex
+
 course/optimization/missfont.log
 course/matrix/ltxpng
 /emacs/ltxpng/
