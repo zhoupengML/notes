@@ -14,6 +14,61 @@
       R = L'*A
       #+END_SRC
 
+** 酉矩阵
+
+   设 $\alpha_1,\alpha_2,\ldots,\alpha_n$ 是 $V=R^n$ 或 $V=C^n$ 的一组标准正交基,则矩阵
+   $Q=(\alpha_1,\alpha_2,\ldots,\alpha_n)$ 称为酉矩阵,实的酉矩阵称为正交矩阵.
+   1) 矩阵 $Q$ 是酉矩阵 $\Longleftrightarrow{Q^*Q=I}$
+
+** Hermite矩阵
+
+定义: 复共轭对称矩阵: $A^*=A$
+
+定理: Hermite矩阵的特征值均为实数,且属于不同特征值的特征向量彼此正交.
+
+定理: Hermite矩阵 $A$ 可以酉对角化,即存在酉矩阵 $U$ 使得 $U^*AU=D$ 是对角矩阵.特别的,
+      实对称矩阵可以正交对角化.
+
+** Hermite二次型
+
+定义: $f(x)=x^*Ax=\sum_{i=1}^n\sum_{j=1}^nb_{ij}\overline{x}_ix_j$ ,矩阵 $A$ 称为
+      二次型 $f(x)$ 的矩阵.
+
+定义: 设 $f(x)=x^*Ax$ 是复二次型, $A$ 是Hermite矩阵,若对任意非零向量 $\alpha\in{C^n}$,
+      均有 $f(\alpha)=\alpha^*A\alpha>0$ ,则称 $f(x)$ 是正定二次型, $A$ 是正定矩阵.
+
+** Hermite矩阵定理
+
+   设 $A$ 是 $n$ 阶Hermite矩阵,则下列条件等价
+   1) $A$ 是正定的
+   2) $f(x)=x^*Ax$ 是正定二次型
+   3) $A$ 的特征值均为正实数
+   4) 存在 $m\times{n}$ 阶列满秩矩阵 $M$ ,使得 $A=M^*M$
+   5) 存在 $n$ 阶可逆矩阵 $M$ ,使得 $A=M^*M$
+   6) 存在 $n$ 阶可逆矩阵 $P$ ,使得 $P^*AP=I$ (即 $A$ 与 $I$ 合同)
+
+** 正定矩阵与内积的关系
+
+   - 设 $\alpha_1,\alpha_2,\ldots,\alpha_n$ 是 $n$ 维内积空间 $V$ 的一组基,设 $\alpha,\beta\in{V}$ 的
+     坐标分别是 $x=(x_1,x_2,\ldots,x_n)^T,y=(y_1,y_2,\ldots,y_n)^T$ ,
+     则有 
+
+     $(\alpha,\beta)=(\sum_{i=1}^nx_i\alpha_i,\sum_{j=1}^ny_j\alpha_j)=\sum_{i=1}^n\sum_{j=1}^n(\alpha_i,\alpha_j)x_i\overline{y}_j$
+
+     记 $(\alpha_i,\alpha_j)=a_{ji}$ ,则公式变为 
+                               $$(\alpha,\beta)=y^*Ax$$
+     $A=(a_{ij})$ 是 Hermite 矩阵,由内积的正定性知 $A$ 是正定矩阵
+     $A$ 称为基 $\alpha_1,\alpha_2,\ldots,\alpha_n$ 的 度量矩阵 或 Gram 矩阵.
+
+定理: 设 $V$ 是 $n$ 维复线性空间,则其上的内积与正定矩阵一一对应.
+      1) 标准正交基的度量矩阵是单位矩阵
+
+** 双线性型
+
+   - 对任意 $n$ 阶复矩阵 $A=(a_{ij})$ ,称
+     $y^*Ax=\sum_{i=1}^n\sum_{j=1}^na_{ji}x_i\overline{y}_j$
+     为矩阵 $A$ 的双线性型或 $C^n$ 上的双线性型.
+   
 * Chapter 2 矩阵与线性变换
 
 ** 子空间:直和与空间分解
@@ -36,3 +91,56 @@
        	$W$ 称为 $U$ 的补子空间. $U$ 的补子空间一般不是唯一的.
 
 ** 矩阵与线性变换
+
+** 内积空间的正交分解
+
+*** 内积空间
+
+定义: 设 $F$ 是实数域或复数域, $V$ 是 $F$ 上的线性空间. 若对 $V$ 中任意两个向量 $\alpha,\beta$ ,都定义了
+      $F$ 中一个数 $(\alpha,\beta)$ (称为向量 $\alpha$ 与 $\beta$ 的内积), 使得
+      1) (共轭对称性) $(\alpha,\beta)=\overline{(\beta,\alpha)}$ ,其中 $\overline{(\beta,\alpha)}$ 是复数 $(\beta,\alpha)$ 的共轭复数;
+      2) (正定性) $(\alpha,\alpha)\ge0$ ,且等号成立 $\Longleftrightarrow\alpha=0$ ;
+      3) (双线性) $(a\alpha+b\beta,\gamma)=a(\alpha,\gamma)+b(\beta,\gamma)$ ,对任意 
+	 $\alpha,\beta,\gamma\in{V},\ a,b\in{F}$ 成立.
+
+*** 欧式空间,酉空间
+
+    1. 欧式空间: 有限维实内积空间
+    2. 酉空间: 复内积空间( $F=C$ )
+
+*** 正交补
+定义: 设 $V$ 是 $n$ 维内积空间, $U$ 是 $V$ 的子空间. 令 $W=\{\alpha\in{V}|(\alpha,\beta)=0,\forall{\beta}\in{U}\}$ .
+      $W$ 是 $V$ 的一个子空间,称为 $U$ 的正交补,记为 $U^{\bot}$ .
+
+*** 最佳近似定理
+
+    设 $U$ 是欧式空间 $V$ 的子空间, $\beta\in{V},\alpha\in{U}$ ,则 $\alpha$ 是 $\beta$ 在 $U$ 上的最佳近似向量
+    $\Longleftrightarrow\beta-\alpha\in{U^{\bot}}$ .
+
+** 内积空间中的线性变换
+
+*** 等距变换   
+
+定义: 设 $V$ 是内积空间, $\sigma\in{End\ V}$ .如果 $\sigma$ 保持向量间的距离,即对任意 $\alpha,\beta\in{V}$ ,均有
+      $d(\sigma(\alpha),\sigma(\beta))=d(\alpha,\beta)$ ,则称 $\sigma$ 是等距变换或保距变换.
+
+定理: 设 $V$ 是内积空间, $\sigma\in{End\ V}$ ,则 $\sigma$ 是等距变换 $\Longleftrightarrow\sigma$ 保持向量的长度
+      $\Longleftrightarrow\sigma$ 保持内积( $(\sigma(\alpha),\sigma(\beta))=(\alpha,\beta)$ ).
+
+定理: 设 $V$ 是 $n$ 维内积空间, $\alpha_1,\alpha_2,\ldots,\alpha_n$ 是 $V$ 的一组标准正交基, $\sigma\in{End\ V}$ ,
+      $A$ 是 $\sigma$ 在该组基下的矩阵,则 $\sigma$ 是等距变换 $\Longleftrightarrow$ $A$ 是酉矩阵( $A^*A=I$ ).
+      注意: 条件必须是标准正交基
+
+      1) 欧式空间的等距变换称为正交变换
+      2) 复内积空间的等距变换称为酉变换
+
+定理: 设 $V$ 是内积空间, $\sigma\in{End\ V}$ ,则 $\sigma$ 是等距变换 $\Longleftrightarrow$ $\sigma$ 将标准正交基变为标准正交基.	 
+
+*** 对称变换
+
+定义: 设 $\sigma$ 是欧式空间 $V$ 的线性变换.如果对任意 $\alpha,\beta\in{V}$ ,均有 $(\sigma(\alpha),\beta)=(\alpha,\sigma(\beta))$ ,
+      则称 $\sigma$ 是一个对称变换.
+      
+定理: 欧式空间的线性变换 $\sigma$ 是对称变换 $\Longleftrightarrow\ \sigma$ 在一组标准正交基下的矩阵是对称矩阵.
+
+

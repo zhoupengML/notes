@@ -20,6 +20,8 @@ sudo apt-get install auctex
 *** Mac
     - Before installing auctex, please set env PATH. Otherwise can't compile auctex
       #+BEGIN_EXAMPLE
+      alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs"
+
       PATH=/usr/local/texlive/2015/bin/x86_64-darwin:$PATH;export PATH
       MANPATH=/usr/local/texlive/2015/texmf-dist/doc/man:$MANPATH;export MANPATH
       INFOPATH=/usr/local/texlive/2015/texmf-dist/doc/info:$INFOPATH;export INFOPATH
@@ -118,22 +120,32 @@ sudo apt-get install auctex
      
 ** Insert formula
    
-   1. Arrow with up and down text
+   1. matrix
+      #+BEGIN_EXAMPLE
+      	 \begin{eqnarray}
+	 x^{(0)}=
+         \begin{bmatrix}
+	 B^{-1}b\\0
+         \end{bmatrix}
+         \end{eqnarray}
+      #+END_EXAMPLE
+
+   2. Arrow with up and down text
       #+BEGIN_EXAMPLE
       $\xrightarrow[down]{up}$
 
       $\xleftarrow[down]{up}$
       #+END_EXAMPLE
-   2. menual
+   3. menual
       - lshort, chapter 3
       #+BEGIN_SRC sh
       texdoc lshort
       #+END_SRC
       - The LaTeX companion, chapter 8
-   3. $formula$ e.t. $c^2=a^2+b^2$
-   4. Locate in a single line
+   4. $formula$ e.t. $c^2=a^2+b^2$
+   5. Locate in a single line
       $$formula$$ e.t. $$c^2=a^2+b^2$$
-   5. Add number for the formula
+   6. Add number for the formula
       #+BEGIN_SRC 
       \begin{equation} 
 	\label{eq:1}
@@ -157,6 +169,10 @@ sudo apt-get install auctex
        
 ** Use the menual 
 
+   - Open Package Menual
+     #+BEGIN_EXAMPLE
+     texdoc package-name
+     #+END_EXAMPLE
    - Consult AucTeX menual
      #+BEGIN_SRC sh
      C-h i
@@ -168,3 +184,56 @@ sudo apt-get install auctex
      apt-get install texlive-doc-en
      texdoc lshort
      #+END_SRC
+
+* Latex
+
+** Insert contents
+   #+BEGIN_EXAMPLE
+   \tableofcontents
+   \newpage
+   #+END_EXAMPLE
+** Insert picture
+   #+BEGIN_EXAMPLE
+\begin{figure}[!ht]       % h:here t:top b:bottom p:page !:ignore
+  \centering
+  \captionsetup{justification=centering}                      % usepackage{caption}
+  \includegraphics[width=.5\textwidth]{./code/spectrum.pdf}
+  \caption{original image and its Fourier spectrum}
+\label{Fig:spectrum}
+\end{figure}
+   #+END_EXAMPLE
+
+* Support Chinese
+  reference:[[http://liam0205.me/2014/11/02/latex-mactex-chinese-support/]]
+
+  1. ctex 宏包和文档类封装了 xeCJK，同时提供了中文版式的相关支持。
+     新版的 ctex 宏包和文档类能够自动检测用户使用的操作系统，自动选择合适的字体配置，十分方便。
+     #+BEGIN_EXAMPLE
+     \documentclass[UTF8]{ctexart}
+     \begin{document}
+     中文
+     \end{document}
+     #+END_EXAMPLE
+  2. 如果希望 ctex 只提供中文支持的功能不对版式做任何修改，也可以这样使用
+     #+BEGIN_EXAMPLE
+     \documentclass{article}
+
+     \usepackage[UTF8, heading = false, scheme = plain]{ctex}
+
+     \begin{document}
+     \title{Latex 支持中文}
+     \author{Peng}
+     \date{2016/10/28}
+     \maketitle{}
+     
+     \section{Latex}
+     \label{sec:latex}
+     
+     Latex支持中文测试.
+     
+     \end{document}
+     #+END_EXAMPLE
+
+
+  
+  

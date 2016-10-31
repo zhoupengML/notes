@@ -1,4 +1,10 @@
 * Shell Command
+** Redirect
+   #+BEGIN_EXAMPLE
+   ls > log 2>&1
+   or
+   ls &> log
+   #+END_EXAMPLE
 ** linux sed 批量替换多个文件中的字符串
    #+BEGIN_SRC sh
    sed -i "s/oldstring/newstring/g" `grep oldstring -rl yourdir`
@@ -7,3 +13,51 @@
    #+BEGIN_SRC sh
    find . -name '*.h' | xargs grep 'string'
    #+END_SRC
+* Bash
+** Example
+   #+BEGIN_EXAMPLE
+   #!/usr/bin/env bash
+
+   if [ $# != 1 ]
+   then
+    echo """
+   Usage ./test.sh path
+   """ >&2 
+    exit 1
+   else
+    echo $0
+    echo 
+   fi
+   
+   cd $1
+   
+   for file in `ls`
+   do
+    echo -n "Want to rm : $file ?(y/n):"
+    read input
+    if [ "${input:-y}" = y ] ;then
+       echo rm $file
+       rm $file
+       echo done
+    else
+	echo pass
+    fi
+   
+   done
+   #+END_EXAMPLE
+** Return value
+   #+BEGIN_EXAMPLE
+   $?
+   true: 0
+   false: 1
+   #+END_EXAMPLE
+** Arguments 
+   #+BEGIN_EXAMPLE
+   count : $#
+   argv: $0 $1 $2
+   #+END_EXAMPLE
+** Variable default Value
+   #+BEGIN_EXAMPLE
+   ${var:-value}
+   #+END_EXAMPLE
+

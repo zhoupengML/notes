@@ -1,6 +1,8 @@
 * tasks
 ** CANCELED 培养方案提交 <2016-09-21 Wed>
    CLOSED: [2016-09-27 Tue 22:52]
+** DONE Lecture 东上院500  <2016-10-19 三>
+** DONE Project 1 of DIP (DFT/DCT) <2016-10-25 二>
 * Book
 * Project
 * Calender

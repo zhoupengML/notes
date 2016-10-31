@@ -1,6 +1,5 @@
 \documentclass{beamer}
 
-
 % \usetheme{Warsaw}
 % \usetheme{CambridgeUS}
 % \usetheme{Berkeley}
@@ -17,12 +16,81 @@
 \maketitle{}
 
 \begin{frame}
-  \frametitle{title}
-Add title
+  \frametitle{The Traditional Method}
+  \begin{enumerate}
+
+  \item Area selection
+    \begin{itemize}
+    \item The sliding window strategy is used to traverse the whole image. 
+    \item The sliding windows have different scale, different aspect ratio.
+    \item Too many redundant windows, high time complexity
+    \end{itemize}
+
+  \item Feature extraction
+    \begin{itemize}
+    \item SIFT, HOG
+    \end{itemize}
+
+  \item Classification
+    \begin{itemize}
+    \item SVM, Adaboost
+    \end{itemize}
+  \end{enumerate}
 \end{frame}
 
 \begin{frame}
-Add items
+  \frametitle{The Traditional Method}
+  \emph{Two problems}
+  \begin{enumerate}
+  \item Sliding window selection is time complexity and redundant.
+  \item The features of manual design are not very robust to the variation of diversity.
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Deep Learning Method}
+\begin{block}{}
+  \begin{enumerate}
+  \item Deep Learning Object Detection Algorithm Based on Region Proposal.
+  \item Deep Learning Object Detection Algorithm Based on Regression.
+  \item ...
+  \end{enumerate}
+\end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{DL based on Region Proposal}
+  \href{https://people.eecs.berkeley.edu/~rbg/papers/pami/rcnn_pami.pdf}
+  {Region-based Convolution Networks for Accurate Object detection and Segmentation}
+  \begin{block}{Traditional}
+    \begin{itemize}
+    \item Sliding window + features of manual design 
+    \end{itemize}
+  \end{block}
+  \begin{block}{R-CNN}
+    \begin{itemize}
+    \item Region proposal + CNN
+    \end{itemize}
+  \end{block}
+  \begin{figure}[!t]
+    \centering
+    \includegraphics[width=0.7\textwidth]{pic/rcnn1.png}
+    \caption{R-CNN}
+  \end{figure}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{R-CNN}
+  
+  
+\end{frame}
+
+
+
+
+\begin{frame}
+  Add items
   \begin{itemize}
   \item \LaTeX{}
   \item beamer is easy.
@@ -116,3 +184,12 @@ Add items
 %%% mode: latex
 %%% TeX-master: t
 %%% End:
+
+
+
+
+
+
+
+
+

@@ -3,15 +3,14 @@
 ** TODO 高中同学聚会 <2016-09-20 Tue>
 ** TODO 矩阵理论作业 <2016-10-18 Tue 08:00>
 ** TODO 招商银行卡更改号码 <2016-09-30 Fri 14:00>
-** TODO Homework of optimization <2016-10-13 四 08:00>
-** TODO Lecture 东上院500  <2016-10-19 三>
+** TODO Homework of optimization + 附加题<2016-11-03 Thu>
 ** TODO Lecture 东上院500  <2016-11-02 三>
 ** TODO Lecture 东上院500  <2016-11-30 三>
 ** TODO Lecture 东上院500  <2016-12-14 三>
 ** TODO Return books <2016-10-12 三>
-** TODO Project 1 of DIP (DFT/DCT) <2016-10-25 二>
 ** TODO DIP Proj (lu-ht) <2016-10-19 Wed>
-** TODO  体育课 <2016-10-26 Wed 08:00>
+** TODO  体育课 <2016-11-02 Wed>
+** TODO makesi Paper <2016-11-12 Sat>
 * Book
 ** [[https://bbs.sjtu.edu.cn/frame2.html][饮水思源bbs]] <2016-10-06 四>
 ** English Learning <2016-10-11 二>

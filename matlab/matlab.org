@@ -1,0 +1,65 @@
+
+* Matlab crashes when open doc
+  #+BEGIN_EXAMPLE
+  com.mathworks.mlwidgets.html.HtmlComponentFactory.setDefaultType('HTMLRENDERER');
+  #+END_EXAMPLE
+
+* Plot
+** Save-to-Eps-File
+   #+BEGIN_EXAMPLE
+   print -depsc 'results/histogram_fig1'
+   #+END_EXAMPLE
+** Plot argument
+   reference: dip by Richard[p56]
+   #+BEGIN_EXAMPLE
+   plot(horz, value, 'color_linestyle_marker')
+   text(x, y, 'string', 'fontsize', size)
+
+   #+END_EXAMPLE
+
+** Set subplot position
+   #+BEGIN_EXAMPLE
+   h1 = subplot(221);
+   p1 = get(h1, 'pos'); % p1: {right, up, width, height}
+   p1 = p1 + [0, 0, 0, 0];
+   set(h1, 'pos', p1);   
+   #+END_EXAMPLE
+** ColorMap
+   #+BEGIN_EXAMPLE
+   imshow(dct_spec, []),
+   colorbar;
+   colormap(jet(64));   
+   #+END_EXAMPLE
+* Class Def
+  #+BEGIN_EXAMPLE
+  classdef Experiment
+   properties
+     count
+   end
+   methods
+       function obj = Experiment(varargin)
+          if nargin < 2
+              error('At least two image')
+          end
+          obj.count = nargin;
+          for i = 1 : nargin
+             obj.img_file_list{i} = varargin{i};
+             obj.img_obj_list{i} = ImageProcessing(varargin{i});
+          end
+       end
+       function retval = fun(obj, args)
+
+       end
+   end
+   
+   methods(Static)
+       function mask = generateMask(img, N, type)
+     
+       end
+   end
+
+end
+  #+END_EXAMPLE
+* DFT
+  
+** 
