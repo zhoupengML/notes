@@ -53,6 +53,25 @@ C-c C-o
 #+END_SRC
 * org-mode
 
+** Table
+
+   |--------------------+-------------------------------------------|
+   | key                | description                               |
+   |--------------------+-------------------------------------------|
+   | C-c + vertical bar | create table                              |
+   | Tab                |                                           |
+   | Shift Tab          |                                           |
+   | M left/right       | move column                               |
+   | M up/down          | move row                                  |
+   | M S left/right     | delete/add column                         |
+   | M S up/down        | delete/add row                            |
+   | C-c -              | add horizontal line                       |
+   |--------------------+-------------------------------------------|
+   | C-c Return         | add horizontal line and jump to next line |
+   |--------------------+-------------------------------------------|
+   | C-c ^              | sort by current column                    |
+   |--------------------+-------------------------------------------|
+   
 ** Support Chinese
    #+BEGIN_EXAMPLE
    (setq org-latex-to-pdf-process '("xelatex -interaction nonstopmode %f"

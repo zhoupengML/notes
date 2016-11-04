@@ -7,17 +7,27 @@
 
 ** 凸函数的判别
 
-   - 设$f:R^n\to{R}$ , 且二阶连续可微， 则下列命题等价
+   1. 设$f:R^n\to{R}$ , 且二阶连续可微， 则下列命题等价
 
-     1) $f$ 是凸函数
+      1) $f$ 是凸函数
 
-     2) 对 $\forall{x, y} \in{R^n}$ , 有 $f(y)\ge{f(x)+\nabla{f(x)^T}(y-x)}$
+      2) 对 $\forall{x, y} \in{R^n}$ , 有 $f(y)\ge{f(x)+\nabla{f(x)^T}(y-x)}$
 
-     3) 梯度函数 $\nabla{f(x)}$ 单调
+      3) 梯度函数 $\nabla{f(x)}$ 单调
 
-	$$[\nabla{f(y)}-\nabla{f(x)}]^T(y-x)\ge{0}$$
+	 $$[\nabla{f(y)}-\nabla{f(x)}]^T(y-x)\ge{0}$$
 
-     4) $\forall{x}\in{R^n} , Hesse$ 矩阵 $\nabla^2{f(x)}$ 半正定 (正定矩阵: positive definite matrix)
+      4) $\forall{x}\in{R^n} , Hesse$ 矩阵 $\nabla^2{f(x)}$ 半正定 (正定矩阵: positive definite matrix)
+
+   2. 定理[p20]:
+      设 $S$ 是 $R^n$ 中非空开凸集, $f(x)$ 是定义在 $S$ 上的可微函数,则 $f(x)$ 为凸函数的充要条件是
+      对任意两点 $x^{(1)},x^{(2)}\in{S}$ ,都有
+
+      $f(x^{(2)})\ge{}f(x^{(1)})+\nabla{}f(x^{(1)})^T(x^{(2)}-x^{(1)})$
+
+      而 $f(x)$ 为严格凸函数的充要条件是对任意的互不相同的 $x^{(1)},x^{(2)}\in{S}$ ,成立
+      
+      $f(x^{(2)})>f(x^{(1)})+\nabla{}f(x^{(1)})^T(x^{(2)}-x^{(1)})$
 
 *** 正定二次型的定义 [[http://wenku.baidu.com/link?url=J912nnUKjFJYkRt-w89TPkotscm0SnFl4XwYXHSrxOEDau0TLibvB9J3K81hKOyH-B3K3JWS2_hE9lW6eFj7S1GhD8wDhOg7nqpU2QQ7oLO][ref]]
 
@@ -143,7 +153,7 @@
 ** 单纯形方法原理
 
 *** 基本可行解的转换
-
+    
     1. 若线性规划有最优解,则必存在最优基本可行解.
     2. 单纯形方法的基本思想,就是从一个基本可行解出发,求一个使目标函数值有所改善的基本可行解,通过
        不断改进基本可行解,力图达到最优基本可行解.
@@ -270,4 +280,130 @@
     - 定理
       对于非退化问题,单纯形方法经有限次迭代或达到最优基本可行解,或得出无界的结论.
 
-*** 
+* Chapter 4 对偶原理
+
+** 线性规划中的对偶理论
+
+   线性规划中的对偶可以概括为三种形式:
+
+*** 对称对偶
+
+    - 原问题
+      
+      \begin{eqnarray}
+      min& \ cx\\
+      s.t.\ Ax&\ge{}&b\nonumber\\
+      x&\ge{}&0\nonumber
+      \end{eqnarray}
+
+    - 对偶问题
+      
+      \begin{eqnarray}
+      max&\ wb\\
+      s.t.\ wA&\le{}&c\nonumber\\
+      w&\ge{}&0\nonumber
+      \end{eqnarray}
+
+*** 非对称形式的对偶
+
+    - 具有等式约束的线性规划问题
+      
+      \begin{eqnarray}
+      min\ &cx\nonumber\\
+      s.t.\ Ax&=&b\nonumber\\
+      x&\ge{}&0\nonumber
+      \end{eqnarray}
+
+    - 对偶问题(非对称对偶)
+      
+      \begin{eqnarray}
+      max\ &wb\\
+      s.t.\ wA&\le{}&c\nonumber
+      \end{eqnarray}
+
+*** 一般情形
+
+    - 原问题
+      
+      \begin{eqnarray}
+      min\ &cx\\
+      s.t.\ A_1x&\ge{}&b_1\nonumber\\
+      A_2x&=&b_2\nonumber\\
+      A_3x&\le{}&b_3\nonumber\\
+      x&\ge{}&0\nonumber
+      \end{eqnarray}
+
+    - 对偶问题
+      
+      \begin{eqnarray}
+      max\ \ w_1b_1\ +\ w_2b_2&+&w_3b_3\\
+      s.t.\ w_1A_1+w_2A_2+w_3A_3&\le{}&c\nonumber\\
+      w_1&\ge{}&0\nonumber\\
+      w_3&\le{}&0\nonumber
+      \end{eqnarray}
+
+*** 对偶定理
+    
+定理[p127]:设 $x^{(0)},w^{(0)}$ 分别是对称对偶形式的可行解,则 $cx^{(0)}\ge{w^{(0)}b}$ .
+
+   - 推论1:
+     若 $x^{(0)}$ 和 $w^{(0)}$ 分别是原问题和对偶问题的可行解,且 $cx^{(0)}=w^{(0)}b$ ,
+     则 $x^{(0)}$ 和 $w^{(0)}$ 分别是原问题和对偶问题的最优解.
+
+   - 推论2:
+     对偶规划有最优解的充要条件是它们同时有可行解.
+
+   - 推论3:
+     若原问题的目标函数值在可行域上无下界,则对偶问题无可行解;反之,若对偶问题的目标函数值在可行域上
+     无上界,则原问题无可行解.
+
+定理[p127]:设原问题和对偶问题中有一个问题存在最优解,则另一个问题也存在最优解,且两个问题的目标函数的最优值相等.
+
+   - 推论:
+     若线性规划存在一个对应基 $B$ 的最优基本可行解,则单纯形乘子 $w=c_BB^{-1}$ 是对偶问题的一个最优解.
+
+*** 互补松弛定理
+
+定理[p129]:设 $x^{(0)},w^{(0)}$ 分别是原问题和对偶问题的可行解,那么 $x^{(0)}$ 和 $w^{(0)}$ 都是最优解的充要条件
+           是,对所有 $i$ 和 $j$ ,下列关系成立:
+
+	   1) 如果 $x_j^{(0)}>0$ ,就有 $w^{(0)}p_j=c_j$
+
+	   2) 如果 $w^{(0)}p_j<c_j$ ,就有 $x_j^{(0)}=0$
+
+	   3) 如果 $w_i^{(0)}>0$ ,就有 $A_ix^{(0)}=b_i$
+
+	   4) 如果 $A_ix^{(0)}>b_i$ ,就有 $w_i^{(0)}=0$
+
+* Chapter 7 最优性条件
+
+** 无约束问题的极值条件
+
+*** 必要条件
+
+    1. 定理[p203]:
+       设函数 $f(x)$ 在点 $\overline{x}$ 可微,如果存在方向 $d$ ,使 $\nabla{}f(\overline{x})^Td<0$ ,则存在数 $\delta>0$ ,
+       使得对每个 $\lambda\in{(0,\delta)}$ ,有 $f(\overline{x}+\lambda{d})<f(\overline{x})$ .
+
+    2. 定理[p204]:
+       设函数 $f(x)$ 在点 $\overline{x}$ 可微,若 $\overline{x}$ 是局部极小点,则梯度 $\nabla{}f(\overline{x})=0$ .
+
+    3. 定理[p204]:
+       设函数 $f(x)$ 在点 $\overline{x}$ 处二次可微,若 $\overline{x}$ 是局部极小点,则梯度 $\nabla{f(\overline{x})}=0$ ,并且
+       Hesse 矩阵 $\nabla^2{}f(\overline{x})$ 半正定.
+
+*** 二阶充分条件
+
+    1. 定理[p204]:
+       设函数 $f(x)$ 在点 $\overline{x}$ 处二次可微,若梯度 $\nabla{}f(\overline{x})=0$ ,且 Hesse 矩阵
+       $\nabla^2{}f(\overline{x})$ 正定,则 $\overline{x}$ 是局部极小点.
+
+*** 充要条件
+
+    1. 定理[p205]:
+       (假设函数是凸函数,给出全局极小点的充分必要条件)
+       设 $f(x)$ 是定义在 $R^n$ 上的可微凸函数, $\overline{x}\in{R^n}$ ,则 $\overline{x}$ 为全局极小点的充要条件是
+       $\nabla{}f(\overline{x})=0$ .
+
+** 约束极值问题
+       

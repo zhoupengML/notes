@@ -17,8 +17,9 @@
 ** 酉矩阵
 
    设 $\alpha_1,\alpha_2,\ldots,\alpha_n$ 是 $V=R^n$ 或 $V=C^n$ 的一组标准正交基,则矩阵
-   $Q=(\alpha_1,\alpha_2,\ldots,\alpha_n)$ 称为酉矩阵,实的酉矩阵称为正交矩阵.
+   $Q=(\alpha_1,\alpha_2,\ldots,\alpha_n)$ 称为酉矩阵
    1) 矩阵 $Q$ 是酉矩阵 $\Longleftrightarrow{Q^*Q=I}$
+   2) 实的酉矩阵称为正交矩阵.
 
 ** Hermite矩阵
 
@@ -133,7 +134,7 @@
 
       1) 欧式空间的等距变换称为正交变换
       2) 复内积空间的等距变换称为酉变换
-
+	 
 定理: 设 $V$ 是内积空间, $\sigma\in{End\ V}$ ,则 $\sigma$ 是等距变换 $\Longleftrightarrow$ $\sigma$ 将标准正交基变为标准正交基.	 
 
 *** 对称变换
@@ -143,4 +144,35 @@
       
 定理: 欧式空间的线性变换 $\sigma$ 是对称变换 $\Longleftrightarrow\ \sigma$ 在一组标准正交基下的矩阵是对称矩阵.
 
+* 特征值与矩阵的Jordan标准型
 
+** Schur 三角化定理: 化简矩阵的基础
+   
+*** Schur(酉)三角化定理
+
+定理: 设 $A\in{C^{n\times{n}}}$ ,则存在酉矩阵 $U$ ,使
+      $U^*AU=B$ ,其中, $B$ 为一个上三角矩阵.
+
+      注意: 实矩阵不成立
+
+*** 分块 Schur 三角化定理
+
+引理: 设 $A=(a_{ij})$ 是 $F$ 上的任意上三角矩阵, $1\le{}p<q\le{}n$ ,设
+      $P=I+\alpha{}E_{pq},\alpha\in{F}$ ,则 $B=(b_{ij})=P^{-1}AP$ 是与 $A$
+      的主对角线相同(包括顺序)的上三角矩阵,且 $b_{pq}=a_{pq}+\alpha(a_{pp}-a_{qq})$ .
+      特别地,若 $a_{pp}\ne{a_{qq}}$ ,则可选取适当的 $\alpha$ ,使得 $b_{pq}=0$.
+
+      注意: $F$ 不必是复数域
+
+定理(p90): (分块Schur三角化定理) 设 $n$ 阶复矩阵 $A$ 的特征多项式 $|\lambda{}I-A|=\prod_{i=1}^{s}(\lambda-\lambda_i)^{n_i}$ ,
+           其中, $\sigma(A)=\{\lambda_i:1\le{i}\le{s}\},\sum_{i=1}^{s}n_i=n$ ,则存在可逆矩阵 $P$,使得
+
+	   $P^{-1}AP=A_1\oplus{A_2}\oplus{}\ldots\oplus{A_s}$
+
+	   其中 $A_i$ 是特征值均为 $\lambda_i$ 的 $n_i$ 阶上三角矩阵.
+
+*** Cayley-Hamilton 定理
+
+    - 设 $A$ 是 $n$ 阶严格上三角矩阵,则 $A^n=0$ .
+      
+定理(p90): 设矩阵 $A$ 的特征多项式为 $f(\lambda)$ ,则有 $f(A)=0$ .

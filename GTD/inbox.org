@@ -11,6 +11,8 @@
 ** TODO DIP Proj (lu-ht) <2016-10-19 Wed>
 ** TODO  体育课 <2016-11-02 Wed>
 ** TODO makesi Paper <2016-11-12 Sat>
+** TODO 领学生证 电1-441 第一排 <2016-11-02 Wed>
+** TODO 领校友卡 <2016-11-03 Thu>
 * Book
 ** [[https://bbs.sjtu.edu.cn/frame2.html][饮水思源bbs]] <2016-10-06 四>
 ** English Learning <2016-10-11 二>
