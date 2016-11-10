@@ -135,16 +135,32 @@
       1) 欧式空间的等距变换称为正交变换
       2) 复内积空间的等距变换称为酉变换
 	 
-定理: 设 $V$ 是内积空间, $\sigma\in{End\ V}$ ,则 $\sigma$ 是等距变换 $\Longleftrightarrow$ $\sigma$ 将标准正交基变为标准正交基.	 
+定理: 设 $V$ 是内积空间, $\sigma\in{End\ V}$ ,则 $\sigma$ 是等距变换 $\Longleftrightarrow$ $\sigma$ 将标准正交基变为标准正交基.	
 
-*** 对称变换
+*** Givens 变换
+
+    1. 定义[p63]
+
+       由矩阵 
+       
+       \begin{eqnarray}\begin{bmatrix}c&s\\-s&c \end{bmatrix} \end{eqnarray}
+       
+       决定的旋转称为 Jacobi 旋转或 Givens 旋转.一般地,设 $c^2+s^2=1,\theta=arctan\frac{s}{c}$ ,则将 $n$ 阶实矩阵
+       
+       $G(i,j,\theta)=I_n-(1-c)(E_{ii}+E_{jj})+s(E_{ij}-E_{ji})$
+       
+       称为 Givens 旋转矩阵.这是一个正交矩阵.
+
+*** 对称变换(自伴变换)
 
 定义: 设 $\sigma$ 是欧式空间 $V$ 的线性变换.如果对任意 $\alpha,\beta\in{V}$ ,均有 $(\sigma(\alpha),\beta)=(\alpha,\sigma(\beta))$ ,
       则称 $\sigma$ 是一个对称变换.
       
 定理: 欧式空间的线性变换 $\sigma$ 是对称变换 $\Longleftrightarrow\ \sigma$ 在一组标准正交基下的矩阵是对称矩阵.
 
-* 特征值与矩阵的Jordan标准型
+*** 伴随变换[p64]
+    
+* Chapter 3 特征值与矩阵的Jordan标准型
 
 ** Schur 三角化定理: 化简矩阵的基础
    
@@ -175,4 +191,74 @@
 
     - 设 $A$ 是 $n$ 阶严格上三角矩阵,则 $A^n=0$ .
       
-定理(p90): 设矩阵 $A$ 的特征多项式为 $f(\lambda)$ ,则有 $f(A)=0$ .
+    - 定理(p90): 
+      设矩阵 $A$ 的特征多项式为 $f(\lambda)$ ,则有 $f(A)=0$ .
+
+      * $A$ 的特征多项式为
+
+	$f(\lambda)=(\lambda-\lambda_1)^{n_1}(\lambda-\lambda_2)^{n_2}\cdots(\lambda-\lambda_s)^{n_s}$
+	 
+	$f(A)=(A-\lambda_1I)^{n_1}(A-\lambda_2I)^{n_2}\cdots(A-\lambda_sI)^{n_s}$
+
+    - 由于 $n$ 阶矩阵 $A$ 的特征多项式是 $n$ 次多项式, Cayley-Hamilton 定理表明, $A$ 的 $n$ 次幂
+      可由其较低次幂的线性组合给出.即 $n$ 阶矩阵 $A$ 的任意次幂均属于由 $I,A,A^2,\cdots,A^{n-1}$
+      生成的 $M_n(C)$ 的子空间.
+
+      对任意自然数 $m$:
+      
+      $A^m\in{}span\{I,A,A^2,\cdots,A^{n-1}\}$
+
+*** Sylvester 降幂公式
+
+    1. 命题[p91]
+       设 $A$ 与 $B$ 分别是 $m\times{n}$ 与 $n\times{m}$ 矩阵, $m\ge{n}$ ,
+       则
+
+       $\mid{}\lambda{}I_m-AB\mid{}=\lambda^{m-n}\mid{}\lambda{}I_n-BA\mid{}$
+
+*** 零化多项式,最小多项式
+
+    1. 定义[p92]
+       设 $A$ 是 $n$ 阶矩阵, $f(x)$ 是多项式,如果 $f(A)=0$ ,则称 $f(x)$ 是 $A$ 的
+       零化多项式,次数最低的首一零化多项式称为 $A$ 的最小多项式,记为 $m_A(x)$ 或 $m(x)$ .
+
+    2. 命题[p92]
+       设 $m(x)$ 是 $A$ 的最小多项式, $f(x)$ 是 $A$ 的任意零化多项式,则 $m(x)\mid{}f(x)$ .特别地,
+       $m(x)\mid\ \mid{}xI-A\mid$ .
+
+    3. 命题[p94]
+       设 $A$ 是任意方阵, $m(x)$ 是 $A$ 的最小多项式,设 $\lambda_0\in{C}$ ,则 $\lambda_0$ 是 $A$ 的
+       特征值 $\Longleftrightarrow{}m(\lambda_0)=0$ .
+
+    4. 命题[p94]
+       矩阵 $A$ 是幂零矩阵 $\Longleftrightarrow{A}$ 的特征值均为0.
+
+    5. 命题[p94]
+       分块对角矩阵的最小多项式等于各个子块的最小多项式的最小公倍式.
+       分块对角矩阵的特征多项式等于各个子块的特征多项式的乘积.
+
+    6. 命题[p94]
+       相似矩阵具有相同的最小多项式.
+
+    7. 命题[p94]
+       矩阵 $A$ 可以对角化 $\Longleftrightarrow{A}$ 的最小多项式没有重根.
+
+    8. 推论[p95]
+       设 $A$ 为方阵, $f(x)$ 是无重因式的多项式.若 $f(A)=0$ ,则 $A$ 可以对角化.
+       
+       * 幂等矩阵( $A^2=A$ )与对合矩阵( $A^2=I$ )均可以对角化(最小多项式无重根).
+
+*** 线性变换的特征值与特征向量
+
+    1. 设 $V$ 是 $C$ 上的线性空间(可以是无限维), $\sigma\in{}End\ V,\lambda\in{C}$ .如果存在
+       非零向量 $\alpha\in{V}$ 使得 $\sigma(\alpha)=\lambda{\alpha}$ ,则称 $\lambda$ 是 $\sigma$ 的一个特征值,而 $\alpha$ 是
+       $\sigma$ 的一个特征向量.
+
+    2. 定理[p95]
+       设 $V$ 是有限维线性空间, $\sigma\in{End\ V},A$ 是 $\sigma$ 在某组基下的矩阵,则
+       1) $A$ 与 $\sigma$ 有完全相同的特征值(即重数也一样)
+
+       2) 设 $\sigma$ 的不同特征值为 $\lambda_1,\cdots,\lambda_s$ ,则 $A$ 可以对角化 $\Longleftrightarrow{}V=\sum_{i=1}^{s}\oplus{V_{\lambda_i}}$ .
+	  于是 $A$ 可以对角化 $\Longleftrightarrow{}\sigma$ 可以对角化,即 $\sigma=\sum_{i=1}^s\oplus\sigma_i$ ,其中, $\sigma_i$ 是 $\sigma$ 在
+	  $V_{\lambda_i}$ 上的限制.
+      

@@ -3,6 +3,10 @@
 
 * emacs 常用命令
   
+** Quick rgrep string
+   #+BEGIN_EXAMPLE
+   M-x rgrep
+   #+END_EXAMPLE
 ** Reload file in disk
    #+BEGIN_SRC lisp
    revert-buffer
@@ -51,6 +55,21 @@ C-c C-x C-v
 #+BEGIN_SRC 
 C-c C-o
 #+END_SRC
+* Python-mode
+** C-c C-p
+   start a python shell
+** C-c C-z
+   switch to python shell
+** C-c C-c
+   exec current py file
+** flycheck
+
+   - C-c ! C-c python-flake8 
+     will run flake8 and shows its output in a separate buffer.
+
+   - C-c ! v 
+     will also be of interest, as it shows the state of syntax checkers.
+
 * org-mode
 
 ** Table

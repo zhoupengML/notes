@@ -4,15 +4,13 @@
 ** TODO 矩阵理论作业 <2016-10-18 Tue 08:00>
 ** TODO 招商银行卡更改号码 <2016-09-30 Fri 14:00>
 ** TODO Homework of optimization + 附加题<2016-11-03 Thu>
-** TODO Lecture 东上院500  <2016-11-02 三>
 ** TODO Lecture 东上院500  <2016-11-30 三>
 ** TODO Lecture 东上院500  <2016-12-14 三>
 ** TODO Return books <2016-10-12 三>
 ** TODO DIP Proj (lu-ht) <2016-10-19 Wed>
-** TODO  体育课 <2016-11-02 Wed>
+** TODO  体育课 <2016-11-09 Wed>
 ** TODO makesi Paper <2016-11-12 Sat>
-** TODO 领学生证 电1-441 第一排 <2016-11-02 Wed>
-** TODO 领校友卡 <2016-11-03 Thu>
+** TODO DIP Proj2 <2016-11-15 Tue>
 * Book
 ** [[https://bbs.sjtu.edu.cn/frame2.html][饮水思源bbs]] <2016-10-06 四>
 ** English Learning <2016-10-11 二>
@@ -26,6 +24,25 @@
 ** test project <2016-10-17 Mon>
 * Calender
 * 2016
-** 2016-10 October
-*** 2016-10-17 Monday
-**** test journal <2016-10-17 Mon>
+** 2016-11 November
+*** 2016-11-06 Sunday
+**** 在图书馆遇见,吃过午餐后一起步行回宿舍 <2016-11-06 Sun>	       :Cong:
+*** 2016-11-10 Thursday
+**** 课件ftp:
+
+dip 张瑞:  Wed 12:00-13:00   SEIEE 5-401
+ftp://public.sjtu.edu.cn
+zhang_rui  public
+
+dip 卢宏涛: SEIEE 3-425
+Webpage:
+http://bcmi.sjtu.edu.cn/~luhongtao/dip
+ftp://ftp.cs.sjtu.edu.cn:990    lu-ht
+
+高级数据库技术:
+ftp://ftp.cs.sjtu.edu.cn:990   lu-cj
+
+矩阵理论（张跃辉）
+ftp://zyh@public.sjtu.edu.cn   public
+ <2016-11-10 Thu>
+

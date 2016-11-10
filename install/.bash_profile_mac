@@ -1,0 +1,5 @@
+
+source ~/.bashrc
+
+# added by Anaconda2 4.2.0 installer
+export PATH="/Users/peng/anaconda2/bin:$PATH"

@@ -1,0 +1,25 @@
+* Grammar
+** lambda
+*** Format
+    #+BEGIN_EXAMPLE
+    g = lambda x : {'str' : x}
+
+    which equal to
+
+    def g(x):
+        return {'str' : x}
+    
+    #+END_EXAMPLE
+*** filter,map,reduce
+    #+BEGIN_EXAMPLE
+    >>> foo = [2, 18, 9, 22, 17, 24, 8, 12, 27]
+    >>>
+    >>> print filter(lambda x: x % 3 == 0, foo) or  [x for x in foo if x % 3 == 0]
+       [18, 9, 24, 12, 27]
+
+    >>> print map(lambda x: x * 2 + 10, foo) or  [x * 2 + 10 for x in foo]
+       [14, 46, 28, 54, 44, 58, 26, 34, 64]
+
+    >>> print reduce(lambda x, y: x + y, foo)
+       139
+    #+END_EXAMPLE

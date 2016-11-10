@@ -385,12 +385,19 @@
        设函数 $f(x)$ 在点 $\overline{x}$ 可微,如果存在方向 $d$ ,使 $\nabla{}f(\overline{x})^Td<0$ ,则存在数 $\delta>0$ ,
        使得对每个 $\lambda\in{(0,\delta)}$ ,有 $f(\overline{x}+\lambda{d})<f(\overline{x})$ .
 
-    2. 定理[p204]:
+    2. 定理[p204]:一阶必要条件
+
        设函数 $f(x)$ 在点 $\overline{x}$ 可微,若 $\overline{x}$ 是局部极小点,则梯度 $\nabla{}f(\overline{x})=0$ .
 
-    3. 定理[p204]:
+    3. 定理[p204]:二阶必要条件
+
        设函数 $f(x)$ 在点 $\overline{x}$ 处二次可微,若 $\overline{x}$ 是局部极小点,则梯度 $\nabla{f(\overline{x})}=0$ ,并且
        Hesse 矩阵 $\nabla^2{}f(\overline{x})$ 半正定.
+
+*** 驻点与鞍点
+
+    1. 满足 $\nabla{}f(x^*)=0$ 的点 $x^*$ 称为函数 $f$ 的稳定点或驻点
+    2. 如果 $\nabla{}f(x^*)=0$ ,则 $x^*$ 可能是极小点,也可能是极大点,也可能不是极值点.既不是极小点也不是极大点的稳定点叫做函数的鞍点.
 
 *** 二阶充分条件
 
@@ -398,12 +405,85 @@
        设函数 $f(x)$ 在点 $\overline{x}$ 处二次可微,若梯度 $\nabla{}f(\overline{x})=0$ ,且 Hesse 矩阵
        $\nabla^2{}f(\overline{x})$ 正定,则 $\overline{x}$ 是局部极小点.
 
-*** 充要条件
+*** 凸充要条件
 
     1. 定理[p205]:
        (假设函数是凸函数,给出全局极小点的充分必要条件)
        设 $f(x)$ 是定义在 $R^n$ 上的可微凸函数, $\overline{x}\in{R^n}$ ,则 $\overline{x}$ 为全局极小点的充要条件是
        $\nabla{}f(\overline{x})=0$ .
+
+*** 下降方向
+
+    1. 定义
+       设 $x,d\in{R^n}$ ,若存在常数 $\overline{\alpha}>0$ 使得
+       
+       $f(x+\alpha{d})<f(x),\ \forall{\alpha}\in{(0,\overline{\alpha})}$
+       
+       则称 $d$ 是 $f$ 在 $x$ 点处的一个下降方向.
+
+*** 下降算法
+
+    1. 无约束优化的下降算法的基本思想
+       从某个初始点 $x^{(0)}$ 出发,构造点列 $\{x^{(k)}\}$ 使得 $f(x^{(k+1)})<f(x^{(k)}),k=0,1,\cdots$ .
+       算法的目标是点列 $\{x^{(k)}\}$ 中的某个点或某个极限点是目标函数的解或稳定点.
+
+    2. 算法
+       
+       1) 给定初始点 $x^{(0)}\in{R^n}$ ,精度 $\varepsilon\ge{0}$ .令 $k=0$
+
+       2) 若 $\|\nabla{}f(x^{(k)})\|\le{\varepsilon}$ ,停止,得解 $x^{(k)}$ ,否则转步3
+
+       3) 确定下降方向 $d^{(k)}$ ,使得 $\nabla{}f(x^{(k)})^Td^{(k)}<0$
+
+       4) 确定步长 $\alpha_k>0$ ,使得 $f(x^{(k)}+\alpha_kd^{(k)})<f(x^{(k)})$
+
+       5) 令 $x^{(k+1)}=x^{(k)}+\alpha_kd^{(k)},k:=k+1$ ,转步2
+	
+*** 一维搜索
+
+**** 精确线搜索
+     精确线搜索通过求解一维最优化问题
+
+     $\min_{\alpha>0}f(x^{(k)}+\alpha{}d^{(k)})\stackrel{\triangle}{=}\phi(\alpha)$
+
+     得步长 $\alpha_k$ ,则有
+
+     $\nabla{}f(x^{(k)}+\alpha_kd^{(k)})^Td^{(k)}=0$
+
+     即取 $\alpha_k=\arg{}\min_{\alpha>0}\phi(\alpha)=f(x^{(k)}+\alpha{}d^{(k)})$ ,
+
+     这时 $\alpha_k$ 称为最优步长.这种方法不仅能保证满足下降条件,而且在 $d^{(k)}$ 方向上使下降量
+     $D=f(x^{(k)})-f(x^{(k)}+\alpha_kd^{(k)})$ 达到最大,但一般需要较大的
+     计算量.
+
+**** 非精确线搜索
+
+     精确线搜索的目的是为了获得最优步长,一般需要较大的计算量.非精确线搜索的目的则是求得使目标函数值
+     达到一定下降量的解,即可接受步长,一般只需要较小的计算量.
+
+*** Armijo 型线搜索
+
+    设 $d^{(k)}$ 是 $f$ 在 $x^{(k)}$ 处的一个下降方向,满足 $\nabla{}f(x^{(k)})^Td^{(k)}<0$
+
+    给定 $\sigma_1\in{(0,1)}$ ,取 $\alpha_k>0$ ,使得
+
+    $f(x^{(k)}+\alpha_kd^{(k)})\le{}f(x^{(k)})+\sigma_1\alpha_k\nabla{}f(x^{(k)})^Td^{(k)}$
+
+    即
+
+    $\phi{}(\alpha_k)\le{}\phi{}(0)+\sigma_1\alpha_k\phi{}^{'}(0)$
+
+     易知,上式对充分小的 $\alpha_k$ 均成立,通常希望 $\alpha_k$ 尽可能的大.设 $\beta>0,\rho\in{(0,1)}$ ,一般
+     取 $\alpha_k$ 为集合 $\{\beta{}\rho{}^i,i=0,1,\cdots\}$ 中使得上式成立的最大值.
+
+     - 算法
+       1) 若 $\alpha_k=1$ 满足上式,则取 $\alpha_k=1$ ,否则转2
+
+       2) 给定常数 $\beta>0,\rho\in{(0,1)}$ ,令 $\alpha_k=\beta$
+
+       3) 若 $\alpha_k$ 满足上式,则终止计算,并得步长 $\alpha_k$ ,否则转4
+
+       4) 令 $\alpha_k:=\rho\alpha_k$ ,转3
 
 ** 约束极值问题
        

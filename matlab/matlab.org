@@ -7,6 +7,7 @@
 * Plot
 ** Save-to-Eps-File
    #+BEGIN_EXAMPLE
+   print('-depsc', 'filename')
    print -depsc 'results/histogram_fig1'
    #+END_EXAMPLE
 ** Plot argument
@@ -31,7 +32,8 @@
    colormap(jet(64));   
    #+END_EXAMPLE
 * Class Def
-  #+BEGIN_EXAMPLE
+#+BEGIN_EXAMPLE
+
   classdef Experiment
    properties
      count

@@ -1,0 +1,14 @@
+
+alias ll="ls -la"
+alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs"
+alias e="exit"
+
+#export LC_ALL=en_US.UTF-8
+#export LANG=en_US.UTF-8
+
+PATH=/usr/local/texlive/2016/bin/x86_64-darwin:$PATH;export PATH
+MANPATH=/usr/local/texlive/2016/texmf-dist/doc/man:$MANPATH;export MANPATH
+INFOPATH=/usr/local/texlive/2016/texmf-dist/doc/info:$INFOPATH;export INFOPATH
+
+export PYTHONPATH=~/usr/mxnet/python:$PYTHONPATH
+
