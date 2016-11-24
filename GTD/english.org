@@ -1,0 +1,25 @@
+
+* Word
+
+  - broadly
+
+    For 3D segmentation, known DL schemes can be broadly classified into four categories.
+
+  - hybrid
+    
+    3D convolutions can be employed to replace 2D convolutions [10], or combined with 2D
+    convolutions into a hybrid network.
+
+  - planar,voxel
+    
+    Tri-planar schemes (e.g., [15]) apply three 2D convolutional networks based on orthogonal 
+    planes (i.e., the xy, yz, and xz planes) to perform voxel classification.
+
+  - incorporate,incur
+    
+    Incorporating 3D convolutions may incur extremely high computation costs.
+
+  - 
+    
+    
+

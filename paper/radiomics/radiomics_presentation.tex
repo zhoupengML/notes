@@ -1,0 +1,143 @@
+\documentclass{beamer}
+
+% \usetheme{Warsaw}
+% \usetheme{CambridgeUS}
+% \usetheme{Berkeley}
+% \usetheme{Antibes}
+% \usetheme{Madrid}
+\usetheme{Boadilla}
+
+\begin{document}
+\title{Radiomics}
+\author{Peng Zhou}
+\date{}
+\maketitle{}
+
+\begin{frame}
+  \frametitle{\href{https://arxiv.org/pdf/1609.01006v2.pdf}
+    {Combining Fully Convolutional and Recurrent Neural Networks for 3D Biomedical Image Segmentation}}
+
+  \begin{enumerate}
+
+  \item Area selection
+    \begin{itemize}
+    \item The sliding window strategy is used to traverse the whole image. 
+    \item The sliding windows have different scale, different aspect ratio.
+    \item Too many redundant windows, high time complexity
+    \end{itemize}
+
+  \item Feature extraction
+    \begin{itemize}
+    \item SIFT, HOG
+    \end{itemize}
+
+  \item Classification
+    \begin{itemize}
+    \item SVM, Adaboost
+    \end{itemize}
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Deep Learning Method}
+  \begin{block}{}
+    \begin{enumerate}
+    \item Deep Learning Object Detection Algorithm Based on Region Proposal.
+    \item Deep Learning Object Detection Algorithm Based on Regression.
+    \item ...
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{DL based on Region Proposal}
+  \href{https://people.eecs.berkeley.edu/~rbg/papers/pami/rcnn_pami.pdf}
+  {Region-based Convolution Networks for Accurate Object detection and Segmentation}
+  \begin{block}{Traditional}
+    \begin{itemize}
+    \item Sliding window + features of manual design 
+    \end{itemize}
+  \end{block}
+  \begin{block}{R-CNN}
+    \begin{itemize}
+    \item Region proposal + CNN
+    \end{itemize}
+  \end{block}
+  % \begin{figure}[!t]
+  %   \centering
+  %   \includegraphics[width=0.7\textwidth]{pic/rcnn1.png}
+  %   \caption{R-CNN}
+  % \end{figure}
+\end{frame}
+
+
+\begin{frame}\frametitle{Examples}
+  \emph{Display by column}
+  \begin{columns}
+    \begin{column}{.5\textwidth}
+      \begin{example}
+        Itemize example:
+        \begin{itemize}
+        \item Hello, world! is simple;
+        \item \LaTeX{} beamer is easy.
+        \end{itemize}
+      \end{example}
+    \end{column}
+    \begin{column}{.5\textwidth}
+      \begin{exampleblock}{Enumerate example:}
+        \begin{enumerate}
+        \item \LaTeX{} beamer is powerful, and
+        \item beautiful.
+        \end{enumerate}
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}\frametitle{Examples}
+  \emph{Display by row} \
+  Itemize example: \pause
+  \begin{itemize}
+  \item Hello, world! is simple;  \pause
+  \item \LaTeX{} beamer is easy. \pause
+  \end{itemize}
+  Enumerate example: \pause
+  \begin{enumerate}
+  \item \LaTeX{} beamer is powerful, and \pause
+  \item beautiful. \pause
+  \end{enumerate}
+\end{frame}
+% \begin{frame}
+%   \begin{columns}
+%     \begin{column}{.5\textwidth}
+%       \begin{exampleblock}{Enumerate example:}
+%         \begin{itemize}
+%         \item \LaTeX{}
+%         \item beamer is easy.
+%         \end{itemize}    
+%       \end{exampleblock}
+%       \begin{column}{.5\textwidth}
+%         \begin{exampleblock}{Enumerate example:}
+%           \begin{enumerate}
+%           \item \LaTeX{} beamer is powerful, and
+%           \item beautiful.
+%           \end{enumerate}
+%         \end{exampleblock}        
+%       \end{column}
+%     \end{column}
+%   \end{columns}
+% \end{frame}
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+
+
+
+
+
+
+
+

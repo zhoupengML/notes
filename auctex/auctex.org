@@ -198,6 +198,14 @@ sudo apt-get install auctex
 
 * Latex
 
+** Add hat of a letter
+   #+BEGIN_EXAMPLE
+   \usepackage{bm}
+   
+   $\hat{a }\bar{a} \tilde{a}$
+   $\bm\hat{a} \bm\bar{a} \bm\tilde{a}$
+   $\bm{\hat{a}} \bm{\bar{a}} \bm{\tilde{a}}$   
+   #+END_EXAMPLE
 ** Insert contents
    #+BEGIN_EXAMPLE
    \tableofcontents

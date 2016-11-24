@@ -72,6 +72,10 @@ C-c C-o
 
 * org-mode
 
+** Insert link
+   #+BEGIN_EXAMPLE
+   [[link]]
+   #+END_EXAMPLE
 ** Table
 
    |--------------------+-------------------------------------------|

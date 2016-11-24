@@ -32,9 +32,10 @@
    colormap(jet(64));   
    #+END_EXAMPLE
 * Class Def
+
 #+BEGIN_EXAMPLE
 
-  classdef Experiment
+  classdef Experiment < Handle(Value)
    properties
      count
    end

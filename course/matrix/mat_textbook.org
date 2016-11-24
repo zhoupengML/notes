@@ -261,4 +261,157 @@
        2) 设 $\sigma$ 的不同特征值为 $\lambda_1,\cdots,\lambda_s$ ,则 $A$ 可以对角化 $\Longleftrightarrow{}V=\sum_{i=1}^{s}\oplus{V_{\lambda_i}}$ .
 	  于是 $A$ 可以对角化 $\Longleftrightarrow{}\sigma$ 可以对角化,即 $\sigma=\sum_{i=1}^s\oplus\sigma_i$ ,其中, $\sigma_i$ 是 $\sigma$ 在
 	  $V_{\lambda_i}$ 上的限制.
+
+** Jordan 标准形：复数矩阵的一种最简形式
+
+   - 分块 Schur 三角化定理将寻求矩阵标准形的问题转化为寻找主对角线元素均相同的上三角矩阵
+     的标准形。这样的矩阵可以写成
+     
+     $A=\lambda{}I+N$
+     
+     的形式,其中 $N$ 是严格上三角矩阵.因为
+     
+     $P^{-1}AP=\lambda{}I+P^{-1}NP$
+     
+     故只需研究严格上三角矩阵的标准形即可.
+
+   - 设 $A$ 是 $n$ 阶严格上三角矩阵且 $r(A)=n-1$ ,则 $A$ 与 $J_n$ 相似
+
+   - 设 
+     \begin{equation}
+     A=
+     \begin{bmatrix}
+     0&J_3\\0&0^T
+     \end{bmatrix}
+     \end{equation}
+     
+     是 $4$ 阶严格上三角矩阵,注意 $A$ 不与 
+     
+     \begin{equation}
+     B=
+     \begin{bmatrix}
+     J_3&0\\0^T&0
+     \end{bmatrix}
+     \end{equation}
+     
+     相似,而与 $C=J_2\oplus{}J_2$ 相似.
+
+*** 严格上三角矩阵的标准形
+
+    - 对 $2\le{}r(A)\le{}n-2$ 的 $n$ 阶严格上三角矩阵 $A$ 来说,其标准形并不能由其秩完全
+      确定.
+
+    - 严格上三角矩阵的幂零指数对其标准形有重要意义
+
+*** 幂零矩阵的一些性质
+
+    - 命题[p97]
       
+      1) $J_n^TJ_n=(0)\oplus{}I_{n-1}$
+	 $J_nJ_n^T=I_{n-1}\oplus{}(0)$
+
+      2) $J_ne_i=e_{i-1}$ ,其中 $e_i$ 是标准向量,约定 $e_0$ 是 $0$ 向量
+
+      3) 对任意 $x\in{C^n},(I_n-J_n^TJ_n)x=(x^Te_1)e_1$
+
+*** 幂零矩阵的 Jordan 标准形定理
+
+    - 定理[p97]
+
+      设 $A$ 是 $n$ 阶严格上三角复矩阵,则存在可逆矩阵 $P$ 和正整数 $n_1\ge{}n_2\ge{}\cdots\ge{}n_m$,
+      $n_1+n_2+\cdots+n_m=n$ ,使得
+      
+      $P^{-1}AP=J_{n_1}\oplus{}J_{n_2}\oplus{}\cdots\oplus{}J_{n_m}$
+      
+      上式右端的矩阵称为幂零 Jordan 矩阵,它是矩阵 $A$ 的 Jordan 标准形,一般记为 $J$.如果不计诸 $n_j$ 的次序和
+      大小,则 $A$ 的 Jordan 标准形是唯一的.
+
+    - 推论[p99]
+
+      设 $M$ 与 $N$ 是两个 $n$ 阶幂零矩阵,
+      
+      则 $M$ 与 $N$ 相似 $\Longleftrightarrow{}r(M^k)=r(N^k),\forall{k\ge{1}}$
+
+*** Jordan 标准形定理
+
+    1. 定义
+      
+       矩阵 $\lambda{}I_n+J_n$ 称为 $n$ 阶 $\lambda-Jordan$ 块,记为 $J_n(\lambda)$
+
+    2. 定理 (Jordan 标准形定理)[p99]
+      
+       设 $A$ 是 $n$ 阶复矩阵,则存在可逆矩阵 $P$ 和正整数 $n_1\ge{}n_2\ge{}\cdots\ge{}n_m$ ,
+       $n_1+n_2+\cdots+n_m=n$ ,使得
+      
+       $P^{-1}AP=J_{n_1}(\lambda_1)\oplus{}J_{n_2}(\lambda_2)\oplus\cdots\oplus{}J_{n_m}(\lambda_m)$
+      
+       上式右端的矩阵称为 Jordan 矩阵,它是矩阵 $A$ 的 Jordan 标准形.如果不计诸 $n_j$ 的次序与大小,
+       则 $A$ 的 Jordan 标准形是唯一的.
+
+    3. 推论
+      
+       方阵 $A$ 可以对角化 $\Longleftrightarrow{}A$ 的 Jordan 标准形是对角矩阵
+
+    4. 意义
+      
+       一个矩阵的 Jordan 标准形不仅具有非常简单的形式,而且包含了该矩阵的几乎所有信息,比如 
+       秩,特征值,线性无关的特征向量的个数,特征子空间的维数等.
+
+*** 幂零矩阵的 Jordan 标准形的最大块的阶数
+
+    - 命题[p100] (最大 Jordan 块)
+      
+      设 $A$ 是严格上三角矩阵,则其 Jordan 标准形的 Jordan 块的阶数的最大值等于其幂零指数.
+
+*** Jordan 标准形的计算 (严格上三角矩阵)
+
+    - 对阶数较小的幂零矩阵可以通过其幂零指数和秩来确定其 Jordan 标准形
+
+    - 定理[p100]
+      
+      设 $n$ 阶严格上三角矩阵 $A$ 的 Jordan 标准形 $J$ ,其幂零指数为 $e$ ,则
+      
+      1) $e=\max{\{n_i:1\le{i}\le{m}\}}$
+
+      2) $J$ 中 Jordan 块的个数 $m$ 等于 $A$ 的零度
+
+      3) 记 $J$ 中 $k$ 阶 Jordan 块的个数为 $l_k$ , $A^k$ 的零度为 $\eta_k$, $0\le{k}\le{m}$ .则
+	 
+	 $l_k=2\eta_k-\eta_{k-1}-\eta_{k+1},1\le{k}\le{m}$
+	
+*** Jordan 标准形的计算 (一般矩阵)
+
+    - 设 $n$ 阶矩阵 $A$ 的 Jordan 标准形 $J$ 同 [[Jordan 标准形定理]] .设 $\mu$ 为
+      $A$ 的一个特征值,记 $(A-\mu{I})^k$ 的零度为 $\eta_k$ , $J$ 中对角线元素
+      为 $\mu$ 的 $k$ 阶 Jordan 块的个数为 $l_k$ ,则
+      
+      1) $\eta_1$ 等于 $J$ 中对角线元素为 $\mu$ 的 Jordan 块的个数
+
+      2) $l_1=2\eta_1-\eta_2,l_2=2\eta_k-\eta_{k-1}-\eta_{k+1},k\ge{2}$
+	 
+
+
+
+* Chapter 4 正规矩阵与矩阵分解
+
+** 正规矩阵
+
+*** 酉对角化判定定理
+
+    - 定理[p122]
+      矩阵 $A$ 可以酉对角化 $\Longleftrightarrow{}AA^*=A^*A$
+
+*** 正规矩阵定义
+
+    - 定义[p123]
+      设 $A\in{}C^{n\times{n}}$, 若 $AA^*=A^*A$ ,则称 $A$ 为正规矩阵.
+
+    - 实对称矩阵,实反对称矩阵,正交矩阵,Hermite矩阵,反Hermite矩阵,酉矩阵都是正规矩阵.
+
+    - 若 $A$ 是正规矩阵,则与 $A$ 酉相似的矩阵仍为正规矩阵.
+
+** 矩阵的 QR 分解
+
+
+   
+   

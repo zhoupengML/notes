@@ -1,3 +1,8 @@
+paper/radiomics/*
+!/paper/radiomics/*.tex
+!/paper/radiomics/*.org
+
+
 course/digital_image_processing/ltxpng
 letter/
 *.DS_Store
