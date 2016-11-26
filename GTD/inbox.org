@@ -19,7 +19,10 @@
    [[http://www.zhihu.com/question/27478438/answer/37035381]]
 ** Blog <2016-10-11 二>
    [[http://forrestchang.github.io/]]
-
+** Linux <2016-11-26 Sat>
+*** [[http://akaedu.github.io/][linux C编程一站式学习]]
+** Cong <2016-11-26 Sat>
+*** [[http://kg.qq.com/personal.html?uid=639f9c8420243e8e3d][全名K歌]]
 * Project
 ** test project <2016-10-17 Mon>
 ** dip_zhangrui <2016-11-22 Tue>
@@ -56,5 +59,10 @@ ftp://zyh@public.sjtu.edu.cn   public
 *** 2016-11-19 Saturday
 **** 第一次约会 <2016-11-18 Fri>				       :Cong:
      去了交大徐汇校区，去外滩看东方明珠，在徐汇吃的晚餐（川菜）
-*** 2016-11-22 Tuesday
+*** 2016-11-26 Saturday
+**** 下午来我宿舍看电影(从你的全世界路过) <2016-11-25 Fri>	       :Cong:
+* Calendar
 
+* Idea
+** 确定搜索方向(最优化) <2016-11-26 Sat>
+   - 求 $\beta$ 的不同方法 一般取 0.9

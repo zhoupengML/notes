@@ -13,36 +13,122 @@
 \date{}
 \maketitle{}
 
+
 \begin{frame}
   \frametitle{\href{https://arxiv.org/pdf/1609.01006v2.pdf}
     {Combining Fully Convolutional and Recurrent Neural Networks for 3D Biomedical Image Segmentation}}
-
+  We propose a new framework combining two DL components:
   \begin{enumerate}
-
-  \item Area selection
-    \begin{itemize}
-    \item The sliding window strategy is used to traverse the whole image. 
-    \item The sliding windows have different scale, different aspect ratio.
-    \item Too many redundant windows, high time complexity
-    \end{itemize}
-
-  \item Feature extraction
-    \begin{itemize}
-    \item SIFT, HOG
-    \end{itemize}
-
-  \item Classification
-    \begin{itemize}
-    \item SVM, Adaboost
-    \end{itemize}
+  \item A fully convolutional network (FCN) to extract intra-slice contexts
+  \item A recurrent neural network (RNN) to extract inter-slice contexts.
   \end{enumerate}
+
+  \begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.8\textwidth]{picture/framework.jpg}
+  \end{figure}
+
+  
 \end{frame}
+
+\begin{frame}
+  \frametitle{\href{https://arxiv.org/pdf/1609.01006v2.pdf}
+    {Combining Fully Convolutional and Recurrent Neural Networks for 3D Biomedical Image Segmentation}}
+  We propose a new framework combining two DL components:
+    \begin{enumerate}
+    \item A fully convolutional network (FCN) to extract intra-slice contexts
+      \begin{itemize}
+      \item Our FCN component employs a new deep architecture for 2D feature extraction. It aims
+        to efficiently compress the intra-slice information into hierarchical features. Comparing
+        to known FCN for 2D biomedical imaging (e.g., U-Net), our new FCN is considerably more
+        effective in dealing with objects of very different scales by simulating human behaviors in
+        perceiving multi-scale information.
+      \end{itemize}
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{\href{https://arxiv.org/pdf/1609.01006v2.pdf}
+    {Combining Fully Convolutional and Recurrent Neural Networks for 3D Biomedical Image Segmentation}}
+  We propose a new framework combining two DL components:
+    \begin{enumerate}
+    \item A recurrent neural network (RNN) to extract inter-slice contexts.
+      \begin{itemize}
+      \item We introduce a generalized RNN to exploit 3D contexts, which essentially applies a series
+        of 2D convolutions on the xy plane in a recurrent fashion to interpret 3D contexts while
+        propagating contextual information in the z-direction. 
+      \item Our key idea is to hierarchically assemble intra-slice contexts into 3D contexts by leveraging
+        the inter-slice correlations.
+        The insight is that our RNN can distill 3D contexts in the same spirit as the 2D convolutional
+        neural network (CNN) extracting a hierarchy of contexts from a 2D image. Comparing to known RNN
+        models for 3D segmentation, such as Pyramid-LSTM, our RNN model is free of the problematic
+        isotropic convolutions on anisotropic images, and can exploit 3D contexts more efficiently by
+        combining with FCN.
+      \end{itemize}
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{\href{https://arxiv.org/pdf/1609.01006v2.pdf}
+    {Combining Fully Convolutional and Recurrent Neural Networks for 3D Biomedical Image Segmentation}}
+  The essential difference between our new DL framework and the known DL-based 3D segmentation approaches is
+  that we explicitly leverage the anisotropism of 3D images and efficiently construct a hierarchy of discriminative
+  features from 3D contexts by performing systematic 2D operations.
+
+  Our framework can serve as a new paradigm of
+  migrating 2D DL architectures (e.g., CNN) to effectively exploit 3D contexts and solve 3D image segmentation problems.
+\end{frame}
+
+\begin{frame}
+  \frametitle{The FCN Component: kU-Net}
+  A key challenge to the FCN component is the multi-scale issue. 
+  \begin{itemize}
+  \item Objects in biomedical images, specifically in 2D slices, can have very different scales and shapes.
+    But, the common FCN and other known variants for segmenting biomedical images (e.g., U-Net) work on a
+    fixed-size perception field (e.g., a $500\times500$ region in the whole 2D slice). When objects are of larger
+    scale than the pre-defined perception field size, it can be troublesome for such FCN methods to capture
+    the high level context (e.g., the overall shapes). 
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The FCN Component: kU-Net}
+  We propose a new FCN architecture to simulate how human experts perceive multi-scale information,
+  in which multiple submodule FCNs are employed to work on different image scales systematically.
+  \begin{itemize}
+  \item Here, we use U-Net as the submodule FCN and call the new architecture kU-Net. U-Net is chosen
+    because it is a well-known FCN achieving huge success in biomedical image segmentation.
+  \end{itemize}
+\end{frame}  
+
+\begin{frame}
+  \frametitle{The FCN Component: kU-Net}
+  There are two critical mechanisms in kU-Net to simulate such human behaviors.
+  \begin{enumerate}
+  \item kU-Net employs a sequence of submodule FCNs to extract information at different scales sequentially
+    (from the coarsest scale to the finest scale). 
+  \item The information extracted by the submodule FCN responsible for a coarser scale will be propagated to
+    the subsequent submodule FCN to assist the feature extraction in a finer scale.
+  \end{enumerate}
+\end{frame}  
+
+\begin{frame}
+  \frametitle{The FCN Component: kU-Net}
+  We chose type (A) as our final architecture to organize the sequence of submodule FCNs.
+  \begin{figure}[!htb]
+    \centering
+    \includegraphics[height=0.76\textheight]{picture/u-net-structure.jpg}
+  \end{figure}
+\end{frame}
+
+
 
 \begin{frame}
   \frametitle{Deep Learning Method}
   \begin{block}{}
     \begin{enumerate}
     \item Deep Learning Object Detection Algorithm Based on Region Proposal.
+      
     \item Deep Learning Object Detection Algorithm Based on Regression.
     \item ...
     \end{enumerate}

@@ -1,3 +1,5 @@
+/GTD/ltxpng
+
 paper/radiomics/*
 !/paper/radiomics/*.tex
 !/paper/radiomics/*.org

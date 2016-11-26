@@ -19,6 +19,10 @@
     
     Incorporating 3D convolutions may incur extremely high computation costs.
 
+  - commensurate
+    
+    Skip-layer connections exist between each downsampled feature map and the commensurate upsampled feature map.
+
   - 
     
     
