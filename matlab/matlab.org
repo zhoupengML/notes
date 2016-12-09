@@ -47,7 +47,7 @@
           obj.count = nargin;
           for i = 1 : nargin
              obj.img_file_list{i} = varargin{i};
-             obj.img_obj_list{i} = ImageProcessing(varargin{i});
+             obj.img_obj_list{i} = ImageObj(varargin{i});
           end
        end
        function retval = fun(obj, args)
@@ -63,6 +63,16 @@
 
 end
   #+END_EXAMPLE
-* DFT
-  
-** 
+* Switch
+  #+BEGIN_EXAMPLE
+  switch <switch_expression>
+   case <case_expression>
+     <statements>
+   case <case_expression>
+     <statements>
+     ...
+     ...
+   otherwise
+       <statements>
+  end
+  #+END_EXAMPLE

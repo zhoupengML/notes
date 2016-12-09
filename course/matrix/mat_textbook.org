@@ -398,20 +398,372 @@
 
 *** 酉对角化判定定理
 
-    - 定理[p122]
+    - 定理[p122] 可以酉对角化的"好矩阵"的一个直接的判断
+
       矩阵 $A$ 可以酉对角化 $\Longleftrightarrow{}AA^*=A^*A$
 
 *** 正规矩阵定义
 
-    - 定义[p123]
-      设 $A\in{}C^{n\times{n}}$, 若 $AA^*=A^*A$ ,则称 $A$ 为正规矩阵.
+    1. 定义[p123]
+       设 $A\in{}C^{n\times{n}}$, 若 $AA^*=A^*A$ ,则称 $A$ 为正规矩阵.
 
-    - 实对称矩阵,实反对称矩阵,正交矩阵,Hermite矩阵,反Hermite矩阵,酉矩阵都是正规矩阵.
+    2. 实对称矩阵,实反对称矩阵,酉矩阵,正交矩阵,Hermite矩阵,反Hermite矩阵都是正规矩阵.
 
-    - 若 $A$ 是正规矩阵,则与 $A$ 酉相似的矩阵仍为正规矩阵.
+    3. 引理[p123]
+       设 $A$ 为正规矩阵,若 $A$ 又为三角矩阵,则 $A$ 为对角矩阵.
+
+    4. 将正规矩阵 $A$ 酉对角化的酉矩阵的每一列都是 $A$ 的特征向量.
+
+    5. 定理[p123]
+       设 $A\in{}C^{n\times{n}}$ ,则 $A$ 为正规矩阵 $\Longleftrightarrow{A}$ 有 $n$ 个两两正交的单位
+       特征向量.
+
+    6. 推论[p123]
+       正规矩阵属于不同特征值的特征向量是相互正交的.
+
+    7. 定理[p123]
+       设 $A=(a_{ij})_{n\times{n}}$ 是复矩阵, $\lambda_1,\lambda_2,\cdots,\lambda_n$ 为 $A$ 的
+       $n$ 个特征值,则
+      
+       1) (Schur 不等式) $\sum_{i=1}^{n}\mid{\lambda_i}\mid^2\le\sum_{i,j=1}^n\mid{a_{ij}}\mid^2$
+
+       2) $A$ 为正规矩阵 $\Longleftrightarrow\sum_{i=1}^{n}\mid\lambda_i\mid^2=\sum_{i,j=1}^{n}\mid{a_{ij}}\mid^2$
+
+    8. 若 $A$ 是正规矩阵,则与 $A$ 酉相似的矩阵仍为正规矩阵.
+
+*** Schur 型
+    - 设 $a$ 与 $b$ 是实数且 $b\ne{0}$ ,则称二阶实矩阵
+      
+      \begin{equation}
+      \begin{bmatrix}
+      a&b\\-b&a
+      \end{bmatrix}
+      \end{equation}
+      
+      为一个 Schur 型. Schur 型正是复数 $a+bi$ 的矩阵表示,一个 Schur 型的特征值正是复数 $a\pm{bi}$ .
+
+    - 每个 Schur 型都是正规矩阵,酉相似与对角矩阵 $(a+bi)\oplus(a-bi)$ ,但不能正交对角化.
+
+*** 实正规矩阵在正交变换下的最简形式
+**** 定理[p124] 实正规矩阵
+      设 $A$ 是 $n$ 阶实矩阵,则 $A$ 是正规矩阵 $\Longleftrightarrow$ 存在正交矩阵 $Q$ 使得
+      
+      $Q^TAQ=A_1\oplus{A_2}\oplus\cdots\oplus{A_s}$
+      
+      其中每个 $A_i$ 或者是一阶实矩阵,或者是一个 Schur 型.
+
+**** 推论[p124] 
+      设 $A$ 是 $n$ 阶实矩阵
+      
+      1) $A$ 是对称矩阵 $\Longleftrightarrow$ 存在正交矩阵 $Q$ ,使得 $Q^TAQ$ 是对角矩阵
+
+      2) $A$ 是反对称矩阵 $\Longleftrightarrow$ 存在正交矩阵 $Q$ ,使得
+	 
+	 $Q^TAQ=0\oplus{A_1}\oplus{A_2}\oplus\cdots\oplus{A_s}$
+	 
+	 其中每个 
+	 
+	 \begin{equation}A_i=\begin{bmatrix}0&b_i\\-b_i&0\end{bmatrix}\end{equation}
+	 
+	 从而反对称矩阵的非零特征值为纯虚数.
+
+      3) $A$ 是正交矩阵 $\Longleftrightarrow$ 存在正交矩阵 $Q$ ,使得
+	 
+	 $Q^TAQ=I_s\oplus(-I_t)\oplus{A_1}\oplus{A_2}\oplus\cdots\oplus{A_m}$
+	 
+	 其中每个 $A_i$ 是二阶 Givens 旋转矩阵,从而正交矩阵的特征值的模均为 $1$ .
+	 
+	 设 $B$ 是 $n$ 阶复矩阵
+
+      4) $B$ 是 Hermite 矩阵 $\Longleftrightarrow$ 存在酉矩阵 $U$ ,使得 $U^*BU$ 是实对角矩阵.
+
+      5) $B$ 是 反Hermite 矩阵 $\Longleftrightarrow$ 存在酉矩阵 $U$ ,使得 $U^*BU$ 是纯虚数对角矩阵(即实部为0)
+
+      6) $B$ 是酉矩阵 $\Longleftrightarrow$ 存在酉矩阵 $U$ ,使得 $U^*BU$ 是对角元素的模均为1的对角矩阵,从而
+	 酉矩阵的特征值的模均为1.
+
+      7) Hermite 矩阵 $A$ 正定 $\Longleftrightarrow$ $A$ 的所有顺序主子式均大于0.
+
+**** 引理[p125]
+   Hermite 阵或实对称矩阵 $A$ 在某一个 $k$ 维子空间上正定 $\Longleftrightarrow{A}$ 至少有 $k$ 个特征值(包括重数)大于零.
+
+*** Hermite 矩阵与二次型
+    设 $A$ 为 $n$ 阶 Hermite 矩阵, $x^*Ax$ 是相应的复二次型,则 $A$ 可以酉对角化等价于该复二次型可以通过
+    酉变换(即等距变换)化为
+
+    $\lambda_1\mid{y_1}\mid^2+\lambda_2\mid{y_2}\mid^2+\cdots+\lambda_n\mid{y_n}\mid^2$
+
+    由于特征值 $\lambda_i$ 均为实数,所以 $Hermite$ 矩阵对应的复二次型的值总是实数.若 $A$ 还是可逆矩阵,则
+    诸特征值均非零,它们的倒数正是主轴平方.
+
+** 正规矩阵的谱分解
+
+*** 定义
+    - 设 $A$ 为正规矩阵,则由[[酉对角化判定定理]]知,存在酉矩阵 $U$ 使得 $U^*AU=diag(\lambda_1,\lambda_2,\cdots,\lambda_n)$ .
+      因而 $A=Udiag(\lambda_1,\cdots,\lambda_n)U^*$ .令 $U=(\alpha_1,\alpha_2,\cdots,\alpha_n)$ ,则
+    
+      \begin{eqnarray}A=(\alpha_1,\alpha_2,\cdots,\alpha_n)
+      \begin{bmatrix}
+      \lambda_1&&&\\&\lambda_2&&\\&&\ddots&\\&&&\lambda_n
+      \end{bmatrix}
+      \begin{bmatrix}
+      \alpha_1^*\\\alpha_2^*\\\vdots\\\alpha_n^*
+      \end{bmatrix}\nonumber\\
+      =\lambda_1\alpha_1\alpha_1^*+\lambda_2\alpha_2\alpha_2^*+\cdots+\lambda_n\alpha_n\alpha_n^*
+      \end{eqnarray}
+    
+      由于 $\lambda_1,\lambda_2,\cdots,\lambda_n$ 为 $A$ 的特征值, $\alpha_1,\alpha_2,\cdots,\alpha_n$ 为对应的两两正交的单位特征向量,故
+      上式称为正规矩阵 $A$ 的谱分解或特征(值)分解.
+ 
+    - 若把公式中系数相同的放在一起(0特征值对应的项去掉),然后把系数提出来,则公式就变成了
+
+      $A=\lambda_1P_1+\lambda_2P_2+\cdots+\lambda_sP_s$
+
+      其中 $\lambda_1,\lambda_2,\cdots,\lambda_s$ 为 $A$ 的互不相同的非零特征值. 由于
+      
+      $(\alpha_i\alpha_i^*)^*=\alpha_i\alpha_i^*,1\le{i}\le{n}$
+      
+      $(\alpha_i\alpha_i^*)(\alpha_j\alpha_j^*)=0,1\le{i}\ne{j}\le{n}$
+      
+      $(\alpha_i\alpha_i^*)^2=\alpha_i\alpha_i^*,1\le{i}\le{n}$
+
+      从第二章幂等矩阵与投影变换的对应关系可知, $P_i$ 是某正交投影变换(在某基下)的矩阵,故常称为正交投影矩阵.
+
+*** 谱分解的几何意义
+
+    - 如果二阶实正规矩阵 $A$ 有两个相同的特征值 $\lambda$ ,则 $A=\lambda{I}$ 就是它的谱分解.如果 $A$ 有两个不同的
+      特征值 $\lambda_1$ 与 $\lambda_2$ ,则其谱分解为 $A=\lambda_1P_1+\lambda_2P_2$ .因此,对任意 $\alpha\in{R^2}$ ,
+      有
+      
+      $A\alpha=\lambda_1P_1\alpha+\lambda_2P_2\alpha$
+      
+      计算内积可得 $(P_1\alpha,P_2\alpha)=(P_1\alpha)^TP_2\alpha=\alpha^TP_1^TP_2\alpha=0$ ,
+      所以 $\lambda_1P_1\alpha$ 与 $\lambda_2P_2\alpha$ 是正交的向量,所以公式将 $A\alpha$ 分解成了两个正交向量的和.
+
+    - 因此,二维正规矩阵的谱分解实际上是平面的正交投影变换的推广.
+
+*** 利用谱分解求Hermite矩阵的逆
+    - 如果 $A$ 是可逆 Hermite 矩阵,则可以利用 $A$ 的谱分解来求其逆矩阵.设 $A$ 的谱分解为
+      
+      $A=\sum_{i=1}^n\lambda_i\alpha_i\alpha_i^*$
+      
+      则
+      
+      $A^{-1}=\sum_{i=1}^{n}\frac{1}{\lambda_i}\alpha_i\alpha_i^{*}$
+
+*** 单纯矩阵
+    - 定义[p129]
+      $n$ 阶可对角化矩阵 $A$ 称为单纯矩阵.可以类似于正规矩阵定义 $A$ 的谱分解.
+      
+*** 谱分解定理
+    - 定理[p131]
+      设 $A$ 为一个 $n$ 阶可对角化矩阵, $A$ 的谱为 $\sigma(A)=\{\lambda_1,\lambda_2,\cdots,\lambda_s\}$ ,其中 $\lambda_i$ 的重数为 $k_i$ .
+      则存在唯一一组 $s$ 个 $n$ 阶方阵 $P_1,P_2,\cdots,P_s$ ,满足
+      
+      $(1)\ A=\sum_{i=1}^s\lambda_iP_i;\ (2)\ P_i^2=P_i;\ (3)\ P_iP_j=0(i\ne{}j)$
+      
+      $(4)\ \sum_{i=1}^sP_i=I;\ (5)\ r(P_i)=k_i$
+      
+      这些矩阵 $P_i$ 称为 矩阵 $A$ 的成分矩阵或主幂等矩阵.
+
+    - 注意:与正规矩阵相比,一般矩阵的谱分解中的成分矩阵不一定是 Hermite 矩阵.因此,
+
+      $Ax=\lambda_1P_1x+\lambda_2P_2x+\cdots+\lambda_sP_sx$ 中的诸向量 $P_ix$ 未必是正交的.
+
+    - 推论[p132]
+      设 $A=\sum_{i=1}^{s}\lambda_iP_i$ 是单纯矩阵 $A$ 的谱分解,则
+      
+      $A^m=\sum_{i=1}^s\lambda_i^mP_i$
+      
+      从而对任意多项式 $f(x)$ ,有 $f(A)=\sum_{i=1}^sf(\lambda_i)P_i$ .
+
+** 矩阵的三角分解与Cholesky分解
+
+*** 定义
+    - 定义[p133]
+      设 $A$ 是 $n$ 阶矩阵,如果存在上三角矩阵 $U$ 与单位下三角矩阵 $L$ 使得
+      
+      $A=LU$
+      
+      则称 $A$ 有三角分解或 $LU$ 分解,
+
+*** LU分解的唯一性
+    - 三角分解未必存在
+      
+    - 设 $A$ 是 $n$ 阶可逆矩阵,并且 $A$ 有三角分解 $A=LU$ ,则该分解是唯一的,
+      且 $\mid{A}\mid=\mid{U}\mid=u_{11}u_{22}\cdots{u_{nn}}$ .
+
+*** Cholesky分解
+    - 定理[p133]
+      实正定矩阵 $A$ 必有三角分解 $A=LU$ ,且存在唯一的对角元素均为正的下三角矩阵 $G$ ,使得 
+      $A=GG^T$ (此称为Cholesky分解).矩阵 $G$ 称为Cholesky三角.
+
+    - 定理[p135]
+      设 $n$ 阶矩阵 $A$ 可逆,则 $A$ 存在三角分解 $\Longleftrightarrow{A}$ 的所有顺序主子式均非0.此时,唯一的存在
+      一对单位下三角矩阵 $L^{'}$ 和单位上三角矩阵 $U^{'}$ 与对角矩阵 $D$ ,使得 $A=L^{'}DU^{'}$ ,其中 
+      $D$ 与 $A$ 具有完全相同的顺序主子式.
+
+    - 推论[p135]
+      设 $n$ 阶矩阵 $A$ 的前 $r(A)$ 个顺序主子式均非0,则 $A$ 存在三角分解.
 
 ** 矩阵的 QR 分解
 
+*** 定义
+    - 即使可逆矩阵也可能不存在三角分解.矩阵的正交三角分解即是一种对任何可逆矩阵均存在的理想分解,
+      其原理是Gram-Schmidt的正交化方法.
 
-   
-   
+    - 定理[p136] 矩阵的正交三角分解
+
+      设 $A\in{C^{n\times{n}}}$ ,且 $A$ 为满秩的,则存在唯一的酉矩阵 $U$ 和对角线元素都大于零(保证唯一性)的
+      上三角矩阵 $R$ ,满足
+
+      $A=UR$
+
+    - 当 $A$ 为实满秩矩阵时,上面定理中的 $U$ 为正交矩阵,记为 $Q$ ,而 $R$ 为实上三角矩阵,因此 $UR$ 分解
+      也称为 $QR$ 分解.
+
+    - 推论[p137]
+      设可逆矩阵 $A$ 的正交三角分解为 $A=UR$ ,则上三角矩阵 $R$ 的行列式的模等于矩阵 $A$ 的行列式的模.
+
+*** 所有列满秩的矩阵均存在类似的正交三角分解
+
+**** 矩阵的薄QR分解
+     
+    - 定理[p137]
+      设 $A\in{C^{n\times{r}}}$ ,且 $A$ 是列满秩的,则
+      
+      $A=UR$
+      
+      其中, $U\in{C^{n\times{r}}}$ 的 $r$ 个列向量构成一组标准正交向量组, $R\in{C^{r\times{r}}}$ 为对角线元素大于零
+      的上三角矩阵.此分解是唯一的.
+
+**** 正交三角分解
+
+     - 定理[[矩阵的薄QR分解]]可以作如下变化,即将 $U$ 取为 $n$ 阶酉矩阵,而将 $R$ 取为 $n\times{r}$ 阶准上三角矩阵,
+       即
+       
+       \begin{equation}R=
+       \begin{bmatrix}R_1\\0\end{bmatrix}
+       \end{equation}
+       
+       其中 $r$ 阶上三角矩阵 $R_1$ 具有正对角元素.通常称此种分解为矩阵 $A$ 的正交三角分解.
+
+     - 设列满秩矩阵 $A\in{C^{m\times{n}}}$ 的正交三角分解为 $A=UR$ ,则 $A^*A=R^*R$ .因此下三角矩阵
+       $R^*$ 恰好是正定矩阵 $A^*A$ 的 Cholesky 三角.
+
+** 矩阵的奇异值分解与极分解
+
+*** 奇异值分解定理
+****    定理[p139]
+       设 $A=(a_{ij})\in{C^{m\times{n}}}(m\ge{n})$ ,且 $\sigma_1\ge{\sigma_2}\ge{\cdots}\ge{\sigma_r}>0$ ,
+       则存在 $m$ 阶和 $n$ 阶的酉矩阵 $U$ 和 $V$ ,使得
+      
+       $A=UDV^*$
+      
+       其中 $D=diag(\sigma_1,\sigma_2,\cdots,\sigma_r,0,\cdots,0)_{m\times{n}}$ .
+      
+       上式称为矩阵 $A$ 的奇异值分解,简称为 SVD ,而 $\sigma_1,\cdots,\sigma_r,0,\cdots,0$ (共 $n$ 个)称为 $A$ 的奇异值.
+
+****    由奇异值分解定理的证明可知
+      
+       \begin{eqnarray}
+       Av_i=
+       \begin{cases}
+       \sigma_iu_i,\ 1\le{i}\le{r}\\
+       0,\ r+1\le{i}\le{n}
+       \end{cases}
+       \end{eqnarray}
+       与
+      
+       \begin{eqnarray}
+       u_i^*A=
+       \begin{cases}
+       \sigma_iv_i^*,\ 1\le{i}\le{r}\\
+       0,\ r+1\le{i}\le{m}
+       \end{cases}
+       \end{eqnarray}
+      
+       因此,矩阵 $V$ 与 $U$ 的列向量分别称为矩阵 $A$ 的右奇异向量和左奇异向量,而 $V$ 与 $U$ 分别
+       称为 $A$ 的右奇异向量矩阵和左奇异向量矩阵.
+
+****    推论[p141]
+	- 设 $A$ 是正规矩阵,则可以由 $A$ 的谱分解导出 $A$ 的一个奇异值分解.设 $A=U^*\Lambda{U}$ ,其中
+	  $\Lambda=diag(\lambda_1,\lambda_2,\cdots,\lambda_n)$ .则存在对角酉矩阵 $W$ ,使得
+	  
+	  $D=\Lambda{W^*}=diag(\mid{\lambda_1}\mid,\cdots,\mid{\lambda_n\mid})$
+	  
+	  于是得 $A=U^*\Lambda{W^*}WU=U^*DWU=U^*DV$ ,其中
+
+	  矩阵 $V=WU$ 是酉矩阵,即 $A$ 的一个奇异值分解为 $A=U^*DV$ .
+
+*** 奇异值分解的几何意义[p141]
+    - 将 $A_{m\times{n}}=UDV^*$ 看作是从 $C^n$ 到 $C^m$ 的线性变换,则该线性变换首先在 $C^n$ 内
+      将向量 $x$ 作一旋转而得到向量 $V^*x$ ,然后再将 $C^n$ 中的向量 $V^*x$ 沿前 $r=r(A)$ 个坐标
+      作伸缩(其余坐标变为0)而得到 $C^m$ 中的向量 $DV^*x$ ,最后再在 $C^m$ 内作一旋转而得到
+      向量 $UDV^*x$ .比较正规矩阵的酉对角化可知,此处的两次旋转可能不是互逆的.
+
+*** 并向量分解,截尾奇异值分解
+    - 将 $A$ 的奇异值分解展开可得
+      
+      $A=\sum_{i=1}^n\sigma_iu_iv_i^*$
+      
+      上式称为矩阵 $A$ 的并向量分解或奇异值分解展开.由于 $\sigma_i=0,i>r$ ,所以上式可写为
+      
+      $A=\sum_{i=1}^{r}\sigma_iu_iv^*_i=U_rD_rV^*_r$
+      
+      其中 $U_r,V_r$ 分别是 $U,V$ 的前 $r$ 列构成的矩阵,而 $D_r=diag(\sigma_1,\cdots,\sigma_r)$ .
+      上式称为矩阵 $A$ 的截尾奇异值分解或薄奇异值分解.
+
+**** $A$ 与 $A^*$ 具有相同的奇异值
+
+     - 推论[p142]
+       设 $A=(a_{ij})_{m\times{n}}$ 的秩为 $r$ ,则 $AA^*$ 与 $A^*A$ 有完全相同的非零特征值
+       (相同的按重数计算) $\sigma^2_1,\sigma^2_2,\cdots,\sigma^2_r$ ,其中 $\sigma_1,\sigma_2,\cdots,\sigma_r$ 是 $A$
+       的非零奇异值.因此, $A$ 与 $A^*$ 具有相同的奇异值.
+
+**** $A$ 的逆矩阵的奇异值分解
+     - 例[p142]
+       设可逆矩阵 $A$ 的奇异值分解为 $A=UDV^*$ ,则其逆的奇异值分解为 $A^{-1}=VD^{-1}U^*$ .
+       因此,若 $A$ 的奇异值为 $\sigma_1\ge{\sigma_2\ge{\cdots}},\ge\sigma_n>0$ ,则 $A^{-1}$ 的奇异值为
+       $\frac{1}{\sigma_n}\ge{}\frac{1}{\sigma_{n-1}}\ge\cdots\ge{}\frac{1}{\sigma_1}>0$ .
+
+     - 矩阵计算中的重要概念,矩阵 $A$ 的(谱)条件数,记为 $Cond(A)$ ,可以表示为
+       
+       $Cond(A)=\frac{\sigma_1(A)}{\sigma_n(A)}$
+
+***  极分解
+      - 定理[p142]
+	设 $A\in{C^{n\times{n}}}$ ,则存在酉矩阵 $U$ 和唯一的半正定矩阵 $P$ ,使得
+	
+	$A=PU$
+	
+	上式称为矩阵 $A$ 的极分解.矩阵 $P$ 与 $U$ 分别称为 $A$ 的 Hermite 因子与酉因子.
+
+      - 设 $A=U_1DV^*$ 是 $A$ 的奇异值分解,令 $P=U_1DU_1^*,U=U_1V^*$ ,
+	即可得到矩阵的极分解.
+	
+	
+*** 极分解的几何意义[p142]
+    - 矩阵的极分解的几何意义是:先旋转,然后再沿着一组正交的方向作伸缩.
+
+*** 利用矩阵的极分解判断正规性
+    - 命题[p142]
+      设 $A=PU$ 是矩阵 $A$ 的极分解,则
+      
+      $A$ 是正规矩阵$\Longleftrightarrow{}PU=UP$
+
+*** 奇异值分解的性质
+**** 正规矩阵的奇异值分解[p142]
+   - 正规矩阵的奇异值是其特征值的模.特别地,半正定矩阵的特征值与奇异值相同.
+**** 奇异值分解与矩阵的四个子空间[p142]
+     - 设 $A=UDV^*$ 是 $m\times{n}$ 矩阵 $A$ 的一个奇异值分解, $r=r(A)$ ,则
+       1) 酉矩阵 $U$ 的前 $r$ 列是 $A$ 的列空间的一组标准正交基
+       2) 酉矩阵 $V$ 的前 $r$ 列是 $A^*$ 的列空间的一组标准正交基
+       3) $U$ 的后 $m-r$ 列是 $A^*$ 的零空间的一组标准正交基
+       4) $V$ 的后 $n-r$ 列是 $A$ 的零空间的一组标准正交基
+
+
+
+
+
+

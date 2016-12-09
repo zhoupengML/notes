@@ -8,11 +8,147 @@
 \usetheme{Boadilla}
 
 \begin{document}
-\title{Radiomics}
-\author{Peng Zhou}
+\title{Detection \& Segmentation}
+\author{Zhou Peng}
 \date{}
 \maketitle{}
 
+\begin{frame}
+  \frametitle{Papers}
+\begin{itemize}
+\item You Only Look Once: Unified, Real-Time Object Detection
+\item SSD:Single Shot MultiBox Detector
+\item U-Net: Convolutional Networks for Biomedical Image Segmentation
+\item Combining Fully Convolutional and Recurrent Neural Networks for 3D Biomedical Image Segmentation
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{\href{https://arxiv.org/abs/1506.02640}
+    {You Only Look Once: Unified, Real-Time Object Detection}}
+  \begin{enumerate}
+  \item Reframe object detection as a single regression problem.
+  \item Straight from image pixels to bounding box coordinates and class probabilities.
+  \end{enumerate}
+  %\usepackage{subcaption}
+  \begin{figure}[ht]
+    \centering
+    \begin{minipage}{.4\textwidth}
+      \centering
+      \includegraphics[width=.9\textwidth]{./picture/yolo-grid.jpg}
+    \end{minipage}%
+    \begin{minipage}{.6\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{./picture/yolo-network.jpg}
+    \end{minipage}
+  \end{figure}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{\href{https://arxiv.org/abs/1506.02640}
+    {You Only Look Once: Unified, Real-Time Object Detection}}
+  \begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.7\textwidth]{./picture/yolo-loss-func.jpg}
+  \end{figure}
+  \centering
+  $\lambda_{coord}=5,\lambda_{noobj}=0.5$
+\end{frame}  
+
+\begin{frame}
+  \frametitle{\href{https://arxiv.org/abs/1506.02640}
+    {You Only Look Once: Unified, Real-Time Object Detection}}
+  Benefits: 
+  \begin{enumerate}
+  \item YOLO is extremely fast.
+    \begin{itemize}
+    \item Base network runs at 45 frames per second with no batch processing on a Titan X GPU and
+      a fast version runs at more than 150 fps.
+    \end{itemize}
+  \item YOLO reasons globally about the image when making predictions.
+    \begin{itemize}
+    \item YOLO makes less than half the number of background errors compared to Fast R-CNN.
+    \end{itemize}
+  \item YOLO learns generalizable representations of objects.
+    \begin{itemize}
+    \item YOLO is highly generalizable it is less likely to break down when applied to new domains
+      or unexpected inputs.
+    \end{itemize}
+  \end{enumerate}
+\end{frame}  
+
+\begin{frame}
+  \frametitle{\href{https://arxiv.org/abs/1512.02325}
+    {SSD:Single Shot MultiBox Detector}}
+  %\usepackage{subcaption}
+  \begin{figure}[ht]
+    \centering
+    \begin{minipage}{.5\textwidth}
+      \begin{enumerate}
+      \item Multi-scale feature maps 
+      \item Convolutional predictors 
+      \item Default boxes and aspect ratios
+      \end{enumerate}
+    \end{minipage}%
+    \begin{minipage}{.5\textwidth}
+      \centering
+      \includegraphics[width=.9\textwidth]{./picture/ssd-box.jpg}
+    \end{minipage}
+  \end{figure}
+  \begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.8\textwidth]{./picture/ssd-network.jpg}
+  \end{figure}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{\href{https://arxiv.org/abs/1512.02325}
+    {SSD:Single Shot MultiBox Detector}}
+  \begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{./picture/yolo-results.jpg}
+  \end{figure}
+
+\end{frame}  
+
+\begin{frame}
+  \frametitle{\href{https://arxiv.org/pdf/1505.04597v1.pdf}
+    {U-Net: Convolutional Networks for Biomedical Image Segmentation}
+  \href{http://lmb.informatik.uni-freiburg.de/people/ronneber/u-net}{[code]}}
+  It works with very few training images and yields more precise segmentations.
+  \begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.7\textwidth]{./picture/u-net-architecture.jpg}
+  \end{figure}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{\href{https://arxiv.org/pdf/1505.04597v1.pdf}
+    {U-Net: Convolutional Networks for Biomedical Image Segmentation}}
+  Network Architecture
+  \begin{enumerate}
+  \item Contracting path (left side)
+    \begin{itemize}
+    \item Repeated application of two $3\times3$ convolutions (unpadded convolutions), each
+      followed by a rectified linear unit (ReLU)
+    \item $2\times2$ max pooling operation with stride $2$ for downsampling
+    \item At each downsampling step we double the number of feature channels
+    \end{itemize}
+  \item Expansive path (right side)
+    \begin{itemize}
+    \item Upsampling of the feature map followed by a $2\times2$ convolution (“up-convolution”)
+      that halves the number of feature channels
+    \item Concatenation with the correspondingly cropped feature map from the contracting path
+    \item Two $3\times3$ convolutions, each followed by a ReLU
+    \end{itemize}
+  \end{enumerate}
+  At the final layer a $1\times1$ convolution is used to map each 64 component feature
+  vector to the desired number of classes. 
+
+\end{frame}
 
 \begin{frame}
   \frametitle{\href{https://arxiv.org/pdf/1609.01006v2.pdf}
@@ -31,75 +167,88 @@
   
 \end{frame}
 
-\begin{frame}
-  \frametitle{\href{https://arxiv.org/pdf/1609.01006v2.pdf}
-    {Combining Fully Convolutional and Recurrent Neural Networks for 3D Biomedical Image Segmentation}}
-  We propose a new framework combining two DL components:
-    \begin{enumerate}
-    \item A fully convolutional network (FCN) to extract intra-slice contexts
-      \begin{itemize}
-      \item Our FCN component employs a new deep architecture for 2D feature extraction. It aims
-        to efficiently compress the intra-slice information into hierarchical features. Comparing
-        to known FCN for 2D biomedical imaging (e.g., U-Net), our new FCN is considerably more
-        effective in dealing with objects of very different scales by simulating human behaviors in
-        perceiving multi-scale information.
-      \end{itemize}
-    \end{enumerate}
-\end{frame}
+% \begin{frame}
+%   \frametitle{\href{https://arxiv.org/pdf/1609.01006v2.pdf}
+%     {Combining Fully Convolutional and Recurrent Neural Networks for 3D Biomedical Image Segmentation}}
+%   We propose a new framework combining two DL components:
+%     \begin{enumerate}
+%     \item A fully convolutional network (FCN) to extract intra-slice contexts
+%       \begin{itemize}
+%       \item Our FCN component employs a new deep architecture for 2D feature extraction. It aims
+%         to efficiently compress the intra-slice information into hierarchical features. Comparing
+%         to known FCN for 2D biomedical imaging (e.g., U-Net), our new FCN is considerably more
+%         effective in dealing with objects of very different scales by simulating human behaviors in
+%         perceiving multi-scale information.
+%       \end{itemize}
+%     \end{enumerate}
+% \end{frame}
+
+% \begin{frame}
+%   \frametitle{\href{https://arxiv.org/pdf/1609.01006v2.pdf}
+%     {Combining Fully Convolutional and Recurrent Neural Networks for 3D Biomedical Image Segmentation}}
+%   We propose a new framework combining two DL components:
+%     \begin{enumerate}
+%     \item A recurrent neural network (RNN) to extract inter-slice contexts.
+%       \begin{itemize}
+%       \item We introduce a generalized RNN to exploit 3D contexts, which essentially applies a series
+%         of 2D convolutions on the xy plane in a recurrent fashion to interpret 3D contexts while
+%         propagating contextual information in the z-direction. 
+%       \item Our key idea is to hierarchically assemble intra-slice contexts into 3D contexts by leveraging
+%         the inter-slice correlations.
+%         The insight is that our RNN can distill 3D contexts in the same spirit as the 2D convolutional
+%         neural network (CNN) extracting a hierarchy of contexts from a 2D image. Comparing to known RNN
+%         models for 3D segmentation, such as Pyramid-LSTM, our RNN model is free of the problematic
+%         isotropic convolutions on anisotropic images, and can exploit 3D contexts more efficiently by
+%         combining with FCN.
+%       \end{itemize}
+%     \end{enumerate}
+% \end{frame}
 
 \begin{frame}
   \frametitle{\href{https://arxiv.org/pdf/1609.01006v2.pdf}
     {Combining Fully Convolutional and Recurrent Neural Networks for 3D Biomedical Image Segmentation}}
-  We propose a new framework combining two DL components:
-    \begin{enumerate}
-    \item A recurrent neural network (RNN) to extract inter-slice contexts.
-      \begin{itemize}
-      \item We introduce a generalized RNN to exploit 3D contexts, which essentially applies a series
-        of 2D convolutions on the xy plane in a recurrent fashion to interpret 3D contexts while
-        propagating contextual information in the z-direction. 
-      \item Our key idea is to hierarchically assemble intra-slice contexts into 3D contexts by leveraging
-        the inter-slice correlations.
-        The insight is that our RNN can distill 3D contexts in the same spirit as the 2D convolutional
-        neural network (CNN) extracting a hierarchy of contexts from a 2D image. Comparing to known RNN
-        models for 3D segmentation, such as Pyramid-LSTM, our RNN model is free of the problematic
-        isotropic convolutions on anisotropic images, and can exploit 3D contexts more efficiently by
-        combining with FCN.
-      \end{itemize}
-    \end{enumerate}
-\end{frame}
-
-\begin{frame}
-  \frametitle{\href{https://arxiv.org/pdf/1609.01006v2.pdf}
-    {Combining Fully Convolutional and Recurrent Neural Networks for 3D Biomedical Image Segmentation}}
-  The essential difference between our new DL framework and the known DL-based 3D segmentation approaches is
-  that we explicitly leverage the anisotropism of 3D images and efficiently construct a hierarchy of discriminative
-  features from 3D contexts by performing systematic 2D operations.
+  % The essential difference between our new DL framework and the known DL-based 3D segmentation approaches is
+  % that we explicitly leverage the anisotropism of 3D images and efficiently construct a hierarchy of discriminative
+  % features from 3D contexts by performing systematic 2D operations.
 
   Our framework can serve as a new paradigm of
   migrating 2D DL architectures (e.g., CNN) to effectively exploit 3D contexts and solve 3D image segmentation problems.
 \end{frame}
 
+
 \begin{frame}
   \frametitle{The FCN Component: kU-Net}
   A key challenge to the FCN component is the multi-scale issue. 
   \begin{itemize}
-  \item Objects in biomedical images, specifically in 2D slices, can have very different scales and shapes.
-    But, the common FCN and other known variants for segmenting biomedical images (e.g., U-Net) work on a
-    fixed-size perception field (e.g., a $500\times500$ region in the whole 2D slice). When objects are of larger
-    scale than the pre-defined perception field size, it can be troublesome for such FCN methods to capture
+  \item The common FCN and other known variants for segmenting biomedical images (e.g., U-Net) work on a
+    fixed-size perception field (e.g., a $500\times500$ region in the whole 2D slice). 
+  \item When objects are of larger
+    scale than the pre-defined perception field size, it can be troublesome  to capture
     the high level context (e.g., the overall shapes). 
   \end{itemize}
 \end{frame}
 
+% \begin{frame}
+%   \frametitle{The FCN Component: kU-Net}
+%   We propose a new FCN architecture to simulate how human experts perceive multi-scale information,
+%   in which multiple submodule FCNs are employed to work on different image scales systematically.
+%   \begin{itemize}
+%   \item Here, we use U-Net as the submodule FCN and call the new architecture kU-Net. U-Net is chosen
+%     because it is a well-known FCN achieving huge success in biomedical image segmentation.
+%   \end{itemize}
+% \end{frame}  
+
+
 \begin{frame}
   \frametitle{The FCN Component: kU-Net}
-  We propose a new FCN architecture to simulate how human experts perceive multi-scale information,
-  in which multiple submodule FCNs are employed to work on different image scales systematically.
-  \begin{itemize}
-  \item Here, we use U-Net as the submodule FCN and call the new architecture kU-Net. U-Net is chosen
+  \begin{figure}[!htb]
+    \centering
+    \includegraphics[height=0.7\textheight]{picture/u-net-structure.jpg}
+  \end{figure}
+  We use U-Net as the submodule FCN. U-Net is chosen
     because it is a well-known FCN achieving huge success in biomedical image segmentation.
-  \end{itemize}
-\end{frame}  
+  
+\end{frame}
 
 \begin{frame}
   \frametitle{The FCN Component: kU-Net}
@@ -112,107 +261,76 @@
   \end{enumerate}
 \end{frame}  
 
+
 \begin{frame}
-  \frametitle{The FCN Component: kU-Net}
-  We chose type (A) as our final architecture to organize the sequence of submodule FCNs.
+  \frametitle{The RNN Component: BDC-LSTM}
+  LSTM
+  %\usepackage{subcaption}
+  \begin{figure}[ht]
+    \centering
+    \begin{minipage}{.5\textwidth}
+      \centering
+      \includegraphics[width=.9\textwidth]{picture/lstm.png}
+    \end{minipage}%
+    \begin{minipage}{.5\textwidth}
+      \centering
+      \includegraphics[width=.9\textwidth]{picture/lstm-eqn.jpg}
+    \end{minipage}
+  \end{figure}
+  % \begin{figure}[!htb]
+  %   \centering
+  %   \includegraphics[width=0.8\textwidth]{picture/lstm.png}
+  % \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The RNN Component: BDC-LSTM}
+  CLSTM
+  \begin{itemize}
+  \item CLSTM explicitly assumes that the input is images and replaces the vector
+    multiplication in LSTM gates by convolutional operators.
+  \end{itemize}
   \begin{figure}[!htb]
     \centering
-    \includegraphics[height=0.76\textheight]{picture/u-net-structure.jpg}
+    \includegraphics[width=0.8\textwidth]{picture/clstm.jpg}
+  \end{figure}
+  Here, $*$ denotes convolution and $\odot$ denotes element-wise product.
+\end{frame}
+
+\begin{frame}
+  \frametitle{The RNN Component: BDC-LSTM}
+  BDC-LSTM
+  \begin{itemize}
+  \item We extend CLSTM to Bi-Directional Convolutional LSTM (BDC-LSTM). The key extension
+    is to stack two layers of CLSTM, which work in two opposite directions 
+  \end{itemize}
+  \begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.76\textwidth]{./picture/structure-bdc-lstm.jpg}
+  \end{figure}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Experiments}
+  \begin{itemize}
+  \item FCN collects as much discriminative information as possible within each slice.
+  \item RNN makes further refinement according to inter-slice correlation, so that an accurate
+    segmentation can be made at each voxel.
+  \end{itemize}
+  \begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.8\textwidth]{./picture/results.jpg}
   \end{figure}
 \end{frame}
 
 
-
-\begin{frame}
-  \frametitle{Deep Learning Method}
-  \begin{block}{}
-    \begin{enumerate}
-    \item Deep Learning Object Detection Algorithm Based on Region Proposal.
-      
-    \item Deep Learning Object Detection Algorithm Based on Regression.
-    \item ...
-    \end{enumerate}
-  \end{block}
-\end{frame}
-
-\begin{frame}
-  \frametitle{DL based on Region Proposal}
-  \href{https://people.eecs.berkeley.edu/~rbg/papers/pami/rcnn_pami.pdf}
-  {Region-based Convolution Networks for Accurate Object detection and Segmentation}
-  \begin{block}{Traditional}
-    \begin{itemize}
-    \item Sliding window + features of manual design 
-    \end{itemize}
-  \end{block}
-  \begin{block}{R-CNN}
-    \begin{itemize}
-    \item Region proposal + CNN
-    \end{itemize}
-  \end{block}
-  % \begin{figure}[!t]
-  %   \centering
-  %   \includegraphics[width=0.7\textwidth]{pic/rcnn1.png}
-  %   \caption{R-CNN}
-  % \end{figure}
-\end{frame}
-
-
-\begin{frame}\frametitle{Examples}
-  \emph{Display by column}
-  \begin{columns}
-    \begin{column}{.5\textwidth}
-      \begin{example}
-        Itemize example:
-        \begin{itemize}
-        \item Hello, world! is simple;
-        \item \LaTeX{} beamer is easy.
-        \end{itemize}
-      \end{example}
-    \end{column}
-    \begin{column}{.5\textwidth}
-      \begin{exampleblock}{Enumerate example:}
-        \begin{enumerate}
-        \item \LaTeX{} beamer is powerful, and
-        \item beautiful.
-        \end{enumerate}
-      \end{exampleblock}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-\begin{frame}\frametitle{Examples}
-  \emph{Display by row} \
-  Itemize example: \pause
-  \begin{itemize}
-  \item Hello, world! is simple;  \pause
-  \item \LaTeX{} beamer is easy. \pause
-  \end{itemize}
-  Enumerate example: \pause
-  \begin{enumerate}
-  \item \LaTeX{} beamer is powerful, and \pause
-  \item beautiful. \pause
-  \end{enumerate}
-\end{frame}
 % \begin{frame}
-%   \begin{columns}
-%     \begin{column}{.5\textwidth}
-%       \begin{exampleblock}{Enumerate example:}
-%         \begin{itemize}
-%         \item \LaTeX{}
-%         \item beamer is easy.
-%         \end{itemize}    
-%       \end{exampleblock}
-%       \begin{column}{.5\textwidth}
-%         \begin{exampleblock}{Enumerate example:}
-%           \begin{enumerate}
-%           \item \LaTeX{} beamer is powerful, and
-%           \item beautiful.
-%           \end{enumerate}
-%         \end{exampleblock}        
-%       \end{column}
-%     \end{column}
-%   \end{columns}
-% \end{frame}
+%   \frametitle{\href{https://arxiv.org/abs/1606.04797}
+%     {V-Net: Fully Convolutional Neural Networks for Volumetric Medical Image Segmentation}}
+
+% \end{frame}  
+
 \end{document}
 %%% Local Variables:
 %%% mode: latex

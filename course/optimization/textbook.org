@@ -655,5 +655,203 @@
       4. 上述定理表明,对于二次凸函数,若沿一组共轭方向(非零向量)搜索,经有限步迭代必达到极小点.
 	 
 
-** 约束极值问题
+** 约束极值问题的最优性条件
+
+*** 约束极值问题
+    - 定义[p207]
+      \begin{eqnarray}
+      min&f(x)\ \ x\in{R^n}\\
+      s.t.&g_i(x)\ge{0},i=1,\cdots,m\nonumber\\
+      &h_j(x)=0,j=1,\cdots,l\nonumber
+      \end{eqnarray}
+      
+      其中, $g_i(x)\ge{0}$ 称为不等式约束, $h_j(x)=0$ 称为等式约束.集合
+      
+      $S=\{x|g_i(x)\ge{0},i=1,\cdots,m;h_j(x)=0,j=1,\cdots,l\}$
+      
+      称为可行集或可行域.
+
+*** 可行方向与下降方向
+    - 如果 $\bar{x}$ 是 $f(x)$ 在 $S$ 上的局部极小点,则在 $\bar{x}$ 处的可行方向一定不是
+      下降方向.
+
+    - 定理[p207]
+      考虑问题
+      \begin{eqnarray}
+      min\ f(x)\\
+      s.t.\ x\in{S}\nonumber
+      \end{eqnarray}
+      
+      设 $S$ 是 $R^n$ 中的非空集合, $\bar{x}\in{S}$ , $f(x)$ 在 $\bar{x}$ 处可微.如果 $\bar{x}$ 是局部最优解,
+      则 $F_0\cap{D}=\phi$ .其中 $F_0$ 和 $D$ 分别是下降方向集和可行方向集.
+      
+**** 下降方向
+     - 定义[p207]
+       设 $f(x)$ 是定义在 $R^n$ 上的实函数, $\bar{x}\in{R^n}$ , $d$ 是非零向量.若存在数 $\delta>0$ ,
+       使得对每个 $\lambda\in(0,\delta)$ ,都有
+       
+       $f(\bar{x}+\lambda{d})<f(\bar{x})$
+       
+       则称 $d$ 为函数 $f(x)$ 在 $\bar{x}$ 处的下降方向.
+
+     - 如果 $f(x)$ 是可微函数,且 $\nabla{}f(\bar{x})^Td<0$ ,显然 $d$ 为 $f(x)$ 在 $x$ 处的下降方向.
+       此时记作
+       
+       $F_0=\{d\mid{}\nabla{f(\bar{x})}^Td<0\}$
+       
+**** 可行方向
+     - cl(S) 是包含 S 的最小的闭集。
+
+     - 定义[p207]
+       设集合 $S\subset{R^n}$ , $\bar{x}\in{cl\ S}$ , $d$ 是非零向量,若存在数 $\delta>0$ ,使得对每一个 
+       $\lambda\in(0,\delta)$ ,都有
+       
+       $\bar{x}+\lambda{d}\in{S}$
+       
+       则称 $d$ 为集合 $S$ 在 $\bar{x}$ 的可行方向.其中 "$cl$" 表示闭包, $cl\ S$ 即 $S$ 的闭包.
+
+     - 集合 $S$ 在 $\bar{x}$ 处的所有可行方向组成的集合
+       
+       $D=\{d\mid{}d\ne{0},\bar{x}\in{cl\ S},\exists{\delta}>0,make\ \forall{\lambda}\in(0,\delta),have\ \bar{x}+\lambda{d}\in{S}\}$
+       
+       称为在 $\bar{x}$ 处的可行方向锥.
+
+*** 不等式约束问题的一阶最优性条件
+
+**** 起作用约束[p208]
+     - 考虑非线性规划问题
+       \begin{eqnarray}
+       min\ f(x)&\\
+       s.t.\ g_i(x)\ge0,\ &i=1,\cdots,m\nonumber
+       \end{eqnarray}
+
+     - 我们研究在一点处的可行方向时,只需考虑在这一点的起作用约束,那些不起作用的约束可以暂且不管.
+       用符号 $I$ 表示起作用约束下标集,即
+       
+       $I=\{i\mid{}g_i(\bar{x})=0\}$
+       
+       定义起作用约束后,就能用集合
+       
+       $G_0=\{d\mid{}\nabla{}g_i(\bar{x})^Td>0,i\in{I}\}$
+       
+       取代可行方向锥 $D$ .
+
+**** 定理[p209]
+     - 设 $\bar{x}\in{S}$ , $f(x)$ 和 $g_i(x)(i\in{I})$ 在 $\bar{x}$ 可微, $g_i(x)(i\notin{I})$ 在
+       $\bar{x}$ 连续.如果 $\bar{x}$ 是不等式约束问题的局部最优解,则
+       
+       $F_0\cap{G_0}=\emptyset$
+
+**** Fritz John 条件[p209]
+     - 设 $\bar{x}\in{S},I=\{i\mid{}g_i(\bar{x})=0\},\ f,g_i(i\in{I})$ 在 $\bar{x}$ 处可微,
+       $g_i(i\notin{I})$ 在 $\bar{x}$ 处连续,如果 $\bar{x}$ 是不等式约束问题得局部最优解,则存在不全为零的非负数 $w_0$ ,
+       $w_i(i\in{I})$ ,使得
+       
+       $w_0\nabla{}f(\bar{x})-\sum_{i\in{I}}w_i\nabla{}g_i(\bar{x})=0$
+
+**** Kuhn-Tucker 条件[p212]
+     - 运用 Fritz John 条件时,可能出现 $w_0=0$ 的情形.这时,Fritz John 条件中实际上不包含目标函数的任何数据,
+       只是把起作用约束的梯度组合成零向量.这样的条件,对于问题的解的描述,没有多少价值.
+       
+     - 如果增加起作用约束的梯度线性无关的约束规格,则给出不等式约束问题得著名的 K-T 条件:
+
+     - Kuhn-Tucker 条件
+       考虑不等式约束问题.设 $\bar{x}\in{S},\ f,g_i(i\in{I})$ 在 $\bar{x}$ 处可微, $g_i(i\notin{I})$ 在点 $\bar{x}$ 连续,
+       $\{\nabla{}g_i(\bar{x})\mid{}i\in{I}\}$ 线性无关.若 $\bar{x}$ 是局部最优解,则存在非负数 $w_i$ , $i\in{I}$ ,使得
+       
+       $\nabla{f(\bar{x})}-\sum_{i\in{I}}w_i\nabla{}g_i(\bar{x})=0$
+
+** 惩罚函数法
+   - 属于约束最优化方法,基本思想是:借助罚函数把约束问题转化为无约束问题,进而用无约束最优化方法来求解.
+
+*** 外点罚函数法[p394]
+
+**** 罚函数的概念[p394]
+*****     - 考虑约束问题
+       \begin{eqnarray}
+       min\ &f(x)\\
+       s.t.\ &g_i(x)\ge{0},\ i=1,\cdots,m\nonumber\\
+       &h_j(x)=0,\ j=1,\cdots,l
+       \end{eqnarray}
+       
+       其中, $f(x),g_i(x),h_j(x)$ 是 $R^n$ 上的连续函数.
+
+*****     - 把约束问题转化为无约束问题
+       $min\ F(x,\sigma)\stackrel{def}{=}f(x)+\sigma{}P(x)$
+       
+       其中 $\sigma$ 是很大的正数, $P(x)$ 是连续函数.
+
+*****     - $P(x)$ 具有下列形式:
+       $P(x)=\sum_{i=1}^{m}\phi(g_i(x))+\sum_{j=1}^{l}\psi(h_j(x))$
+       
+       $\phi$ 和 $\psi$ 是满足下列条件的连续函数:
+       \begin{eqnarray}
+       \phi(y)=0,\ y\ge{0};\nonumber\\
+       \phi(y)>0,\ y<0;\nonumber\\
+       \psi(y)=0,\ y=0;\nonumber\\
+       \psi(y)>0,\ y\ne{0}
+       \end{eqnarray}
+       
+       $\phi$ 和 $\psi$ 的典型取法:
+       
+       $\phi=[max\{0,-g_i(x)\}]^{\alpha}$
+       
+       $\psi=\mid{}h_j(x)\mid{}^{\beta}$
+       
+       其中 $\alpha\ge{1},\beta\ge{1}$ ,均为给定常数,通常取 $\alpha=\beta=2$
+
+***** 性质
+      - 根据定义,当 $x$ 为可行点时, $P(x)=0$ ,从而有 $F(x,\sigma)=f(x)$
+      - 当 $x$ 不是可行点时,在 $x$ 处, $\sigma{}P(x)$ 是很大的正数,它的存在是对点脱离可行域的一种惩罚,
+	其作用是在极小化过程中迫使迭代点靠近可行域.
+      - 通常将 $\sigma{P(x)}$ 称为罚项, $\sigma$ 称为罚因子, $F(x,\sigma)$ 称为罚函数
+      - 无约束问题的最优解 $\bar{x}_{\sigma}$ 往往不满足原来问题的约束条件,它是从可行域外部趋向 $\bar{x}$ 的,因此 $F(x,\sigma)$
+	也称为外点罚函数,相应的最优化方法称为外点罚函数法,简称外点法.
+
+**** 外点罚函数法计算步骤[p398]
+
+***** SUMT (序列无约束极小化方法)[p398]
+      - 一般策略是取一个趋向无穷大的严格递增正数列 $\{\sigma_k\}$ ,从某个 $\sigma_1$ 开始,对每个 $k$ ,求解
+	$min\ f(x)+\sigma_kP(x)$
+	
+	从而得到一个极小点的序列 $\{\bar{x}_{\sigma_k}\}$ ,在适当的条件下,这个序列将收敛于约束问题的最优解.
+
+      - 外点罚函数法[p398]
+	1) 给定初始点 $x^{(0)}$ ,初始罚因子 $\sigma_1$ ,放大系数 $c>1$ ,允许误差 $\varepsilon>0$ ,
+	   置 $k=1$
+
+	2) 以 $x^{(k-1)}$ 为初点,求解无约束问题
+	   $min\ f(x)+\sigma_kP(x)$
+	   
+	   设其极小点为 $x^{(k)}$
+
+	3) 若 $\sigma_kP(x^{(k)})<\varepsilon$ ,则停止计算,得到点 $x^{(k)}$ ;否则,令 $\sigma_{k+1}=c\sigma_k$ ,
+	   置 $k=k+1$ ,返回步骤 (2)
+
+**** 收敛性[p398]
+     - 引理[p398]
+       设 $0<\sigma_k<\sigma_{k+1},x^{(k)}$ 和 $x^{(k+1)}$ 分别为取罚因子 $\sigma_k$ 及 $\sigma_{k+1}$ 时无约束问题的
+       全局极小点,则下列各式成立:
+
+       1) $F(x^{(k)},\sigma_k)\le{}F(x^{(k+1)},\sigma_{k+1})$
+
+       2) $P(x^{(k)})\ge{}P(x^{(k+1)})$
+
+       3) $f(x^{(k)})\le{}f(x^{(k+1)})$
+
+     - 引理[p399]
+       设 $\bar{x}$ 是有约束问题得最优解,且对任意的 $\sigma_k>0$ ,罚函数 $F(x,\sigma_k)$ 存在全局极小点 $x^{(k)}$ ,
+       则对每一个 $k$ ,成立
+       
+       $f(\bar{x})\ge{}F(x^{(k)},\sigma_k)\ge{}f(x^{(k)})$
+
+     - 定理[p399]
+       设约束问题的可行域 $S$ 非空,且存在一个 $\varepsilon>0$ ,使得集合
+       
+       $S_{\varepsilon}=\{x\mid{}g_i(x)\ge{-\varepsilon},i=1,\cdots,m,\ \mid{h_j(x)}\mid\le{\varepsilon},j=1,\cdots,l\}$
+       
+       是紧的,又设 $\{\sigma_k\}$ 是趋向无穷大的严格递增正数列,且对每个 $k$ , $min\ f(x)+\sigma_kP(x)$ 
+       存在全局最优解 $x^{(k)}$ ,则 $\{x^{(k)}\}$ 存在一个收敛子序列 $\{x^{(k_j)}\}$ ,并且任何这样的收敛子序列的极限都是
+       约束问题的最优解.
+       
        

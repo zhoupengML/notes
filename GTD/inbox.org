@@ -24,7 +24,6 @@
 ** Cong <2016-11-26 Sat>
 *** [[http://kg.qq.com/personal.html?uid=639f9c8420243e8e3d][全名K歌]]
 * Project
-** test project <2016-10-17 Mon>
 ** dip_zhangrui <2016-11-22 Tue>
    wavelet:软门限,硬门限,加不同量的高斯白噪声,至少读两篇paper
 * Calender
@@ -65,4 +64,7 @@ ftp://zyh@public.sjtu.edu.cn   public
 
 * Idea
 ** 确定搜索方向(最优化) <2016-11-26 Sat>
+   - 共轭梯度法
    - 求 $\beta$ 的不同方法 一般取 0.9
+** 神经网络梯度更新 <2016-12-08 Thu>
+   添加终止条件 $\nabla{f(x)}<\varepsilon$

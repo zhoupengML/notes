@@ -198,6 +198,16 @@ sudo apt-get install auctex
 
 * Latex
 
+** 中文参考文献
+   #+BEGIN_EXAMPLE
+   另外一种经常用的小技巧是, 把文档中的 Reference 写成中文的”参考文献”
+   如果文档类是article之类的, 用\renewcommand\refname{参考文献}
+   如果文档类是book之类的, 用\renewcommand\bibname{参考文献}
+   #+END_EXAMPLE
+** Modify distance between two figures
+   #+BEGIN_EXAMPLE
+   \captionsetup{belowskip=-10pt}
+   #+END_EXAMPLE
 ** Add hat of a letter
    #+BEGIN_EXAMPLE
    \usepackage{bm}
