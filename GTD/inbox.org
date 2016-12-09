@@ -68,3 +68,4 @@ ftp://zyh@public.sjtu.edu.cn   public
    - 求 $\beta$ 的不同方法 一般取 0.9
 ** 神经网络梯度更新 <2016-12-08 Thu>
    添加终止条件 $\nabla{f(x)}<\varepsilon$
+

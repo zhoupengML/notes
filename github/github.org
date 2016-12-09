@@ -31,6 +31,10 @@ git init
 git add .
 git commit -m "message" file
 #+END_SRC
+** 从其他分支提取文件
+   #+BEGIN_EXAMPLE
+   git checkout [branch] -- [file name]
+   #+END_EXAMPLE
 ** 在github上创建一个repository并复制URL
 #+BEGIN_SRC sh
 git remote add origin git@github.com:zhoupengML/repository.git
