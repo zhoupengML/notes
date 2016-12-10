@@ -1,6 +1,11 @@
 #+TITLE: Emacs Notes
 #+AUTHOR: Peng Zhou
 
+* 英文系统环境中Emacs支持中文
+  #+BEGIN_EXAMPLE
+  alias emacs="export LC_CTYPE=zh_CN.UTF-8;emacs"
+  #+END_EXAMPLE
+
 * emacs 常用命令
   
 ** Quick rgrep string
@@ -28,17 +33,6 @@ C-y , M-y (previous content)
      #+BEGIN_SRC 
      M-} or M-{
      #+END_SRC
-
-** Insert piecewise function
-#+BEGIN_SRC 
-\begin{equation}
- P_{r-j}=
- \begin{cases}
- 0 &\mbox{if $r-j$ is odd}\\
- r!\,(-1)^{(r-j)/2} &\mbox{if $r-j$ is even}
- \end{cases}
-\end{equation}
-#+END_SRC
 
 ** Insert footnote [fn:1]
    - C-c C-x f

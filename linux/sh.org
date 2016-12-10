@@ -14,6 +14,11 @@
    find . -name '*.h' | xargs grep 'string'
    #+END_SRC
 * Bash
+** Get file path
+   #+BEGIN_EXAMPLE
+   $(dirname $0)
+   $0: filename
+   #+END_EXAMPLE
 ** Example
    #+BEGIN_EXAMPLE
    #!/usr/bin/env bash

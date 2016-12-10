@@ -198,6 +198,17 @@ sudo apt-get install auctex
 
 * Latex
 
+** Insert piecewise function
+#+BEGIN_SRC 
+\begin{equation}
+ P_{r-j}=
+ \begin{cases}
+ 0 &\mbox{if $r-j$ is odd}\\
+ r!\,(-1)^{(r-j)/2} &\mbox{if $r-j$ is even}
+ \end{cases}
+\end{equation}
+#+END_SRC
+
 ** 中文参考文献
    #+BEGIN_EXAMPLE
    另外一种经常用的小技巧是, 把文档中的 Reference 写成中文的”参考文献”
