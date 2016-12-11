@@ -15,10 +15,18 @@
    #+END_SRC
 * Bash
 ** Get file path
-   #+BEGIN_EXAMPLE
-   $(dirname $0)
-   $0: filename
-   #+END_EXAMPLE
+   - BASH_SOURCE
+     是一个数组，它的第一个元素是当前脚本的名称
+     #+BEGIN_EXAMPLE
+     bash_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+     首先 cd 到脚本文件所在的文件夹,然后执行 pwd 获得文件所在路径
+     #+END_EXAMPLE
+   - dirname
+     获取文件夹路径
+     #+BEGIN_EXAMPLE
+     $(dirname $0)
+     $0: filename
+     #+END_EXAMPLE
 ** Example
    #+BEGIN_EXAMPLE
    #!/usr/bin/env bash
