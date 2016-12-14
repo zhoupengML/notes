@@ -17,7 +17,7 @@
    revert-buffer
    #+END_SRC
 
-** List matching lines in current buffer
+** List matching lines in current buffer(Occur)
    #+BEGIN_SRC lisp
    list-matching-lines
    M-s o (occur)
