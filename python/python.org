@@ -23,3 +23,14 @@
     >>> print reduce(lambda x, y: x + y, foo)
        139
     #+END_EXAMPLE
+** String
+   #+BEGIN_EXAMPLE
+   resize = "{}x{}".format(resize_width, resize_height)
+   '{:0>5d}'.format(idx)  :0填充,固定宽度5,整数
+   '{:>18,.2f}'.format(1.0)     # :冒号+空白填充+右对齐+固定宽度18+浮点精度.2+浮点数声明f
+   #+END_EXAMPLE
+** ASCII
+   #+BEGIN_EXAMPLE
+   ord(a)
+   chr(97)
+   #+END_EXAMPLE

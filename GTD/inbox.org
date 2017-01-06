@@ -13,6 +13,8 @@
 ** TODO DIP Proj2 <2016-11-15 Tue>
 ** TODO cv经典论文 by nibingbing <2016-12-26 Mon>
 * Book
+** VPN
+   [[http://home.dutoo.net/home][行云]]
 ** [[https://bbs.sjtu.edu.cn/frame2.html][饮水思源bbs]] <2016-10-06 四>
 ** English Learning <2016-10-11 二>
    [[http://mp.weixin.qq.com/s?__biz=MjM5MjA4MjA4MA==&mid=210379138&idx=5&sn=d3ef8b76ddd680e22f0997cd511fc3c3&scene=23&srcid=1003SFZwvQQi6IMVnkx5YB4p#rd][习近平的首席翻译官,怎样炼成? ]]

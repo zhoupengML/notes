@@ -4,7 +4,7 @@
     2. [[https://gist.github.com/weiliu89/2ed6e13bfd5b57cf81d6][vggmodel]]
     3. [[http://ethereon.github.io/netscope/quickstart.html][netscope]]
 ** Experiments
-*** data
+*** Data
     - /home/shhs/usr/detection/caffe_ssd/models/VGGNet/VOC2007_2012/VOCtrainval_06-Nov-2007.tar
     - /home/shhs/usr/detection/caffe_ssd/models/VGGNet/VOC2007_2012/VOCtest_06-Nov-2007.tar
     - /home/shhs/usr/detection/caffe_ssd/models/VGGNet/VOC2007_2012/VOCtrainval_11-May-2012.tar
@@ -15,9 +15,10 @@
     - lmdb
       * /home/shhs/usr/detection/caffe_ssd/models/VGGNet/VOC2007_2012/VOCdevkit/VOC0712/lmdb
       * soft links : /home/shhs/usr/detection/caffe_ssd/examples/VOC0712/
+**** Data preparation
+     - Histogram equalization on all training images [[http://adilmoujahid.com/posts/2016/06/introduction-deep-learning-python-caffe/][ref]]
 
 *** Train
-    
 **** python examples/ssd/ssd_pascal.py
   - It will create model definition files and save snapshot models in:
     $CAFFE_ROOT/models/VGGNet/VOC0712/SSD_300x300/
@@ -29,6 +30,7 @@
     $HOME/data/VOCdevkit/results/VOC2007/SSD_300x300/
 
   - It should reach 77.* mAP at 120k iterations.
+
 * Meeting
 ** 检测小组讨论 <2016-12-22 Thu>
 *** 2016 cvpr
