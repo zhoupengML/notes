@@ -6,6 +6,8 @@
 ** DONE 领校友卡 <2016-11-03 Thu>
 ** DONE 领学生证 电1-441 第一排 <2016-11-02 Wed>
 ** DONE Lecture 东上院500  <2016-11-02 三>
+** dip_zhangrui <2016-11-22 Tue>
+   wavelet:软门限,硬门限,加不同量的高斯白噪声,至少读两篇paper
 * Book
 * Project
 * Calender

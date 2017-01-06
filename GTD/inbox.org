@@ -11,6 +11,7 @@
 ** TODO  体育课 <2016-11-09 Wed>
 ** TODO makesi Paper <2016-11-12 Sat>
 ** TODO DIP Proj2 <2016-11-15 Tue>
+** TODO cv经典论文 by nibingbing <2016-12-26 Mon>
 * Book
 ** [[https://bbs.sjtu.edu.cn/frame2.html][饮水思源bbs]] <2016-10-06 四>
 ** English Learning <2016-10-11 二>
@@ -19,13 +20,12 @@
    [[http://www.zhihu.com/question/27478438/answer/37035381]]
 ** Blog <2016-10-11 二>
    [[http://forrestchang.github.io/]]
+   [[http://www.cnblogs.com/tiandsp/category/348031.html][digital image processing]]
 ** Linux <2016-11-26 Sat>
 *** [[http://akaedu.github.io/][linux C编程一站式学习]]
 ** Cong <2016-11-26 Sat>
 *** [[http://kg.qq.com/personal.html?uid=639f9c8420243e8e3d][全名K歌]]
 * Project
-** dip_zhangrui <2016-11-22 Tue>
-   wavelet:软门限,硬门限,加不同量的高斯白噪声,至少读两篇paper
 * Calender
 * 2016
 ** 2016-11 November
@@ -68,4 +68,38 @@ ftp://zyh@public.sjtu.edu.cn   public
    - 求 $\beta$ 的不同方法 一般取 0.9
 ** 神经网络梯度更新 <2016-12-08 Thu>
    添加终止条件 $\nabla{f(x)}<\varepsilon$
+    
+* Meeting
 
+* Presentation
+** Detection 祝菁(地平线) <2016-12-19 Mon>
+*** unconstrained facial landmark localization with backbone-branches fully-convolutional networks (Zhujin Liang)
+    - direct resgression
+    - heat map based detection(概率图)(detection)
+*** Training trick
+    - balance the proportion of positive and negative samples
+      * 概率图全黑, 框的中点
+    - hard negative mining
+      * 概率大于0,全传;等于0,随机采样传
+    - gray zone
+      * 点周围一圈都不传梯度
+    - 图像归一化,pyramid
+*** suggestion
+    - 多看传统论文,放到cnn里
+    - lstm,mf
+** Licheng Yu (交大硕士)   <2016-12-23 Fri>
+*** cv, nlp
+*** Referring expression
+    - Adobe
+*** task1 : comprehension
+*** task2 : expression generation
+*** Embeddiing (CCA)
+*** future work
+    - Is it a vase?
+    - reenformance learning
+
+    - mscnn (multiscale)
+
+    - hard negative mining
+
+    - 多层特征

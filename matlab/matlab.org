@@ -38,20 +38,19 @@
   classdef Experiment < Handle(Value)
    properties
      count
+     img_file_list
+     img_obj_list
    end
    methods
        function obj = Experiment(varargin)
-          if nargin < 2
-              error('At least two image')
+          if nargin < 1
+              error('At least one image')
           end
           obj.count = nargin;
           for i = 1 : nargin
              obj.img_file_list{i} = varargin{i};
              obj.img_obj_list{i} = ImageObj(varargin{i});
           end
-       end
-       function retval = fun(obj, args)
-
        end
    end
    

@@ -29,5 +29,95 @@
     $HOME/data/VOCdevkit/results/VOC2007/SSD_300x300/
 
   - It should reach 77.* mAP at 120k iterations.
-    
+* Meeting
+** 检测小组讨论 <2016-12-22 Thu>
+*** 2016 cvpr
+**** 识别精度    
+    - Deep residual learning for image recognition. In CVPR 2016
+
+      * 更有力的特征,检测时基于Faster R-CNN的目标检测框架，使用ResNet替换VGG16网络可以取得更好的检测结果
+
+    - Inside-outside net: Detecting objects in context with skip pooling and recurrent neural networks. In CVPR 2016
+
+      * 在Fast R-CNN的基础之上增加context信息，所谓context在目标检测领域是指感兴趣的ROI周围的信息，可以是局部的，也可以是全局的
+
+      * skip-connection，通过将deep ConvNet的多层ROI特征进行提取和融合，利用该特征进行每一个位置的分类和进一步回归，这也就是inside-network
+
+    - HyperNet: Towards Accurate Region Proposal Generation and Joint Object Detection. In CVPR 2016
+
+      * 神经网络的高层信息体现了更强的语义信息，对于识别问题较为有效；而低层的特征由于分辨率较高，对于目标定位有天然的优势，
+	而检测问题恰恰是识别+定位，因此作者的贡献点在于如何将deep ConvNet的高低层特征进行融合，进而利用融合后的特征进行region proposal提取和进一步目标检测。
+**** 识别效率
+     - You only look once: Unified, real-time object detection. In CVPR 2016
+       
+       * 直接利用CNN的全局特征预测每个位置可能的目标，相比于R-CNN系列的region proposal+CNN 这种两阶段的处理办法可以提高检测速度
+
+     - G-CNN: an Iterative Grid Based Object Detector. In CVPR 2016
+       
+       * G-CNN在在初始化的时候不需要那么多框，而是通过对图像进行划分（有交叠），产生少量的框（大约180个），通过一次回归之后得到更接近物体的位置。
+	 然后以回归之后的框作为原始窗口，不断进行迭代回归调整，得到最终的检测结果。
+
+     - LocNet: Improving Localization Accuracy for Object Detection. In CVPR 2016
+       
+       * 针对每一个给定的初始框进行适当的放大，然后用一个CNN的网络回归出这个放大后的框包含的那个正确框的位置。
+
+     - Training region-based object detectors with online hard example mining. In CVPR 2016
+       
+       * 在F-RCNN的框架下，在训练过程中如何对样本进行选择的一种解决方案,而且确实work
+
+*** 看 cvpr 论文
+*** 蓝劲鹏,万思宇
+    - mscnn(ECCV)
+      * car
+      * people
+
+      * kitti 数据集(行人,车)
+
+    - 小目标
+      * proposal add 
+      * multiscale
+
+    - faster rcnn
+
+    - general
+      * 做特定目标(行人)
+
+    - Unsuppvised data
+
+    - TACNN
+      做分割的数据集做行人训练, 负样本, 应用到 kitti 
+      
+*** 庄丽学
+    - 小规模网络(基于faster rcnn)(2016)
+      * 深度变深,参数变少
+      * 与resnet 比
+      * 性能
+*** 倪冰冰
+    * Unsupported data
+    * 视频 每 frame 提 proposal, 帧间匹配
+
+    * ImageNet 竞赛
+
+    * 深度图
+      rgbd (+depth)
+
+    * joint segmentation
+
+    * Proposal上
+      ssd合到一起
+
+    * 检测多个东西
+      general ,多类别
+
+    * 检测车
+
+    * 点过程 应用到 ms
+      determinent  选取框
+
+    * 训练数据分辨率低,测试时是高清图 
+      (定义新问题)
+
+    * 检测器 transform learning 转移学习
+  
+
 
