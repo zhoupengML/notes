@@ -1,3 +1,11 @@
+* Emacs python
+** C-c C-p
+   start a python shell
+** C-c C-z
+   switch to python shell
+** C-c C-c
+   exec current py file
+
 * Grammar
 ** lambda
 *** Format
@@ -23,6 +31,66 @@
     >>> print reduce(lambda x, y: x + y, foo)
        139
     #+END_EXAMPLE
+** @property
+   [[http://eli.thegreenplace.net/2009/02/06/getters-and-setters-in-python/][ref]]
+   - 我们将方法变成了属性，我们可以使用正常的点符号访问它。
+     
+   #+BEGIN_EXAMPLE
+   class Person(object):
+   
+    def __init__(self, first_name, last_name):
+        """Constructor"""
+        self.first_name = first_name
+        self.last_name = last_name
+        
+    @property
+    def full_name(self):
+        """
+        Return the full name
+        """
+        return "%s %s" % (self.first_name, self.last_name)
+   
+   person = Person("Mike", "Driscoll")
+   print person.full_name
+   print person.first_name
+   #+END_EXAMPLE
+
+   - 但是，如果我们试图将该属性设为其他值，我们会引发一个
+     AttributeError错误。改变full_name属性的唯一方法是间接这样做：   
+     #+BEGIN_EXAMPLE
+     person.first_name = "Dan"
+     person.full_name
+     'Dan Driscoll'
+     #+END_EXAMPLE
+
+   - 为 fee 属性创建一个 setter 方法
+     #+BEGIN_EXAMPLE
+     from decimal import Decimal
+
+     class Fees(object):
+     def __init__(self):
+        """Constructor"""
+        self._fee = None
+
+     @property
+     def fee(self):
+        """
+        The fee property - the getter
+        """
+        return self._fee
+
+     @fee.setter
+     def fee(self, value):
+        """
+        The setter of the fee property
+        """
+        if isinstance(value, str):
+            self._fee = Decimal(value)
+        elif isinstance(value, Decimal):
+            self._fee = value
+     f = Fees()
+     f.fee = '1'
+     #+END_EXAMPLE
 ** String
    #+BEGIN_EXAMPLE
    resize = "{}x{}".format(resize_width, resize_height)
