@@ -1,5 +1,5 @@
 \documentclass{beamer}
-
+\usepackage[UTF8, heading = false, scheme = plain]{ctex}
 % \usetheme{Warsaw}
 % \usetheme{CambridgeUS}
 % \usetheme{Berkeley}
@@ -16,149 +16,314 @@
 \maketitle{}
 
 \begin{frame}
-  \frametitle{The Traditional Method}
-  \begin{enumerate}
-
-  \item Area selection
+  \frametitle{YOLO9000: Better, Faster, Stronger}
+  \begin{itemize}
+  \item Multi-Scale Training
     \begin{itemize}
-    \item The sliding window strategy is used to traverse the whole image. 
-    \item The sliding windows have different scale, different aspect ratio.
-    \item Too many redundant windows, high time complexity
+    \item Instead of fixing the input image size we change the net- work every few
+      iterations. Every 10 batches our network randomly chooses a new image
+      dimension size.
     \end{itemize}
-
-  \item Feature extraction
-    \begin{itemize}
-    \item SIFT, HOG
-    \end{itemize}
-
-  \item Classification
-    \begin{itemize}
-    \item SVM, Adaboost
-    \end{itemize}
-  \end{enumerate}
-\end{frame}
-
-\begin{frame}
-  \frametitle{The Traditional Method}
-  \emph{Two problems}
-  \begin{enumerate}
-  \item Sliding window selection is time complexity and redundant.
-  \item The features of manual design are not very robust to the variation of diversity.
-  \end{enumerate}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Deep Learning Method}
-\begin{block}{}
-  \begin{enumerate}
-  \item Deep Learning Object Detection Algorithm Based on Region Proposal.
-  \item Deep Learning Object Detection Algorithm Based on Regression.
-  \item ...
-  \end{enumerate}
-\end{block}
-\end{frame}
-
-\begin{frame}
-  \frametitle{DL based on Region Proposal}
-  \href{https://people.eecs.berkeley.edu/~rbg/papers/pami/rcnn_pami.pdf}
-  {Region-based Convolution Networks for Accurate Object detection and Segmentation}
-  \begin{block}{Traditional}
-    \begin{itemize}
-    \item Sliding window + features of manual design 
-    \end{itemize}
-  \end{block}
-  \begin{block}{R-CNN}
-    \begin{itemize}
-    \item Region proposal + CNN
-    \end{itemize}
-  \end{block}
-  \begin{figure}[!t]
+  \end{itemize}
+  \begin{figure}[!htb]
     \centering
-    \includegraphics[width=0.7\textwidth]{pic/rcnn1.png}
-    \caption{R-CNN}
+    \includegraphics[width=0.68\textwidth]{./pic/yolo-tradeoff.jpg}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+
+  %\usepackage{subcaption}
+  \begin{figure}[ht]
+    \centering
+    \begin{minipage}{.6\textwidth}
+      \centering
+      \includegraphics[width=.9\textwidth]{./pic/yolov2-darknet19.jpg}
+    \end{minipage}%
+    \begin{minipage}{.4\textwidth}
+      \begin{itemize}
+      \item Similar to the VGG models we use mostly $3\times3$ filters and
+        double the number of channels after every pooling step
+      \item use global average pooling to make predictions as well as $1\times1$
+        filters to compress the feature representation between $3\times3$
+        convolutions
+      \end{itemize}
+    \end{minipage}
   \end{figure}
 
-\end{frame}
 
-\begin{frame}
-  \frametitle{R-CNN}
-  
-  
 \end{frame}
 
 
-
-
 \begin{frame}
-  Add items
+  \frametitle{YOLO9000: Better, Faster, Stronger}
   \begin{itemize}
-  \item \LaTeX{}
-  \item beamer is easy.
+  \item Convolutional With Anchor Boxes
+    \begin{itemize}
+    \item remove the fully connected layers from YOLO and use anchor boxes to
+      predict bounding boxes.
+    \item Using anchor boxes we get a small decrease in accuracy. YOLO only
+      predicts 98 boxes per image but with anchor boxes our model predicts
+      more than a thousand.
+    \end{itemize}
+
   \end{itemize}
 
-  \begin{enumerate}
-  \item \LaTeX{}
-  \item beamer is powerful
-  \end{enumerate}
+  \begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.8\textwidth]{./pic/yolo-architecture.jpg}
+  \end{figure}
+  
 \end{frame}
 
 \begin{frame}
 
-  \begin{example}
-    \begin{itemize}
-    \item \LaTeX{}
-    \item beamer is easy.
-    \end{itemize}    
-  \end{example}
-\end{frame}
-
-
-\begin{frame}
-  \begin{exampleblock}{Enumerate example:}
-    \begin{itemize}
-    \item \LaTeX{}
-    \item beamer is easy.
-    \end{itemize}    
-  \end{exampleblock}
-\end{frame}
-
-
-\begin{frame}\frametitle{Examples}
-  \emph{Display by column}
-  \begin{columns}
-    \begin{column}{.5\textwidth}
-      \begin{example}
-        Itemize example:
-        \begin{itemize}
-        \item Hello, world! is simple;
-        \item \LaTeX{} beamer is easy.
-        \end{itemize}
-      \end{example}
-    \end{column}
-    \begin{column}{.5\textwidth}
-      \begin{exampleblock}{Enumerate example:}
-        \begin{enumerate}
-        \item \LaTeX{} beamer is powerful, and
-        \item beautiful.
-        \end{enumerate}
-      \end{exampleblock}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-\begin{frame}\frametitle{Examples}
-  \emph{Display by row} \\
-  Itemize example: \pause
   \begin{itemize}
-  \item Hello, world! is simple;  \pause
-  \item \LaTeX{} beamer is easy. \pause
+  \item Batch Normalization
+    \begin{itemize}
+    \item Batch normalization leads to sig- nificant improvements in convergence 
+    \item By adding batch normalization on all of the convolutional layers in
+      YOLO we get more than 2\% improvement in mAP. 
+    \end{itemize}
   \end{itemize}
-  Enumerate example: \pause
-  \begin{enumerate}
-  \item \LaTeX{} beamer is powerful, and \pause
-  \item beautiful. \pause
-  \end{enumerate}
 \end{frame}
+
+\begin{frame}
+
+  \begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{./pic/yolov2-trick.jpg}
+  \end{figure}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{YOLO9000: Better, Faster, Stronger}
+  
+  Closing the dataset size gap between detection and classification.
+  \begin{itemize}
+  \item Jointly training on classification and detection data
+  \item During training we mix images from both detection and classification datasets
+    \begin{itemize}
+    \item Use WordTree to combine multiple datasets together
+    \end{itemize}
+  \end{itemize}
+  \begin{figure}[!htb]
+    \centering
+    \includegraphics[height=0.6\textheight]{./pic/yolov2-wordtree.jpg}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{YOLO9000: Better, Faster, Stronger}  
+
+  Future work
+  \begin{itemize}
+  \item For future work we hope to use similar techniques for weakly supervised
+    image segmentation.
+  \item We also plan to improve our detection results using more powerful matching
+    strategies for assigning weak labels to classification data during training.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Deep residual learning for image recognition. In CVPR 2016}
+
+  %\usepackage{subcaption}
+  \begin{figure}[ht]
+    \centering
+    \begin{minipage}{.5\textwidth}
+      \centering
+      \includegraphics[width=.9\textwidth]{./pic/cvpr2016-resnet.jpg}
+    \end{minipage}%
+    \begin{minipage}{.5\textwidth}
+      更有力的特征,检测时基于Faster R-CNN的目标检测框架，使用ResNet替换VGG16
+      网络可以取得更好的检测结果.
+    \end{minipage}
+  \end{figure}
+
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Inside-outside net: Detecting objects in context with skip
+    pooling and recurrent neural networks. In CVPR 2016}
+
+  \begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.68\textwidth]{./pic/cvpr-inside-outside-network.jpg}
+  \end{figure}
+  \begin{itemize}
+  \item 在Fast R-CNN的基础之上增加context信息，所谓context在目标检测领域是指感兴趣的ROI周围的信息，可以是局部的，也可以是全局的
+  \item skip-connection，通过将deep ConvNet的多层ROI特征进行提取和融合，利用该特征进行每一个位置的分类和进一步回归，这也就是inside-network
+
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{HyperNet: Towards Accurate Region Proposal Generation and Joint
+    Object Detection. In CVPR 2016}
+
+  \begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.8\textwidth]{./pic/cvpr2016-hypernet.jpg}
+  \end{figure}
+
+  \begin{itemize}
+  \item  神经网络的高层信息体现了更强的语义信息，对于识别问题较为有效；而低层的特征由于分辨率较高，对于目标定位有天然的优势
+  \item 作者的贡献点在于如何将deep ConvNet的高低层特征进行融合，进而利用融合后的特征进行region proposal提取和进一步目标检测。
+
+  \end{itemize}
+  
+
+\end{frame}
+
+
+% \begin{frame}
+%   \frametitle{The Traditional Method}
+%   \begin{enumerate}
+
+%   \item Area selection
+%     \begin{itemize}
+%     \item The sliding window strategy is used to traverse the whole image. 
+%     \item The sliding windows have different scale, different aspect ratio.
+%     \item Too many redundant windows, high time complexity
+%     \end{itemize}
+
+%   \item Feature extraction
+%     \begin{itemize}
+%     \item SIFT, HOG
+%     \end{itemize}
+
+%   \item Classification
+%     \begin{itemize}
+%     \item SVM, Adaboost
+%     \end{itemize}
+%   \end{enumerate}
+% \end{frame}
+
+% \begin{frame}
+%   \frametitle{The Traditional Method}
+%   \emph{Two problems}
+%   \begin{enumerate}
+%   \item Sliding window selection is time complexity and redundant.
+%   \item The features of manual design are not very robust to the variation of diversity.
+%   \end{enumerate}
+% \end{frame}
+
+% \begin{frame}
+%   \frametitle{Deep Learning Method}
+% \begin{block}{}
+%   \begin{enumerate}
+%   \item Deep Learning Object Detection Algorithm Based on Region Proposal.
+%   \item Deep Learning Object Detection Algorithm Based on Regression.
+%   \item ...
+%   \end{enumerate}
+% \end{block}
+% \end{frame}
+
+% \begin{frame}
+%   \frametitle{DL based on Region Proposal}
+%   \href{https://people.eecs.berkeley.edu/~rbg/papers/pami/rcnn_pami.pdf}
+%   {Region-based Convolution Networks for Accurate Object detection and Segmentation}
+%   \begin{block}{Traditional}
+%     \begin{itemize}
+%     \item Sliding window + features of manual design 
+%     \end{itemize}
+%   \end{block}
+%   \begin{block}{R-CNN}
+%     \begin{itemize}
+%     \item Region proposal + CNN
+%     \end{itemize}
+%   \end{block}
+%   \begin{figure}[!t]
+%     \centering
+%     \includegraphics[width=0.7\textwidth]{pic/rcnn1.png}
+%     \caption{R-CNN}
+%   \end{figure}
+
+% \end{frame}
+
+% \begin{frame}
+%   \frametitle{R-CNN}
+  
+  
+% \end{frame}
+
+
+
+
+% \begin{frame}
+%   Add items
+%   \begin{itemize}
+%   \item \LaTeX{}
+%   \item beamer is easy.
+%   \end{itemize}
+
+%   \begin{enumerate}
+%   \item \LaTeX{}
+%   \item beamer is powerful
+%   \end{enumerate}
+% \end{frame}
+
+% \begin{frame}
+
+%   \begin{example}
+%     \begin{itemize}
+%     \item \LaTeX{}
+%     \item beamer is easy.
+%     \end{itemize}    
+%   \end{example}
+% \end{frame}
+
+
+% \begin{frame}
+%   \begin{exampleblock}{Enumerate example:}
+%     \begin{itemize}
+%     \item \LaTeX{}
+%     \item beamer is easy.
+%     \end{itemize}    
+%   \end{exampleblock}
+% \end{frame}
+
+
+% \begin{frame}\frametitle{Examples}
+%   \emph{Display by column}
+%   \begin{columns}
+%     \begin{column}{.5\textwidth}
+%       \begin{example}
+%         Itemize example:
+%         \begin{itemize}
+%         \item Hello, world! is simple;
+%         \item \LaTeX{} beamer is easy.
+%         \end{itemize}
+%       \end{example}
+%     \end{column}
+%     \begin{column}{.5\textwidth}
+%       \begin{exampleblock}{Enumerate example:}
+%         \begin{enumerate}
+%         \item \LaTeX{} beamer is powerful, and
+%         \item beautiful.
+%         \end{enumerate}
+%       \end{exampleblock}
+%     \end{column}
+%   \end{columns}
+% \end{frame}
+
+% \begin{frame}\frametitle{Examples}
+%   \emph{Display by row} \\
+%   Itemize example: \pause
+%   \begin{itemize}
+%   \item Hello, world! is simple;  \pause
+%   \item \LaTeX{} beamer is easy. \pause
+%   \end{itemize}
+%   Enumerate example: \pause
+%   \begin{enumerate}
+%   \item \LaTeX{} beamer is powerful, and \pause
+%   \item beautiful. \pause
+%   \end{enumerate}
+% \end{frame}
 % \begin{frame}
 %   \begin{columns}
 %     \begin{column}{.5\textwidth}
