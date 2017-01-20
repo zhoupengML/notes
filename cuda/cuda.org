@@ -1,0 +1,80 @@
+* Grammar
+** __global__  kernel_fun()
+   - 告诉编译器把该函数放在GPU上运行
+     
+** blockIdx.x , threadIdx.x
+   - 线程块数量不超过65535(参考)
+   - 每个线程块线程数量不超过maxThreadsPerBlock(参考512)
+   - gridDim : 二维的,线程格中每一维的线程块数量
+   - blockDim : 三维的,线程块中每一维的线程数量
+
+** kernel<<<N, 1>>>
+   - 第一个参数表示设备在执行核函数时使用的并行线程块(Block)的数量
+     #+BEGIN_EXAMPLE
+     __global__ void add( int *a, int *b, int *c ) {
+     int tid = blockIdx.x;    // this thread handles the data at its thread id
+     if (tid < N)
+        c[tid] = a[tid] + b[tid];
+     }
+     ...
+     add<<<N,1>>>( dev_a, dev_b, dev_c );
+     ...
+     #+END_EXAMPLE
+     #+BEGIN_EXAMPLE
+     __global__ void kernel( unsigned char *ptr ) {
+     // map from blockIdx to pixel position
+     int x = blockIdx.x;
+     int y = blockIdx.y;
+     int offset = x + y * gridDim.x;
+     }
+     #+END_EXAMPLE
+   - 第二个参数表示CUDA运行时在每个线程块中创建的线程数量
+
+** __device__
+   - 表示代码将在GPU而不是主机上运行,只能从其他__device__函数或者__global__函数中调用它们
+     #+BEGIN_EXAMPLE
+     struct cuComplex {
+     float   r;
+     float   i;
+     cuComplex( float a, float b ) : r(a), i(b)  {}
+     __device__ float magnitude2( void ) {
+        return r * r + i * i;
+     }
+     __device__ cuComplex operator*(const cuComplex& a) {
+        return cuComplex(r*a.r - i*a.i, i*a.r + r*a.i);
+     }
+     __device__ cuComplex operator+(const cuComplex& a) {
+        return cuComplex(r+a.r, i+a.i);
+     }
+     };
+     #+END_EXAMPLE
+
+
+** __share__
+   - 添加到变量声明中,使这个变量驻留在共享内存中
+   - 每个线程块都拥有该共享内存的私有副本
+     
+** __syncthreads
+   - 线程同步
+     
+** cudaError_t cudaMalloc (void **devPtr, size_t  size )
+   - 不能在主机代码中使用　cudaMalloc() 分配的指针进行内存读／写操作
+   #+BEGIN_EXAMPLE
+   #include "../common/book.h"
+   __global__ void add( int a, int b, int *c ) {
+    *c = a + b;
+   }
+   
+   int main( void ) {
+    int c;
+    int *dev_c;
+    HANDLE_ERROR( cudaMalloc( (void**)&dev_c, sizeof(int) ) );
+    add<<<1,1>>>( 2, 7, dev_c );
+    HANDLE_ERROR( cudaMemcpy( &c, dev_c, sizeof(int),
+                              cudaMemcpyDeviceToHost ) );
+    printf( "2 + 7 = %d\n", c );
+    HANDLE_ERROR( cudaFree( dev_c ) );
+    return 0;
+   }
+
+   #+END_EXAMPLE

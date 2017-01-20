@@ -8,6 +8,11 @@
 
 * emacs 常用命令
   
+** Restart yasnippet
+   #+BEGIN_EXAMPLE
+   yas-minor-mode
+   #+END_EXAMPLE
+
 ** Quick rgrep string
    #+BEGIN_EXAMPLE
    M-x rgrep
@@ -125,6 +130,11 @@ C-c C-o
      #+BEGIN_SRC 
      
      #+END_SRC
+* Doxymacs
+** Install
+   #+BEGIN_EXAMPLE
+   sudo apt-get install doxymacs
+   #+END_EXAMPLE
 * YCMD
   [[https://github.com/Valloric/ycmd][ycmd]]
   #+BEGIN_SRC sh

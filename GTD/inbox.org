@@ -12,6 +12,8 @@
 ** TODO makesi Paper <2016-11-12 Sat>
 ** TODO DIP Proj2 <2016-11-15 Tue>
 ** TODO cv经典论文 by nibingbing <2016-12-26 Mon>
+** TODO CASIA <2017-01-12 四>
+   http://pan.baidu.com/s/1o6Vjcp0  提取码：ynfz
 * Book
 ** VPN
    [[http://home.dutoo.net/home][行云]]
@@ -65,6 +67,8 @@ ftp://zyh@public.sjtu.edu.cn   public
 * Calendar
 
 * Idea
+** Augmentation In Network
+** Weak Supervised
 ** 确定搜索方向(最优化) <2016-11-26 Sat>
    - 共轭梯度法
    - 求 $\beta$ 的不同方法 一般取 0.9

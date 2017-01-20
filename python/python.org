@@ -7,6 +7,10 @@
    exec current py file
 
 * Grammar
+** 'str'.endswith
+   #+BEGIN_EXAMPLE
+   'a.jpg'.endswith('.jpg') # True
+   #+END_EXAMPLE
 ** lambda
 *** Format
     #+BEGIN_EXAMPLE
@@ -31,6 +35,50 @@
     >>> print reduce(lambda x, y: x + y, foo)
        139
     #+END_EXAMPLE
+** List extend
+   #+BEGIN_EXAMPLE
+   a = [1]
+   b = [2]
+   a.extend(b)
+   #+END_EXAMPLE
+** __getattr__ , __setattr__
+   - 我们可以通过重载__getattr__和__setattr__来拦截对成员的访问
+     或者作出一些自己希望的行为
+   - __getattr__ 在访问对象访问类中不存在的成员时会自动调用
+     #+BEGIN_EXAMPLE
+     class A():
+     def __init__(self,ax,bx):
+        self.a = ax
+        self.b = bx
+     def f(self):
+        print (self.__dict__)
+     def __getattr__(self,name):
+        print ("__getattr__")
+
+     a = A(1,2)
+     a.f()
+     a.x # __getattr__
+     #+END_EXAMPLE
+   - __setattr__ 方法用于在初始化对象成员的时候调用，即在设置__dict__的
+     item 时就会调用__setattr__方法
+     #+BEGIN_EXAMPLE
+     class A():
+     def __init__(self,ax,bx):
+        self.a = ax
+        self.b = bx
+     def f(self):
+        print (self.__dict__)
+     def __getattr__(self,name):
+        print ("__getattr__")
+     def __setattr__(self,name,value):
+        print ("__setattr__")
+        self.__dict__[name] = value
+
+     a = A(1,2)
+     a.x # __getattr__
+     a.x = 3 # __setattr__
+     #+END_EXAMPLE
+
 ** @property
    [[http://eli.thegreenplace.net/2009/02/06/getters-and-setters-in-python/][ref]]
    - 我们将方法变成了属性，我们可以使用正常的点符号访问它。
@@ -91,7 +139,7 @@
      f = Fees()
      f.fee = '1'
      #+END_EXAMPLE
-** String
+** '{}'.format
    #+BEGIN_EXAMPLE
    resize = "{}x{}".format(resize_width, resize_height)
    '{:0>5d}'.format(idx)  :0填充,固定宽度5,整数

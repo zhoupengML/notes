@@ -31,8 +31,14 @@
 
   - It should reach 77.* mAP at 120k iterations.
 
+**** Data augmentation
+     * distort image
+     * expand image
+       1) prob: 0.5
+       2) max_expand_ratio: 4
+     * 
 * Meeting
-** 检测小组讨论 <2016-12-22 Thu>
+** Detection discussing 1 <2016-12-22 Thu>
 *** 2016 cvpr
 **** 识别精度    
     - Deep residual learning for image recognition. In CVPR 2016
@@ -121,5 +127,14 @@
 
     * 检测器 transform learning 转移学习
   
-
-
+** Detection discussing 2
+*** Yolo 9000
+    - multi-scale training
+      1) Change the network every few iterations: Every 10 batches our network randomly
+	 chooses a new image dimension size.
+    - jointly train on object detection and classification
+      1) jointly optimizing detection and classification
+      2) use WordTree to combine data from various sources and train simultaneously
+	 on ImageNet and COCO.
+    - Remove the fully connected layers from YOLO and use anchor boxes to predict 
+      bounding boxes.
