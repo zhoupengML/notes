@@ -49,13 +49,17 @@
      };
      #+END_EXAMPLE
 
-
 ** __share__
    - 添加到变量声明中,使这个变量驻留在共享内存中
    - 每个线程块都拥有该共享内存的私有副本
      
 ** __syncthreads
    - 线程同步
+     
+** __constant__
+   - 常量内存把变量的访问限制为只读
+   - 常量内存,不再需要调用 cudaMalloc() 分配内存
+   - cudaMemcpyToSymbol() 复制到常量内存
      
 ** cudaError_t cudaMalloc (void **devPtr, size_t  size )
    - 不能在主机代码中使用　cudaMalloc() 分配的指针进行内存读／写操作

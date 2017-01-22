@@ -7,7 +7,11 @@
    exec current py file
 
 * Grammar
-** 'str'.endswith
+** import_module
+   #+BEGIN_EXAMPLE
+   net = importlib.import_module("symbol_" + net).get_symbol_train(imdb.num_classes)   
+   #+END_EXAMPLE
+** 'str'.endswith , 'str'.startswith
    #+BEGIN_EXAMPLE
    'a.jpg'.endswith('.jpg') # True
    #+END_EXAMPLE
