@@ -1,3 +1,4 @@
+#coding=utf-8
 * Emacs python
 ** C-c C-p
    start a python shell
@@ -9,8 +10,11 @@
 * Grammar
 ** import_module
    #+BEGIN_EXAMPLE
+   sys.path.append(os.path.join(os.getcwd(), 'symbol'))
    net = importlib.import_module("symbol_" + net).get_symbol_train(imdb.num_classes)   
    #+END_EXAMPLE
+** np.where(list > val)
+   - t_index = np.where(map>threshold) # (x_array, y_array)
 ** 'str'.endswith , 'str'.startswith
    #+BEGIN_EXAMPLE
    'a.jpg'.endswith('.jpg') # True
@@ -154,3 +158,65 @@
    ord(a)
    chr(97)
    #+END_EXAMPLE
+
+* multiprocessing
+  
+** multiprocessing
+   #+BEGIN_EXAMPLE
+   import multiprocessing
+
+   def do(n) :
+   name = multiprocessing.current_process().name
+   print name,'starting'
+   print "worker ", n
+   return 
+
+   if __name__ == '__main__' :
+   numList = []
+   for i in xrange(5) :
+    p = multiprocessing.Process(target=do, args=(i,))
+    numList.append(p)
+    p.start()
+    p.join()
+    print "Process end."
+   #+END_EXAMPLE
+
+** Pool
+   - Pool类可以提供指定数量的进程供用户调用，当有新的请求提交到Pool中时，如果池还没有满，
+     就会创建一个新的进程来执行请求。如果池满，请求就会告知先等待，直到池中有进程结束，
+     才会创建新的进程来执行这些请求。
+   - Pool类中的map方法，与内置的map函数用法行为基本一致，它会使进程阻塞直到返回结果。
+     注意，虽然第二个参数是一个迭代器，但在实际使用中，必须在整个队列都就绪后，程序才会运行子进程。
+   #+BEGIN_EXAMPLE
+   import time
+   from multiprocessing import Pool
+   
+   def run(fn) :
+   time.sleep(2)
+   print fn
+   if __name__ == "__main__" :
+   startTime = time.time()
+   testFL = [1,2,3,4,5]
+   pool = Pool(2)#可以同时跑10个进程
+   pool.map(run,testFL)
+   pool.close()
+   pool.join()   
+   endTime = time.time()
+   print "time :", endTime - startTime
+   #+END_EXAMPLE
+* itertools
+** repeat
+   - repeat(object [,times]) -> create an iterator which returns the object
+     for the specified number of times.  If not specified, returns the object
+     endlessly.
+
+** izip
+   - izip(iter1 [,iter2 [...]]) --> izip object
+   - Return a izip object whose .next() method returns a tuple where
+     the i-th element comes from the i-th iterable argument.  The .next()
+     method continues until the shortest iterable in the argument sequence
+     is exhausted and then it raises StopIteration.  Works like the zip()
+     function but consumes less memory by returning an iterator instead of
+     a list.
+
+   
