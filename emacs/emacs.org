@@ -135,6 +135,12 @@ C-c C-o
    #+BEGIN_EXAMPLE
    sudo apt-get install doxymacs
    #+END_EXAMPLE
+* GDB
+** Install(mac)
+   - sudo codesign --force /opt/local/bin/ggdb -s gdb-cert [[http://blog.csdn.net/cairo123/article/details/52054280][ref]]
+   - 如果是mac os10.12.2的话，正确做法是先用brew升级gdb 然后在
+     .gdbinit文件中添加set startup-with-shell off
+   
 * YCMD
   [[https://github.com/Valloric/ycmd][ycmd]]
   #+BEGIN_SRC sh
