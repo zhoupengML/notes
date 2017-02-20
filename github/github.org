@@ -31,6 +31,47 @@ git init
 git add .
 git commit -m "message" file
 #+END_SRC
+** git submodule
+   - Config file
+     - .gitmodules
+
+   - Add submodule
+     - git submodule add url
+
+   - Download contents of submodules
+     - git submodule update --init --recursive
+       
+** git branch
+   - 显示本地分支和远程分支的对应关系
+     - git branch -vv
+     - git branch -a
+     - git branch -r
+
+   - 创建本地分支并与远程分支对应
+     - git checkout -b gh-pages origin/gh-pages
+
+   - 设置本地分支和远程分支的对应关系
+     - git branch --set-upstream-to origin/dev
+
+   - 切换分支
+     - git branch branch-name
+
+
+** git remote
+   - Set remote url
+     - git remote set-url origin url
+       
+** git rm
+   - Delete dir
+     - git rm -r directory
+       git commit -m ""
+     
+** Roll back
+   #+BEGIN_SRC sh
+   git reflog : look up records of commit
+   git reset --hard 33(id) : roll back to one version
+   #+END_SRC
+
 ** 从其他分支提取文件
    #+BEGIN_EXAMPLE
    git checkout [branch] -- [file name]
@@ -51,20 +92,16 @@ git push origin [local branch]
    #+BEGIN_EXAMPLE
    git pull origin [local branch]
    #+END_EXAMPLE
-** Create branch
-   
+** 显示远程分支,Create branch
    #+BEGIN_SRC sh
+   git branch -r 
+   git branch --set-upstream-to origin/dev
    git checkout -b gh-pages origin/gh-pages
    git branch branch-name
    #+END_SRC
 ** Switch branch
    #+BEGIN_SRC sh
    git checkout branch-name
-   #+END_SRC
-** Roll back
-   #+BEGIN_SRC sh
-   git reflog : look up records of commit
-   git reset --hard 33(id) : roll back to one version
    #+END_SRC
 ** Delete remote branch
    #+BEGIN_SRC sh
