@@ -2,3 +2,6 @@
 ** Class
 ***   Symbol
 ****   std::vector<DataEntry> heads_;
+* Usage
+** Net visualize
+   - mx.viz.plot_network(net, shape={'data':(100,200)}).view()

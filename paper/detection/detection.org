@@ -1,4 +1,4 @@
-* SSD
+* Caffe-ssd
 **  Source
     1. [[https://github.com/weiliu89/caffe/tree/ssd#installation][code]]
     2. [[https://gist.github.com/weiliu89/2ed6e13bfd5b57cf81d6][vggmodel]]
@@ -37,6 +37,51 @@
        1) prob: 0.5
        2) max_expand_ratio: 4
      * 
+* Mxnet-ssd
+** Code
+   - code [[https://github.com/zhreshold/mxnet-ssd][github]]
+
+** MultiBoxPrior
+   - height, width 
+     + range : [0,1]
+   - step_y, step_x : 1/im_height, 1/im_width
+   - sizes
+     + etc. [0.1]
+     + box size
+     + range : [0, 1]
+   - ratios 
+     + etc. [1, 2, 1/2]
+     + ratio = sqrtf(ratios[j])
+     + w = size * ratio
+     + h = size / ratio
+   - output
+     + x_min : center_x - w/2
+     + y_min : center_y - h/2
+     + x_max : center_x + w/2
+     + y_max : center_y + h/2
+
+** MultiBoxTarget
+   - overlap_threshold : 0.5
+   - negative_mining_thresh : 0.5
+   - output
+     + p_cls_target
+       1) shape : (batch, num_anchor)
+       2) value : -1 or 0 ~ 20, 0:background, -1:not samples 
+       3) groundtruth of class for anchor
+     + p_loc_mask
+       1) shape : (batch, num_anchor*4)
+       2) value : 0 or 1
+       3) for positive sample anchor : [1, 1, 1, 1]
+       4) for negative sample anchor : [0, 0, 0, 0]
+     + p_loc_target
+       1) shape : (batch, num_anchor*4)
+       2) value : default:0, [target_x, target_y, target_width, target_height]
+       3) target_x : (gt_x - anchor_x) / anchor_w / var_x
+       4) target_y : (gt_y - anchor_y) / anchor_h / var_y
+       5) target_width : std::log(gt_w / anchor_w) / var_w
+       6) target_height : std::log(gt_h / anchor_h) / var_h
+	  
+	  
 * Meeting
 ** Detection discussing 1 <2016-12-22 Thu>
 *** 2016 cvpr
