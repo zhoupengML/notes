@@ -141,6 +141,56 @@ C-c C-o
    - 如果是mac os10.12.2的话，正确做法是先用brew升级gdb 然后在
      .gdbinit文件中添加set startup-with-shell off
    
+** Save breakpoints
+   - set breakpoints pending on 
+     * set breakpoints on future shared libraries : default[on]
+   - save breakpoints [filename]
+   - source filename
+
+** Examine memory
+   - x/nfu addr
+     * n : the repeat count
+     * f : format, s(string), x(hex), u(unsigned int)
+     * u : unit size, b(byte), h(halfwords), w(words, 4byte), g(gaint words, 8byte)
+
+** Temporary breakpoints
+   - tbreak line
+
+** Set scheduler-locking
+   - set scheduler-locking off : 所有线程都执行
+   - set scheduler-locking on : 只有当前线程执行
+   - set scheduler-locking step : 
+* Cuda-gdb
+** Cuda thread
+   - 列出当前活跃的GPU线程
+     
+** Cuda kernel
+   - 列出当前活跃的GPU核
+** Info cuda devices     
+** Info cuda kernels
+** Info stack
+** Macro
+   - gcc -gdwarf-2 -g3 file
+   - info macro name
+   - macro expand expression
+** Set args
+** Compile
+   - nvcc -g -G file.cu
+     -g : 将CPU代码编译为可调试版本
+     -G : 将GPU代码编译为可调试版本
+     
+** Layout
+   - layout src
+   - layout asm
+   - layout split
+     
+** Winheight
+   - win src + 5
+   - win src - 4
+     
+** Update
+   - 重新定位到当前代码行
+     
 * YCMD
   [[https://github.com/Valloric/ycmd][ycmd]]
   #+BEGIN_SRC sh
@@ -160,3 +210,10 @@ C-c C-w
 
 [fn:1] https://my.oschina.net/klauszl/blog/261701
 
+* Ubuntu
+** VPN
+   - L2tp
+     #+BEGIN_EXAMPLE
+     sudo service xl2tpd stop
+     sudo update-rc.d xl2tpd disable
+     #+END_EXAMPLE

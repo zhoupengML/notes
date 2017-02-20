@@ -1,3 +1,4 @@
+
 * Grammar
 ** __global__  kernel_fun()
    - 告诉编译器把该函数放在GPU上运行
@@ -82,3 +83,44 @@
    }
 
    #+END_EXAMPLE
+* 常量内存与事件
+* 纹理内存(Texture Memory)
+** 只读内存
+   - 与常量内存类似,纹理内存同样缓存在芯片上
+   - 能够减少对内存的请求并提供更高效的内存带宽
+   - 专门为那些在内存访问模式中存在大量空间局部性(Spatial Locality)的图形应用程序而设计的,
+     在计算应用程序中,这意味着一个线程读取的位置可能与临近线程读取的位置非常接近.
+* 流(Stream)
+** 任务并行
+   - 并行执行两个或多个不同的任务
+** 页锁定主机内存
+   - cudaMalloc()
+     在GPU上分配内存
+   - malloc()
+     在主机上分配内存,可分页的(Pagable)主机内存
+   - cudaHostAlloc()
+     * 分配页锁定的主机内存(Pinned Memory),不可分页内存,操作系统将不会对这块内存分页并交换到磁盘上,
+     从而保证了该内存始终驻留在物理内存中
+     * 由于GPU知道内存的物理地址,可以通过 DMA(Direct Memory Access)技术来在GPU和主机之间复制数据.
+   - cudaFreeHost()       
+*** Usage
+   - 对cudaMemcpy()调用中的源内存或目标内存,使用页锁定内存,在不再需要使用它们时立即释放,而不是等到
+     应用程序关闭时才释放.
+
+** Stream
+*** CUDA流表示一个 GPU操作队列
+    - 可以将每个流视作GPU上的一个任务
+    - 流就像一个有序的工作队列,GPU从该队列中依次取出任务并执行
+*** 设备重叠(Device Overlap)
+    - 支持设备重叠功能的GPU能够在执行一个CUDA C核函数的同时,还能在设备与主机之间执行复制操作.
+*** Usage
+    - cudaStream_t stream
+    - cudaStreamCreate(&stream)
+    - cudaMemcpyAsync(dev_buf, cuda_host_buf, size, cudaMemcpyDeviceToHost, stream)
+      在GPU和主机之间复制数据,只能以异步方式对页锁定内存进行复制操作
+    - kernel<<< , , , stream>>>()
+      核函数调用将是异步的
+    - cudaStreamSynchronize(stream)
+      主机继续执行之前,等待GPU执行完成
+    - cudaStreamDestroy(stream)
+      释放流
