@@ -1,18 +1,79 @@
 \documentclass{beamer}
-\usepackage[UTF8, heading = false, scheme = plain]{ctex}
+%\usepackage[UTF8, heading = false, scheme = plain]{ctex}
 % \usetheme{Warsaw}
 % \usetheme{CambridgeUS}
 % \usetheme{Berkeley}
 % \usetheme{Antibes}
 % \usetheme{Madrid}
 
-\usetheme{Boadilla}
+%\usetheme{Boadilla}
 
 \begin{document}
 
 \title{Object Detection}
 \author{Peng Zhou}
 \maketitle{}
+
+
+\begin{frame}
+  \frametitle{}
+  SSD Network Architecture
+  \begin{figure}[!htb]
+    \centering
+    \includegraphics[width=1\textwidth]{./pic/ssd-network-architecture.jpg}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{}
+  Data Augmentation
+  \begin{figure}[!htb]
+    \centering
+    \includegraphics[width=1\textwidth]{./pic/ssd-expansion-sampled.jpg}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{}
+  Results on VOC 2007 test
+  \begin{figure}[!htb]
+    \centering
+    \includegraphics[width=1\textwidth]{./pic/ssd-results-on-voc-2007.jpg}
+  \end{figure}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Multi-Scale Context Aggregation by Dilated Convolution,ICLR 2016}
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=\textwidth]{./pic/dilated-conv.jpg}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{}
+  \begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{./pic/dilated-conv-context-network.jpg}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{}
+  \begin{figure}[!htb]
+    \centering
+    \includegraphics[width=\textwidth]{./pic/dilated-conv-context-module-test.jpg}
+  \end{figure}
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{}
+End
+\end{frame}
+
 
 \begin{frame}
   \frametitle{YOLO9000: Better, Faster, Stronger}
