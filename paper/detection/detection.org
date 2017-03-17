@@ -5,15 +5,15 @@
     3. [[http://ethereon.github.io/netscope/quickstart.html][netscope]]
 ** Experiments
 *** Data
-    - /home/shhs/usr/detection/caffe_ssd/models/VGGNet/VOC2007_2012/VOCtrainval_06-Nov-2007.tar
-    - /home/shhs/usr/detection/caffe_ssd/models/VGGNet/VOC2007_2012/VOCtest_06-Nov-2007.tar
-    - /home/shhs/usr/detection/caffe_ssd/models/VGGNet/VOC2007_2012/VOCtrainval_11-May-2012.tar
+    - /home/shhs/usr/data/VOC2007_2012/VOCtrainval_06-Nov-2007.tar
+    - /home/shhs/usr/data/VOC2007_2012/VOCtest_06-Nov-2007.tar
+    - /home/shhs/usr/data/VOC2007_2012/VOCtrainval_11-May-2012.tar
 
     - Pretrain model
       /home/shhs/usr/detection/caffe_ssd/models/VGGNet/VGG_ILSVRC_16_layers_fc_reduced.caffemodel
 
     - lmdb
-      * /home/shhs/usr/detection/caffe_ssd/models/VGGNet/VOC2007_2012/VOCdevkit/VOC0712/lmdb
+      * /home/shhs/usr/data/VOC2007_2012/VOCdevkit/VOC0712/lmdb
       * soft links : /home/shhs/usr/detection/caffe_ssd/examples/VOC0712/
 **** Data preparation
      - Histogram equalization on all training images [[http://adilmoujahid.com/posts/2016/06/introduction-deep-learning-python-caffe/][ref]]
@@ -82,6 +82,13 @@
        6) target_height : std::log(gt_h / anchor_h) / var_h
 	  
 	  
+** Issues
+   - 对于小物体,其所对应的 anchor 比较少(gt_overlap > 0.5 的 anchor), 也就是说对应 feature map
+     上的 pixel 难以得到训练
+     - 一个大的 ROI 可能覆盖很多 anchor ,那么这些 anchor 均有机会得到训练, 然而一个小物体并不能
+       覆盖很多 anchor.
+   - 对输入图片进行移位(data augmentation), 使每个 anchor 得到充分的训练
+   - 输入图片直接 resize 到固定大小(小目标可能会变得更小)
 * Meeting
 ** Detection discussing 1 <2016-12-22 Thu>
 *** 2016 cvpr

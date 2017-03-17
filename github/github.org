@@ -6,25 +6,61 @@ git config --global user.email "Your email"
 #+END_SRC
 
 * 创建公钥
-#+BEGIN_SRC sh
-ssh-keygen -C "your email address" -t rsa
-#+END_SRC
-这会在目录～/.ssh/下创建相应的密钥文件
+** 生成两个 SSH key
+   - 使用多个github账号
+     #+BEGIN_SRC sh
+     ssh-keygen -t rsa -C "your email address"
+     #+END_SRC
+     不要一路回车, 在第一个对话的时候输入重命名, 这会在目录～/.ssh/下创建相应的密钥文件
 
+** 把 key 加到 ssh agent 上
+   - 由于不是使用默认的 .ssh/id_rsa, 需要显示告诉 ssh agent 新的 key 的位置
+     ssh-add ~/.ssh/id_rsa_work
+   - 可以通过 ssh-add -l 来确认结果
+     
 ** 上传密钥
+   - 把 .ssh/id_rsa_work.pub 添加到work账号上
+     - 在github.com的界面中添加 SSH Public Keys
+       key的内容拷贝自~/.ssh/id_rsa_work.pub中的内容
 
-在github.com的界面中添加 SSH Public Keys
-key的内容拷贝自~/.ssh/id_rsa.pub中的内容
+** 配置 .ssh/config
+   - touch .ssh/config
+     #+BEGIN_EXAMPLE
+     # pengzhou93
+     Host pengzhou93
+     HostName github.com
+     PreferredAuthentications publickey
+     IdentityFile /home/shhs/.ssh/id_rsa_pengzhou93
+     User pengzhou93
+
+     # zhoupengML
+     Host zhoupengML
+     HostName github.com
+     PreferredAuthentications publickey
+     IdentityFile /home/shhs/.ssh/id_rsa
+     User zhoupengML
+     #+END_EXAMPLE
 
 ** 连接测试
-#+BEGIN_SRC sh
-ssh -v git@github.com 
-#+END_SRC
-看到下面的信息表示验证成功
-Exit status 1
+   - 链接成功,github上的key变成绿色
+     #+BEGIN_SRC sh
+     ssh -v git@github.com
+     ssh -v git@pengzhou93
+     #+END_SRC
+     看到下面的信息表示验证成功
+     Exit status 1
 
-
-
+** Clone 到本地
+   - 原来的写法
+     git clone git@github.com:pengzhou93/repository.git
+   - 现在的写法
+     git clone git@pengzhou93:pengzhou93/repository.git
+     git clone git@zhoupengML:zhoupengML/repository.git
+     
+** Push 到github上去
+   git remote add origin git@pengzhou93:pengzhou93/repository.git
+   git push origin master
+   
 * git使用
 #+BEGIN_SRC sh
 git init
@@ -77,7 +113,14 @@ git commit -m "message" file
      - git branch --set-upstream-to origin/dev
 
    - 切换分支
-     - git branch branch-name
+     - git checkout branch-name
+
+** git push
+   - 删除远程分支
+     - git push origin :remote-branch
+
+   - 将本地分支推送到远程分支
+     - git push origin local_branch:remote_branch
 
 ** git merge
    - 合并分支

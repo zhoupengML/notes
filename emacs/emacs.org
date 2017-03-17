@@ -221,3 +221,7 @@ C-c C-w
      sudo service xl2tpd stop
      sudo update-rc.d xl2tpd disable
      #+END_EXAMPLE
+** 查看内存
+   - sudo dmidecode -t memory
+     使用 -t 来限定关键字
+     bios, system, baseboard, chassis, processor, memory, cache, connector, slot
