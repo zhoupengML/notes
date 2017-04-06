@@ -220,3 +220,45 @@
      a list.
 
    
+* Virtualenv
+  - Install
+    python3 -m pip install virtualenv
+    pip3 install package
+
+  - Create
+    virtualenv --system-site-packages --python=python3.4 tensorflow
+
+  - Activate
+    source activate env-name
+    source env/bin/activate
+
+  - Deactivate
+    deactivate
+
+* Conda
+  - Clone 一个和原系统一样的环境
+    conda create -n tensorflow --clone root
+  - Remove
+    conda remove -n yourenvname --all
+  - activate
+    source activate env-name
+  - deactivate
+    source deactivate
+  - 查看有哪些虚拟环境
+    conda env list
+    
+* Look up version of packages
+  - pip list
+    
+* Install numpy and scipy
+  - Pre
+    sudo apt-get install build-essential gfortran libatlas-base-dev python-pip python-dev
+    sudo pip install --upgrade pip
+  - Actual packages
+    sudo pip install numpy
+    sudo pip install scipy
+  - Optional
+    sudo pip install matplotlib   OR  sudo apt-get install python-matplotlib
+    sudo pip install -U scikit-learn
+    sudo pip install pandas
+

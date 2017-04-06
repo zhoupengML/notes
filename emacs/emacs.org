@@ -225,3 +225,5 @@ C-c C-w
    - sudo dmidecode -t memory
      使用 -t 来限定关键字
      bios, system, baseboard, chassis, processor, memory, cache, connector, slot
+** 查看源
+   - apt-cache pkgnames | grep name
