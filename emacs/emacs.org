@@ -227,3 +227,27 @@ C-c C-w
      bios, system, baseboard, chassis, processor, memory, cache, connector, slot
 ** 查看源
    - apt-cache pkgnames | grep name
+** 防火墙
+   - ufw
+     /etc/default/ufw
+   - 重启防火墙
+     sudo ufw disable
+     sudo ufw enable
+** 重启网络
+   sudo service network-manager restart
+   
+** ipv6
+   - file : /etc/network/interfaces
+     #+BEGIN_EXAMPLE
+     auto lo
+     iface lo inet loopback
+     auto eth0
+     iface eth0 inet6 static
+     address 2001:da8:2:10d::2
+     netmask 64
+     up route -A inet6 add default gw 2001:da8:2:10d::1 dev $IFACE
+     dns-nameservers 8.8.8.8
+     dns-nameservers 8.8.4.4
+     dns-nameservers 2001:da8:8000:1:202:120:2:100
+     dns-nameservers 2001:da8:8000:1:202:120:2:101
+     #+END_EXAMPLE

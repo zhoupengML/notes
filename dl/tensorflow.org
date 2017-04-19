@@ -1,0 +1,55 @@
+* Usage
+  
+** Summary
+   tf.summary.image('name', value)
+
+** tensorflow.contrib.framework.get_or_create_global_step
+   #+BEGIN_EXAMPLE
+    def optimizer_exp_decay():
+      global_step = tf.contrib.framework.get_or_create_global_step()
+      learning_rate = tf.train.exponential_decay(
+          learning_rate=0.1, global_step=global_step,
+          decay_steps=100, decay_rate=0.001)
+      return tf.train.AdagradOptimizer(learning_rate=learning_rate)
+   #+END_EXAMPLE
+   
+* Prevent modify graph
+  tf.get_default_graph().finalize()
+
+* Saver
+** Choosing Variables to Save and Restore
+   #+BEGIN_EXAMPLE
+   ckpt = tf.train.get_checkpoint_state(FLAGS.checkpoint_dir)
+   tf.train.Saver().restore(sess, ckpt.model_checkpoint_path)
+
+   # Add ops to save and restore only 'v2' using the name "my_v2"
+   saver = tf.train.Saver({"my_v2": v2})
+   saver.restore(sess, checkpoint_path)
+   
+   # restore
+   tf.variables_initializer(var_list, name='init')
+   #+END_EXAMPLE
+
+** Meta graph
+   #+BEGIN_EXAMPLE
+     # Let's load a previously saved meta graph in the default graph
+     # This function returns a Saver
+    saver = tf.train.import_meta_graph('log/data-all.chkp.meta')
+     # We can now access the default graph where all our metadata has been loaded
+    graph = tf.get_default_graph()
+    
+   #+END_EXAMPLE
+** Read checkpoint file
+   reader = tf.train.NewCheckpointReader(checkpoint_path)
+   reader.get_variable_to_shape_map()
+
+   # Finally we can retrieve tensors, operations, collections, etc.
+    global_step_tensor = graph.get_tensor_by_name('loss/global_step:0')
+    train_op = graph.get_operation_by_name('loss/train_op')
+    hyperparameters = tf.get_collection('hyperparameters')    
+    
+* Preprocessing
+  
+** Subtract off the mean and divide by the variance of the pixels.
+   float_image = tf.image.per_image_standardization(distorted_image)
+
