@@ -50,6 +50,10 @@ git config --global user.email "Your email"
      看到下面的信息表示验证成功
      Exit status 1
 
+   - 如果遇到权限问题
+     * cd .ssh
+     * chmod 600 *
+
 ** Clone 到本地
    - 原来的写法
      git clone git@github.com:pengzhou93/repository.git

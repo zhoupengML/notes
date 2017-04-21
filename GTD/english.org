@@ -1,4 +1,10 @@
 
+* EAP
+
+** be of
+   - 内容；具有……性质
+   - Explanation genres are of four general types: ...
+
 * Word
 
   - broadly
@@ -23,7 +29,7 @@
     
     Skip-layer connections exist between each downsampled feature map and the commensurate upsampled feature map.
 
-  - 
+    - 
     
     
 

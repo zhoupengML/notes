@@ -1,6 +1,8 @@
 #+TITLE: Emacs Notes
 #+AUTHOR: Peng Zhou
 
+* ubuntu 16.04 配置
+  - 
 * 英文系统环境中Emacs支持中文
   #+BEGIN_EXAMPLE
   alias emacs="export LC_CTYPE=zh_CN.UTF-8;emacs"
@@ -215,6 +217,43 @@ C-c C-w
 [fn:1] https://my.oschina.net/klauszl/blog/261701
 
 * Ubuntu
+** 用户
+*** 新建用户   
+   - naive
+     adduser name
+
+   - useradd
+     * sudo useradd -d /home/dir name
+     * sudo passwd name
+     * sudo vim /etc/passwd
+
+   - 改变用户所属的用户和组
+     * sudo chown -R user:group file #递归修改
+     * sudo chown user file
+     * sudo chgrp group file
+       
+   - 容许用户使用 sudo 命令
+     * chmod u+w /etc/sudoers
+     * 在 root ALL=(ALL) ALL 下面添加
+       user-name ALL=(ALL) ALL (允许用户执行sudo命令,需要输入密码)
+     * chmod u-w /etc/sudoers
+
+   - 设置 root 用户密码
+     * sudo passwd root
+
+   - 切换用户
+     * su root
+*** 删除用户
+    sudo userdel -r user-name
+
+** Cuda
+   - Nvidia 驱动 [[http://blog.csdn.net/tianrolin/article/details/52830422][ref]]
+     * tty1
+       sudo service lightdm stop
+       sudo ./NVIDIA.run
+       sudo service lightdm start
+   - 安装cuda
+       
 ** VPN
    - L2tp
      #+BEGIN_EXAMPLE
