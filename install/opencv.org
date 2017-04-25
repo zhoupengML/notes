@@ -1,13 +1,13 @@
 <2016-09-17 Sat>
 
-* install opencv
+* install opencv [[http://blog.csdn.net/jhszh418762259/article/details/52957495][ref]]
 
 ** Required Packages
-#+BEGIN_SRC sh
- [compiler] sudo apt-get install build-essential
- [required] sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
- [optional] sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev
-#+END_SRC
+    #+BEGIN_SRC sh
+    sudo apt-get install build-essential
+    sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
+    [optional] sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev
+    #+END_SRC
 
 ** Getting the Cutting-edge OpenCV from the Git Repository
 #+BEGIN_SRC sh
@@ -23,7 +23,16 @@
  cd build
 #+END_SRC
 #+BEGIN_SRC sh
-cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/home/shhs/env/opencv2_4_10 -D WITH_CUDA=OFF -D BUILD_PYTHON_SUPPORT=ON -D BUILD_EXAMPLES=ON ..
+cmake -D CMAKE_BUILD_TYPE=Release \
+      -D CMAKE_INSTALL_PREFIX=/home/shhs/env/opencv3_2 \
+      -D WITH_CUDA=ON \
+      -D BUILD_NEW_PYTHON_SUPPORT=ON \
+      -D BUILD_EXAMPLES=OFF \
+      -D PYTHON_EXECUTABLE=/home/shhs/anaconda3/bin/python3.5 \
+      -D PYTHON3_INCLUDE_DIR=/home/shhs/anaconda3/include/python3.5m \
+      -D PYTHON3_LIBRARY=/home/shhs/anaconda3/lib/libpython3.5m.so \
+      -D PYTHON3_PACKAGES_PATH=/home/shhs/anaconda3/lib/python3.5/site-packages ..
+
 make -j7 # runs 7 jobs in parallel
 #+END_SRC
 

@@ -254,6 +254,27 @@ C-c C-w
        sudo service lightdm start
    - 安装cuda
        
+** gcc  g++ 版本管理
+   - 安装不同版本 (gcc-4.9, gcc-5)
+     sudo apt-get install gcc-4.9 g++-4.9
+
+   - 设置默认版本
+     sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 60 --slave /usr/bin/g++ g++ /usr/bin/g++-4.9
+     sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 50 --slave /usr/bin/g++ g++ /usr/bin/g++-5
+
+   - 查看不同版本
+     sudo update-alternatives --query gcc
+
+   - 不同版本切换
+     sudo update-alternatives --config gcc
+
+** Teamviewer
+   - 重启服务
+   #+BEGIN_EXAMPLE
+   sudo teamviewer daemon stop
+   sudo teamviewer daemon start  
+   #+END_EXAMPLE
+   
 ** VPN
    - L2tp
      #+BEGIN_EXAMPLE
