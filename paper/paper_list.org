@@ -1,0 +1,6 @@
+* LSTM
+** Recurrent Models of Visual Attention
+   - [[http://www.cnblogs.com/wangxiaocvpr/p/5537454.html][blog]]
+   - [[http://papers.nips.cc/paper/5542-recurrent-models-of-visual-attention.pdf][paper]]
+** ReNet: A Recurrent Neural Network Based Alternative to Convolutional Networks
+   - [[https://arxiv.org/abs/1505.00393][paper]]
