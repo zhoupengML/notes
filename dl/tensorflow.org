@@ -53,3 +53,6 @@
 ** Subtract off the mean and divide by the variance of the pixels.
    float_image = tf.image.per_image_standardization(distorted_image)
 
+* Exit ipdb
+  import os
+  os._exit(0)
