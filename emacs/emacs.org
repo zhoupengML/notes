@@ -248,6 +248,14 @@ C-c C-w
 *** 删除用户
     sudo userdel -r user-name
 
+** anaconda3
+   - .condarc
+     #+BEGIN_EXAMPLE
+      channels: 
+      - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/ 
+      
+      show_channel_urls: yes     
+     #+END_EXAMPLE
 ** Cuda
    - Nvidia 驱动 [[http://blog.csdn.net/tianrolin/article/details/52830422][ref]]
      * tty1
