@@ -1,8 +1,10 @@
 #+TITLE: Emacs Notes
 #+AUTHOR: Peng Zhou
 
-* ubuntu 16.04 配置
-  - 
+* Emacs 远程
+** ssh
+   C-x C-f /ssh:user@host:/home/file
+
 * 英文系统环境中Emacs支持中文
   #+BEGIN_EXAMPLE
   alias emacs="export LC_CTYPE=zh_CN.UTF-8;emacs"
@@ -275,6 +277,92 @@ C-c C-w
    sudo teamviewer daemon start  
    #+END_EXAMPLE
    
+** Install and uninstall packages
+   - apt-cache pkgnames | grep name
+   - sudo apt autoremove <Package name>
+
+** 重新安装 Unity
+   #+BEGIN_EXAMPLE
+   sudo apt-get install ubuntu-desktop
+   sudo apt-get install unity
+   sudo apt-get install unity-common
+   sudo apt-get install unity-lens*
+   sudo apt-get install unity-services
+   sudo apt-get install unity-asset-pool
+   #+END_EXAMPLE
+   - 更新ubuntu及组件
+     sudo apt-get update
+     sudo apt-get upgrade
+
+   - 移除所有无效的包和缓存
+     sudo apt-get autoremove
+     sudo apt-get autoclean
+
+** 设置桌面环境
+   - installed env
+     /usr/share/xsessions/
+   - modified file
+     /usr/share/lightdm/lightdm.conf.d/50-ubuntu.conf
+
+** SSH
+   - 开启 ssh
+     sudo apt-get install openssh-server
+     sudo service ssh start
+
+   - Use ssh
+     ssh usr@ip
+
+   - Does ssh start?
+     sudo ps -e |grep ssh
+** VNC
+   - vnc
+     apt-get install vnc4server
+     vncserver
+
+   - xstartup
+     - xfce4
+       apt-get install gnome-core xfce4 firefox nano
+       #+BEGIN_EXAMPLE
+        #!/bin/sh
+        
+        # Uncomment the following two lines for normal desktop:
+        unset SESSION_MANAGER
+        unset DBUS_SESSION_BUS_ADDRESS
+        # exec /etc/X11/xinit/xinitrc
+        startxfce4 &
+        [ -x /etc/vnc/xstartup ] && exec /etc/vnc/xstartup
+        [ -r $HOME/.Xresources ] && xrdb $HOME/.Xresources
+        xsetroot -solid grey
+        #vncconfig -iconic &
+        #x-terminal-emulator -geometry 80x24+10+10 -ls -title "$VNCDESKTOP Desktop" &
+        #x-window-manager &
+       #+END_EXAMPLE
+
+     - gnome
+       sudo apt-get install gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal
+       #+BEGIN_EXAMPLE
+        #!/bin/sh
+        
+        export XKL_XMODMAP_DISABLE=1
+        unset SESSION_MANAGER
+        unset DBUS_SESSION_BUS_ADDRESS
+        
+        gnome-panel &
+        gnome-settings-daemon &
+        metacity &
+        nautilus &
+        gnome-terminal &
+        vncconfig &       
+       #+END_EXAMPLE
+
+   - restart
+     vncserver -kill :1
+     vncserver -geometry 1280×800 :1
+
+   - auto reboot
+     crontab -e
+     Add @reboot /usr/bin/vncserver :1 to the bottom of the file
+
 ** VPN
    - L2tp
      #+BEGIN_EXAMPLE
@@ -285,8 +373,6 @@ C-c C-w
    - sudo dmidecode -t memory
      使用 -t 来限定关键字
      bios, system, baseboard, chassis, processor, memory, cache, connector, slot
-** 查看源
-   - apt-cache pkgnames | grep name
 ** 防火墙
    - ufw
      /etc/default/ufw
@@ -311,3 +397,18 @@ C-c C-w
      dns-nameservers 2001:da8:8000:1:202:120:2:100
      dns-nameservers 2001:da8:8000:1:202:120:2:101
      #+END_EXAMPLE
+
+* Soft Install
+
+** dlib
+   cd build
+   cmake .. -DDLIB_USE_CUDA=1 -DUSE_AVX_INSTRUCTIONS=1; cmake --build .
+   cd ..
+   python3 setup.py install --yes USE_AVX_INSTRUCTIONS --yes DLIB_USE_CUDA
+
+** boost
+   ./bootstrap.sh --show-libraries
+   ./bootstrap.sh --with-libraries=python --with-python=/home/shhs/anaconda3/bin/python3
+   # If cann't find pyconfig.h, then cp anaconda3/include/python3.5m python3.5
+   ./b2 --with-python --buildid=3
+   sudo ./b2 install

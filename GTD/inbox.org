@@ -1,7 +1,17 @@
 * DataBase
+
+** DataBase Summary
+   [[https://zhuanlan.zhihu.com/p/25138563]]
 ** YouTube Faces DB
    Login: wolftau
    Password: wtal997
+* VNC
+** szc
+   ip : 192.168.104.25:10
+   user : zp
+   passwd : 123 
+   sudo : 123
+   vnc : 123456
 * tasks
 ** TODO read mxnet code <2016-09-20 Tue>
 ** TODO 高中同学聚会 <2016-09-20 Tue>
