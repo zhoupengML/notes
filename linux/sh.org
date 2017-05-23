@@ -14,7 +14,7 @@
    #+END_EXAMPLE
 ** linux sed 批量替换多个文件中的字符串
    #+BEGIN_SRC sh
-   sed -i "s/oldstring/newstring/g" `grep oldstring -rl yourdir`
+   sed -i "s/oldstring/newstring/ig" `grep oldstring -irl yourdir`
    #+END_SRC
 ** Grep in specified file
    #+BEGIN_SRC sh

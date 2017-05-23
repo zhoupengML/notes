@@ -16,41 +16,34 @@
  git clone https://github.com/opencv/opencv_contrib.git
 #+END_SRC
 
+** Switch version
+   git checkout 3.1.0
+
 ** Building OpenCV from Source Using CMake
-#+BEGIN_SRC sh
- cd ~/opencv
- mkdir build
- cd build
-#+END_SRC
-#+BEGIN_SRC sh
-cmake -D CMAKE_BUILD_TYPE=Release \
-      -D CMAKE_INSTALL_PREFIX=/home/shhs/env/opencv3_2 \
-      -D WITH_CUDA=ON \
-      -D BUILD_NEW_PYTHON_SUPPORT=ON \
-      -D BUILD_EXAMPLES=OFF \
-      -D PYTHON_EXECUTABLE=/home/shhs/anaconda3/bin/python3.5 \
-      -D PYTHON3_INCLUDE_DIR=/home/shhs/anaconda3/include/python3.5m \
-      -D PYTHON3_LIBRARY=/home/shhs/anaconda3/lib/libpython3.5m.so \
-      -D PYTHON3_PACKAGES_PATH=/home/shhs/anaconda3/lib/python3.5/site-packages ..
-
-make -j7 # runs 7 jobs in parallel
-#+END_SRC
-
+   - Prepare dir
+     #+BEGIN_SRC sh
+      cd ~/opencv
+      mkdir build
+      cd build
+     #+END_SRC
+   - Build
+     + Build with anaconda3
+       #+BEGIN_SRC sh
+       cmake -D CMAKE_BUILD_TYPE=Release \
+             -D CMAKE_INSTALL_PREFIX=/home/shhs/env/opencv3_2 \
+             -D WITH_CUDA=OFF \
+             -D BUILD_NEW_PYTHON_SUPPORT=ON \
+             -D BUILD_EXAMPLES=OFF \
+             -D PYTHON_EXECUTABLE=/home/shhs/anaconda3/bin/python3.5 \
+             -D PYTHON3_INCLUDE_DIR=/home/shhs/anaconda3/include/python3.5m \
+             -D PYTHON3_LIBRARY=/home/shhs/anaconda3/lib/libpython3.5m.so \
+             -D PYTHON3_PACKAGES_PATH=/home/shhs/anaconda3/lib/python3.5/site-packages ..
+       
+       make -j7 # runs 7 jobs in parallel
+       #+END_SRC
 *** Description of some parameters
     - build type: CMAKE_BUILD_TYPE=Release\Debug
-    - to build with modules from opencv_contrib set *OPENCV_EXTRA_MODULES_PATH* to <path to opencv_contrib/modules/>
-    - set BUILD_DOCS for building documents
-    - set BUILD_EXAMPLES to build all examples
+    - to build with modules from opencv_contrib set OPENCV_EXTRA_MODULES_PATH 
+      to <path to opencv_contrib/modules/>
 
-*** Running tests
-
-Get the required test data from OpenCV extra repository.
-#+BEGIN_SRC sh
-git clone https://github.com/opencv/opencv_extra.git
-#+END_SRC
-- set *OPENCV_TEST_DATA_PATH* environment variable to <path to opencv_extra/testdata>.
-- execute tests from build directory.
-#+BEGIN_SRC sh
-./build/bin/opencv_test_core
-#+END_SRC
 

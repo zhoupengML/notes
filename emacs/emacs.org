@@ -269,6 +269,7 @@ C-c C-w
      sudo apt-get install gcc-4.9 g++-4.9
 
    - 设置默认版本
+     sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 70 --slave /usr/bin/g++ g++ /usr/bin/g++-4.8
      sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 60 --slave /usr/bin/g++ g++ /usr/bin/g++-4.9
      sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 50 --slave /usr/bin/g++ g++ /usr/bin/g++-5
 
@@ -420,3 +421,134 @@ C-c C-w
    # If cann't find pyconfig.h, then cp anaconda3/include/python3.5m python3.5
    ./b2 --with-python --buildid=3
    sudo ./b2 install
+
+** OpenFace
+   - opencv-3.2.0
+     #+BEGIN_EXAMPLE
+       mkdir build 
+       cd build
+       cmake \
+             -D CMAKE_CXX_COMPILER=clang++-3.7 \
+             -D CMAKE_CXX_FLAGS="-std=c++11 -stdlib=libc++ -I/usr/include/libcxxabi" \
+             -D CMAKE_EXE_LINKER_FLAGS="-std=c++11 -stdlib=libc++ -lc++abi" \
+             -D CMAKE_BUILD_TYPE=RELEASE \
+             -D CMAKE_INSTALL_PREFIX=/home/shhs/env/opencv3_2_openface \
+             -D OPENCV_EXTRA_MODULES_PATH=/home/shhs/usr/soft/opencv_contrib/modules \
+             -D BUILD_TIFF=ON \
+             -D WITH_V4L=ON \
+             -D WITH_GTK=ON \
+             -D BUILD_opencv_dnn=OFF \
+             -D BUILD_PYTHON_SUPPORT=OFF \
+             -D BUILD_EXAMPLES=OFF \
+             -D WITH_TBB=ON ..
+
+cmake \
+      -D CMAKE_CXX_COMPILER=clang++-3.7 \
+      -D CMAKE_CXX_FLAGS="-std=c++11 -stdlib=libc++ -I/usr/include/libcxxabi" \
+      -D CMAKE_EXE_LINKER_FLAGS="-std=c++11 -stdlib=libc++ -lc++abi" \
+
+
+
+cmake \
+      -D CMAKE_CXX_STANDARD=11 \
+      -D CMAKE_CXX_FLAGS="-std=c++11" \
+      -D CMAKE_EXE_LINKER_FLAGS="-std=c++11" \
+      -D CMAKE_BUILD_TYPE=Release \
+      -D CMAKE_INSTALL_PREFIX=/home/shhs/env/opencv3_2_openface \
+      -D WITH_CUDA=OFF \
+      -D BUILD_NEW_PYTHON_SUPPORT=OFF \
+      -D BUILD_EXAMPLES=OFF \
+      -D OPENCV_EXTRA_MODULES_PATH=/home/shhs/usr/soft/opencv_contrib/modules \
+      -D BUILD_TIFF=ON \
+      -D WITH_V4L=ON \
+      -D WITH_GTK=ON \
+      -D WITH_TBB=ON \
+      -DBUILD_opencv_dnn=OFF \
+      -DBUILD_opencv_matlab=OFF \
+      -DBUILD_opencv_hdf5=OFF \
+      ..
+
+      -D PYTHON_EXECUTABLE=/home/shhs/anaconda3/bin/python3.5 \
+      -D PYTHON3_INCLUDE_DIR=/home/shhs/anaconda3/include/python3.5m \
+      -D PYTHON3_LIBRARY=/home/shhs/anaconda3/lib/libpython3.5m.so \
+      -D PYTHON3_PACKAGES_PATH=/home/shhs/anaconda3/lib/python3.5/site-packages \
+
+     #+END_EXAMPLE
+
+   sudo apt-get install git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
+   sudo apt-get install libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev checkinstall
+   sudo apt-get install liblapacke-dev checkinstall
+
+   cmake -D CMAKE_CXX_COMPILER=clang++-3.7 -D CMAKE_CXX_FLAGS="-std=c++11 -stdlib=libc++ -I/usr/include/libcxxabi" -D CMAKE_EXE_LINKER_FLAGS="-std=c++11 -stdlib=libc++ -lc++abi" -D CMAKE_BUILD_TYPE=RELEASE ..
+
+* CMake
+  - Info message
+    message( STATUS|FATAL_ERROR “message” )
+
+  - Build lib
+    add_library(lib SHARED ${src_files})
+
+  - Exe link lib
+    #+BEGIN_EXAMPLE
+    include_directories(${OpenCV_INCLUDE_DIRS} build)
+    link_directories(build .)
+    list(APPEND fa_required_libs ${OpenCV_LIBS} seeta_facedet_lib)
+    add_executable(fa_align_test src/test/face_alignment_test.cpp)
+    target_link_libraries(fa_align_test ${fa_required_libs})
+    #+END_EXAMPLE
+
+  - Move lib file into directed path
+    #+BEGIN_EXAMPLE
+    set(LIBRARY_OUTPUT_PATH "${PROJECT_BINARY_DIR}/lib")
+    #+END_EXAMPLE
+    * LIBRARY_OUTPUT_PATH : 库输出路径
+    * PROJECT_BINARY_DIR : cmake 执行路径
+
+  - List all files in a dir
+    aux_source_directory(dir var_list)
+    file(GLOB INCLUDE_LIST ./include/*.h)
+
+  - make install
+
+    * Example
+      #+BEGIN_EXAMPLE
+      install(DIRECTORY include/ DESTINATION include/FaceDetection)
+      install(TARGETS seeta_facedet_lib LIBRARY DESTINATION lib
+        PERMISSIONS WORLD_EXECUTE OWNER_EXECUTE OWNER_WRITE OWNER_READ)
+      #+END_EXAMPLE
+    
+    * install(DIRECTORY dirs... DESTINATION <dir>)
+      install(DIRECTORY src/ DESTINATION include/myproj
+        FILES_MATCHING PATTERN "*.h"
+
+    * install(<FILES|PROGRAMS> files... DESTINATION <dir>)
+    * install(TARGETS myExe mySharedLib myStaticLib
+        RUNTIME DESTINATION bin
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib/static)
+    * install(TARGETS mySharedLib DESTINATION /some/full/path)
+
+  - build type
+    #+BEGIN_EXAMPLE
+    set(CMAKE_BUILD_TYPE "Release")
+    set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS} -std=c++11 -O2 -g -ggdb")
+    set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS} -std=c++11 -O2")
+
+    #+END_EXAMPLE
+
+  - 子文件夹
+    #+BEGIN_EXAMPLE
+    add_subdirectory("./SeetaFaceEngine/FaceDetection")
+    #+END_EXAMPLE
+
+  - make test
+    #+BEGIN_EXAMPLE
+     enable_testing ()
+     foreach (f ${SRC_LIST})
+       string(REGEX REPLACE "[.]cpp" ".bin" BIN ${f})
+       add_executable(${BIN} ${f})
+       target_link_libraries(${BIN} viplnet ${OpenCV_LIBS} ${det_align_lib})
+       add_test(test_name ${BIN} args)
+     endforeach ()
+    #+END_EXAMPLE
+
