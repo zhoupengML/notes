@@ -56,3 +56,39 @@
 * Exit ipdb
   import os
   os._exit(0)
+
+* Debug data batch
+  #+BEGIN_EXAMPLE
+   sess = tf.InteractiveSession()
+   threads = tf.train.start_queue_runners()
+  #+END_EXAMPLE
+
+* tfdbg
+** Usage
+   #+BEGIN_EXAMPLE
+    from tensorflow.python import debug as tf_debug
+    
+    sess = tf_debug.LocalCLIDebugWrapperSession(sess)
+    sess.add_tensor_filter("has_inf_or_nan", tf_debug.has_inf_or_nan)   
+   #+END_EXAMPLE
+   python -m tensorflow.python.debug.examples.debug_mnist --debug
+
+** command
+   - traceback
+     ni -t cross_entropy/Log
+
+* Summary
+
+** tf.Summary
+   summary_value = tf.Summary()
+   summary_value.value.add(tag = 'train_acc', simple_value = value)
+   summary_file.add_summary(summary_value, step)
+
+* Layers
+
+** BatchNorm
+   h2 = tf.contrib.layers.batch_norm(h1, 
+                                     center=True, scale=True, 
+                                     is_training=phase,
+                                     scope='bn')
+   

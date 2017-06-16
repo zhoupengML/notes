@@ -71,6 +71,9 @@ git init
 git add .
 git commit -m "message" file
 #+END_SRC
+** 设置默认编辑器
+   git config --global core.editor "emacs"
+
 ** git submodule
    - Config file
      - .gitmodules
@@ -132,7 +135,36 @@ git commit -m "message" file
 ** git merge
    - 合并分支
      - git merge merged-branch
-       
+     - git merge --abort
+   - 冲突解决
+     1) shows all files which require conflict resolution.
+	git diff --name-status --diff-filter=U
+
+     2) Open each of those files one by one, or all at once by:
+	emacs $(git diff --name-only --diff-filter=U)
+
+     3) When visiting a buffer requiring edits in Emacs, type
+	ALT+x vc-resolve-conflicts
+
+     4) This will open three buffers (mine, theirs, and the output buffer). 
+	Navigate by pressing 'n' (next region), 'p' (prevision region). 
+	Press 'a' and 'b' to copy mine or theirs region to the output buffer, respectively. 
+	And/or edit the output buffer directly.
+
+     5) When finished: Press 'q'. Emacs asks you if you want to save this buffer: yes. 
+	After finishing a buffer mark it as resolved by running from the teriminal:
+	git add FILENAME
+
+     6) When finished with all buffers type
+	git commit
+
+** git fetch
+   - 获取远程分支
+     git fetch origin master
+     git checkout -b master origin/master
+   - one step
+     git fetch origin remotebranch:localbranch
+
 ** git remote
    - Set remote url
      - git remote set-url origin url
@@ -166,7 +198,7 @@ git push origin [local branch]
    #+END_EXAMPLE
 ** Fetch remote refs
    #+BEGIN_EXAMPLE
-   git pull origin [local branch]
+   git pull origin branchname
    #+END_EXAMPLE
 ** 显示远程分支,Create branch
    #+BEGIN_SRC sh

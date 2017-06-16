@@ -262,3 +262,9 @@
     sudo pip install -U scikit-learn
     sudo pip install pandas
 
+* Snippet
+  - datatime
+    #+BEGIN_EXAMPLE
+    from datetime import datetime
+    subdir = datetime.strftime(datetime.now(), '%Y%m%d-%H%M%S')    
+    #+END_EXAMPLE

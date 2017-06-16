@@ -134,6 +134,13 @@ C-c C-o
      #+BEGIN_SRC 
      
      #+END_SRC
+* markdown
+  - [[http://wiki.dreamrunner.org/public_html/Emacs/markdown.html][ref]]
+  - [[http://jblevins.org/projects/markdown-mode/][markdown model]]
+
+** preview
+   C-c C-c l: markdown-live-preview-mode > *eww* buffer.
+
 * Doxymacs
 ** Install
    #+BEGIN_EXAMPLE
@@ -248,6 +255,12 @@ C-c C-w
 *** 删除用户
     sudo userdel -r user-name
 
+** 动态链接库
+   - 修改 LD_LIBRARY_PATH
+     export LD_LIBRARY_PATH="/home/lib:$LD_LIBRARY_PATH"
+
+   - /etc/ld.so.conf
+     注意 前面不要加 include
 ** anaconda3
    - .condarc
      #+BEGIN_EXAMPLE
@@ -373,6 +386,9 @@ C-c C-w
      Add @reboot /usr/bin/vncserver :1 to the bottom of the file
 
 ** VPN
+   - PPTP
+     连接失败: kill -9 pptp 
+
    - L2tp
      #+BEGIN_EXAMPLE
      sudo service xl2tpd stop
@@ -415,12 +431,37 @@ C-c C-w
    cd ..
    python3 setup.py install --yes USE_AVX_INSTRUCTIONS --yes DLIB_USE_CUDA
 
+** caffe
+   - 先把 python 相关的部分注释
+     make all
+
+   - 再编译 pycaffe
+     make pycaffe
+     注意查看 _caffe.so 链接的 libboost_python.so 版本
+     
+
 ** boost
-   ./bootstrap.sh --show-libraries
-   ./bootstrap.sh --with-libraries=python --with-python=/home/shhs/anaconda3/bin/python3
-   # If cann't find pyconfig.h, then cp anaconda3/include/python3.5m python3.5
-   ./b2 --with-python --buildid=3
-   sudo ./b2 install
+   - Prepare
+     ./bootstrap.sh --help
+     ./bootstrap.sh --show-libraries
+
+   - Build
+     #+BEGIN_EXAMPLE
+     ./bootstrap.sh --with-libraries=all \
+         --with-python=/home/shhs/anaconda3/bin/python3 \
+         --prefix=/home/shhs/env/boost_1_64_g++5
+     
+     #+END_EXAMPLE
+     # If cann't find pyconfig.h, then cp anaconda3/include/python3.5m python3.5
+     ./b2 --with-python --buildid=3
+     sudo ./b2 install
+
+   - build with python2.7
+     ./bootstrap.sh --with-libraries=python \
+         --with-python=/home/shhs/anaconda2/bin/python2.7 \
+         --prefix=/home/shhs/env/boost_python2.7
+     
+     ./b2 --with-python --buildid=2
 
 ** OpenFace
    - opencv-3.2.0
