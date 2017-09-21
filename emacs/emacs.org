@@ -3,7 +3,9 @@
 
 * Emacs 远程
 ** ssh
-   C-x C-f /ssh:user@host:/home/file
+   C-x C-f /ssh:user@host#port:/home/file
+   example
+   ssh peng@162.219.125.203 -p 26642                            
 
 * 英文系统环境中Emacs支持中文
   #+BEGIN_EXAMPLE
@@ -11,7 +13,16 @@
   #+END_EXAMPLE
 
 * emacs 常用命令
-  
+** 查看手册
+   #+BEGIN_EXAMPLE
+   C-h i d m AUCTeX
+   #+END_EXAMPLE
+
+** 查看当前模式
+   #+BEGIN_EXAMPLE
+   M-x describe-mode
+   C-h m
+   #+END_EXAMPLE
 ** Restart yasnippet
    #+BEGIN_EXAMPLE
    yas-minor-mode
@@ -158,10 +169,19 @@ C-c C-o
    - M-x gdb-many-windows
    
 ** Save breakpoints
-   - set breakpoints pending on 
-     * set breakpoints on future shared libraries : default[on]
+   - set breakpoints on future shared libraries : default[on]
+     set breakpoints pending on 
+
    - save breakpoints [filename]
    - source filename
+
+** Usage
+  - Show current function
+    frame
+    fr stack_number
+
+  - show backtrace with specified numbers
+    bt 5(-5)
 
 ** Examine memory
    - x/nfu addr
@@ -172,10 +192,11 @@ C-c C-o
 ** Temporary breakpoints
    - tbreak line
 
-** Set scheduler-locking
+** Set scheduler-locking : multi threads
    - set scheduler-locking off : 所有线程都执行
    - set scheduler-locking on : 只有当前线程执行
    - set scheduler-locking step : 
+
 * Cuda-gdb
 ** Cuda thread
    - 列出当前活跃的GPU线程
@@ -229,32 +250,49 @@ C-c C-w
 * Ubuntu
 ** 用户
 *** 新建用户   
-   - naive
-     adduser name
+   1. naive
+      adduser --home /mnt/usr/name name
 
-   - useradd
-     * sudo useradd -d /home/dir name
-     * sudo passwd name
-     * sudo vim /etc/passwd
+   2. useradd
+      * sudo useradd -d /home/dir name
+      * sudo passwd name
+      * sudo vim /etc/passwd
 
-   - 改变用户所属的用户和组
-     * sudo chown -R user:group file #递归修改
-     * sudo chown user file
-     * sudo chgrp group file
+   3. 改变用户所属的用户和组
+      * sudo chown -R user:group file #递归修改
+      * sudo chown user file
+      * sudo chgrp group file
        
-   - 容许用户使用 sudo 命令
-     * chmod u+w /etc/sudoers
-     * 在 root ALL=(ALL) ALL 下面添加
-       user-name ALL=(ALL) ALL (允许用户执行sudo命令,需要输入密码)
-     * chmod u-w /etc/sudoers
+   4. 容许用户使用 sudo 命令
+      * chmod u+w /etc/sudoers
+      * 在 root ALL=(ALL) ALL 下面添加
+	user-name ALL=(ALL) ALL (允许用户执行sudo命令,需要输入密码)
+      * chmod u-w /etc/sudoers
 
-   - 设置 root 用户密码
-     * sudo passwd root
+   5. 设置 root 用户密码
+      * sudo passwd root
 
-   - 切换用户
-     * su root
+   6. 切换用户
+      * su root
 *** 删除用户
     sudo userdel -r user-name
+
+** 终端走代理
+   [[http://blog.csdn.net/wangong/article/details/60972922][ref]]
+   - 安装Proxychains
+      git clone https://github.com/rofl0r/proxychains-ng.git 
+      cd proxychains-ng 
+      ./configure 
+      make && make install 
+      cp ./src/proxychains.conf /etc/proxychains.conf 
+      cd .. && rm -rf proxychains-ng
+   - 编辑proxychains配置
+      vim /etc/proxychains.conf 
+      将socks4 127.0.0.1 9095改为
+      socks5 127.0.0.1 1080
+   - 使用方法
+      在需要代理的命令前加上 proxychains4 ，如：
+      proxychains4 wget http://xxx.com/xxx.zip
 
 ** 动态链接库
    - 修改 LD_LIBRARY_PATH
@@ -338,9 +376,12 @@ C-c C-w
    - Does ssh start?
      sudo ps -e |grep ssh
 ** VNC
-   - vnc
+   - 主机之间复制
+     vncconfig&
+
+   - vnc 调整分辨率
      apt-get install vnc4server
-     vncserver
+     vncserver -geometry 1920x1080 :4
 
    - xstartup
      - xfce4
@@ -524,6 +565,12 @@ cmake \
    cmake -D CMAKE_CXX_COMPILER=clang++-3.7 -D CMAKE_CXX_FLAGS="-std=c++11 -stdlib=libc++ -I/usr/include/libcxxabi" -D CMAKE_EXE_LINKER_FLAGS="-std=c++11 -stdlib=libc++ -lc++abi" -D CMAKE_BUILD_TYPE=RELEASE ..
 
 * CMake
+  - opencv
+    SET(OpenCV_DIR "/home/shhs/env/opencv3_2/share/OpenCV")
+
+  - -fPIC
+    set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+    
   - Info message
     message( STATUS|FATAL_ERROR “message” )
 
@@ -593,4 +640,6 @@ cmake \
        add_test(test_name ${BIN} args)
      endforeach ()
     #+END_EXAMPLE
+
+
 

@@ -51,30 +51,31 @@ sudo apt-get install auctex
 *** Mac
     #+BEGIN_SRC lisp
     (setenv "PATH" (concat "/usr/texbin:/usr/local/bin:" (getenv "PATH")))
-(setq exec-path (append '("/usr/texbin" "/usr/local/bin") exec-path))
-(load "auctex.el" nil t t)
-(load "preview-latex.el" nil t t)
-
-(require-package 'auctex)
-
-(add-hook 'LaTeX-mode-hook 
-          (lambda () 
-	    (LaTeX-mod t)
-            (turn-on-reftex) 
-            (setq reftex-plug-into-AUCTeX t))) 
-(setq TeX-PDF-mode t) 
-(setq TeX-view-program-selection 
-      '(((output-dvi style-pstricks) 
-         "dvips and PDF Viewer") 
-        (output-dvi "PDF Viewer") 
-        (output-pdf "PDF Viewer") 
-        (output-html "Safari"))) 
-(setq TeX-view-program-list 
-      '(("dvips and PDF Viewer" "%(o?)dvips %d -o && open %f") 
-        ("PDF Viewer" "open %o") 
-        ("Safari" "open %o"))) 
+    (setq exec-path (append '("/usr/texbin" "/usr/local/bin") exec-path))
+    (load "auctex.el" nil t t)
+    (load "preview-latex.el" nil t t)
+    
+    (require-package 'auctex)
+    
+    (add-hook 'LaTeX-mode-hook 
+              (lambda () 
+    	    (LaTeX-mod t)
+                (turn-on-reftex) 
+                (setq reftex-plug-into-AUCTeX t))) 
+    (setq TeX-PDF-mode t) 
+    (setq TeX-view-program-selection 
+          '(((output-dvi style-pstricks) 
+             "dvips and PDF Viewer") 
+            (output-dvi "PDF Viewer") 
+            (output-pdf "PDF Viewer") 
+            (output-html "Safari"))) 
+    (setq TeX-view-program-list 
+          '(("dvips and PDF Viewer" "%(o?)dvips %d -o && open %f") 
+            ("PDF Viewer" "open %o") 
+            ("Safari" "open %o"))) 
     #+END_SRC
-   - If auctex was installed successfully, the menu bar will be added  three menu items including Preview, LaTeX, and Command 
+   - If auctex was installed successfully, the menu bar will be added  three menu items 
+     including Preview, LaTeX, and Command 
      when open a .tex file.
      
 ** Define shortcut keys
@@ -92,6 +93,14 @@ sudo apt-get install auctex
 
 ** Reference
 [[http://www.gnu.org/software/auctex/]]
+
+* Usage of Auctex
+  - ref 
+    [[https://piotrkazmierczak.com/2010/emacs-as-the-ultimate-latex-editor/][Emacs as the Ultimate LaTeX Editor]]
+
+  - automatic formatting of a section
+     C-c C-q C-s
+
 
 * Emacs + LaTex quick start
 ** Reference 
@@ -198,6 +207,9 @@ sudo apt-get install auctex
 
 * Latex
 
+** 表格过宽
+   - [[http://www.latexstudio.net/archives/9842][ref]]
+     
 ** Insert piecewise function
 #+BEGIN_SRC 
 \begin{equation}

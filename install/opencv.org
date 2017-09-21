@@ -1,7 +1,10 @@
 <2016-09-17 Sat>
 
 * install opencv [[http://blog.csdn.net/jhszh418762259/article/details/52957495][ref]]
-
+** Install cv2
+   #+BEGIN_EXAMPLE
+   pip install opencv-python==3.2.0.6
+   #+END_EXAMPLE
 ** Required Packages
     #+BEGIN_SRC sh
     sudo apt-get install build-essential
@@ -30,9 +33,9 @@
      + Build with anaconda3
        #+BEGIN_SRC sh
        cmake -D CMAKE_BUILD_TYPE=Release \
-             -D CMAKE_INSTALL_PREFIX=/home/shhs/env/opencv3_2 \
+             -D CMAKE_INSTALL_PREFIX=/home/shhs/env/opencv_python_2_7 \
              -D WITH_CUDA=OFF \
-             -D BUILD_NEW_PYTHON_SUPPORT=ON \
+             -D BUILD_NEW_PYTHON_SUPPORT=OFF \
              -D BUILD_EXAMPLES=OFF \
              -D PYTHON_EXECUTABLE=/home/shhs/anaconda3/bin/python3.5 \
              -D PYTHON3_INCLUDE_DIR=/home/shhs/anaconda3/include/python3.5m \
@@ -46,4 +49,8 @@
     - to build with modules from opencv_contrib set OPENCV_EXTRA_MODULES_PATH 
       to <path to opencv_contrib/modules/>
 
+cmake -D CMAKE_BUILD_TYPE=Release \
+             -D WITH_CUDA=ON \
+             -D BUILD_NEW_PYTHON_SUPPORT=OFF \
+             -D BUILD_EXAMPLES=OFF 
 

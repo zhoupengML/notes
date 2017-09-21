@@ -250,6 +250,9 @@
 * Look up version of packages
   - pip list
     
+* pip3
+  - pip install -Iv protobuf==2.6.0
+
 * Install numpy and scipy
   - Pre
     sudo apt-get install build-essential gfortran libatlas-base-dev python-pip python-dev

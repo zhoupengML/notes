@@ -2,7 +2,8 @@
 * Grammar
 ** __global__  kernel_fun()
    - 告诉编译器把该函数放在GPU上运行
-     
+** gridDim.x , blockDim.x
+   - [[http://blog.csdn.net/hujingshuang/article/details/53097222][blog]]
 ** blockIdx.x , threadIdx.x
    - 线程块数量不超过65535(参考)
    - 每个线程块线程数量不超过maxThreadsPerBlock(参考512)

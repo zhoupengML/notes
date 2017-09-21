@@ -74,6 +74,34 @@ git commit -m "message" file
 ** 设置默认编辑器
    git config --global core.editor "emacs"
 
+** 两台主机之间交换代码
+#+BEGIN_EXAMPLE
+cd /codes/project
+
+# 创建git代码仓库
+git init
+git add .
+git commit -m "create project"
+
+# 切换到project父目录，创建一个project-bare目录
+cd ..
+mkdir project-bare
+cd project-bare
+
+# 从原始代码仓库创建bare仓库，作为“中央”仓库，其他机器(包括本机的原始仓库)往这里push，从这里pull
+git clone --bare ../project ./project-bare.git
+
+# 回到project仓库目录
+cd ../project
+
+# 把project-bare添加为remote，
+git remote add origin ../project-bare/project-bare.git
+git branch --set-upstream-to=origin/master master
+
+主机B
+git clone <username>@<ip>:<port>:/codes/project-bare/project-bare.git ./project
+
+#+END_EXAMPLE
 ** git submodule
    - Config file
      - .gitmodules
