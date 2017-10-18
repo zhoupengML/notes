@@ -3,9 +3,12 @@
 
 * Emacs 远程
 ** ssh
-   C-x C-f /ssh:user@host#port:/home/file
-   example
-   ssh peng@162.219.125.203 -p 26642                            
+   - C-x C-f /ssh:user@host#port:/home/file
+     example
+     ssh peng@162.219.125.203 -p 26642
+   - sudo
+     C-x C-f /ssh:you@remotehost|sudo:remotehost:/path/to/file RET
+   - 
 
 * 英文系统环境中Emacs支持中文
   #+BEGIN_EXAMPLE
@@ -383,6 +386,21 @@ C-c C-w
      apt-get install vnc4server
      vncserver -geometry 1920x1080 :4
 
+   - x11vnc
+     - sudo apt-get install x11vnc
+
+     - x11vnc -storepasswd
+
+     - sudo nano /lib/systemd/system/x11vnc.service
+
+     - start service
+       sudo systemctl daemon-reload
+       sudo systemctl enable x11vnc.service
+       sudo systemctl start x11vnc.service
+
+     - sudo killall x11vnc
+       pgrep x11vnc
+
    - xstartup
      - xfce4
        apt-get install gnome-core xfce4 firefox nano
@@ -643,3 +661,21 @@ cmake \
 
 
 
+* PyCharm
+** 远程同步文件
+   - ref [[http://blog.csdn.net/ll641058431/article/details/53049453][ref1]]  [[http://www.jianshu.com/p/79df9ac88e96][ref2]]
+** 修改文件标识
+   - asterisk
+** 更改 occurence color
+   - Identifier under caret
+
+* CLion
+** Using makefile create project
+   - CMakeLists.txt
+     #+BEGIN_SRC 
+      add_custom_target(mytest COMMAND make all -j32 -C ${mytest_SOURCE_DIR}
+                               CLION_EXE_DIR=${PROJECT_BINARY_DIR})
+      add_custom_target(clean COMMAND make clean  -C ${mytest_SOURCE_DIR}
+                               CLION_EXE_DIR=${PROJECT_BINARY_DIR})
+     #+END_SRC
+   - 注意,要想有类型跳转功能,需要将文件指定到一个target
